@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Diamond Hub Plus LTD</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="./assets/img/logo.png" alt="diamond_hub_logo">
+        </div>
+        <div class="m-right">
+            <div class="top">
+                <div>
+                    <span>
+                        <i class="fas fa-history"></i> Started: January 10, 2018</span>
+                    <span>
+                        <i class="far fa-envelope-open"></i> Email: admin@diamondhubplus.com</span>
+                </div>
+                <select name="lang" id="lang">
+                    <option>Select Language</option>
+                    <option value="eng">English</option>
+                    <option value="fr">France</option>
+                    <option value="sp">Spanish</option>
+                </select>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">F.A.Q</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Terms & Condition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="#" class="login">
+                        <i class="fas fa-user"></i> Log in</a>
+                    <a href="#" class="register">
+                        <i class="fas fa-user-plus"></i> Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-text">
+                <p>Mainetrix Nigeria Limited.</p>
+                <h1>THE SMART, MODERN WAY TO INVEST</h1>
+                <a href="#">Get Started</a>
+                <div class="plans">
+                    <div class="plan">
+                        <p class="title">Starter Plan</p>
+                        <p class="rate">2.4%</p>
+                        <p class="description">Daily For 52 Days
+                            <br> Min: &#8358;10000 - Max: &#8358;100000
+                            <br>Total Returns: 130% in 52 Days</p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="plan">
+                        <p class="title">Investors plan</p>
+                        <p class="rate">3.5%</p>
+                        <p class="description">Daily For 35 Days
+                            <br> Min: &#8358;100000 - Max: &#8358;500000
+                            <br>Total Returns: 122.5% in 35 Days</p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="plan">
+                        <p class="title">Partner Plan</p>
+                        <p class="rate">4%</p>
+                        <p class="description">Daily For 35 Days
+                            <br> Min: &#8358;500000 - Max: &#8358;5000000
+                            <br>Total Returns : 140% in 35 Days</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About section begins -->
+        <section id="abt-section">
+            <div class="abt-container">
+                <div class="abt-left">
+                    <div class="abt-title">
+                        <p>ABOUT NEU DIAMOND HUB</p>
+                    </div>
+                    <div class="abt-text1">
+                        <p>
+                            Neu DiamondHub Ventures is a newly established investment Company that is located in Lagos State and it is duly registered
+                            with the Nigeria CAC (RC. 2486135), hence, it is a legal entity that can sue and be sued. Neu
+                            Diamondhub Ventures holds her investment in cryptocurrency trading, real estate investment, advertisement/mobile
+                            marketing, online financial services (bitcoin, pm, payeer, advcash etc) and agricultural farming
+                            business. It is from this various investments that the Company generates her inflows and compensate
+                            investors accordingly.So, Neu Diamond Hub is NOT a Ponzi Scheme, Hyip, MLM, Crowd-funding and
+                            it is not a bank. The goal of Neu Diamond Hub is to enhance the standard of living of Nigerians
+                            by alleviating absolute poverty. To achieve this robust goal, the company decided to offer unique
+                            opportunities for Nigerians to EARN steady income for life through her online and offline investment
+                            program.
+                        </p>
+                    </div>
+                    <div class="abt-text2">
+                        <a href="#" class="a-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="abt-right">
+                    <a target="_blank" href="#">
+                        <img src="assets/img/ukcer.jpg">
+                    </a>
+                    <div class="abt-text3">
+                        <a target="_blank" href="#" class="a-link">Verify Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About section ends here -->
+
+        <!-- calculation of profit and latest withdrawals -->
+        <section id="profit-sec">
+            <div class="profit-container">
+                <div class="profit-top">
+                    <div class="profit-top-left">
+                        <div class="profit-top-left1">
+                            <div id="tabs">
+                                <div class="latest-depo">
+                                    <a id="tab1" class="a-link">Latest Deposit</a>
+                                </div>
+                                <div class="latest-withd">
+                                    <a id="tab2" class="a-link">Latest Withdraw</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="deposits">
+                            <table class="entries">
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="bitcoin">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 300000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">matthew</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="bitcoin">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 100000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">shola22</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="payment">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 350000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">nike347</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/101.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 120000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">leonard</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/101.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 50000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">mike777</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 20000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">Mohammed21</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 2000000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">susan</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 150000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">katherine</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 25000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">david</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 10000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">gbenga_89</span> &nbsp;
+                                        <i class="fas fa-upload"></i>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="withdrawals">
+                            <table class="entries">
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="bitcoin">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 20000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">thomas</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="bitcoin">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 100000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">adewale344</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="payment">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 350000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">mike777</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/101.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 120000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">susan</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/102.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 50000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">johndoe</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/102.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 20000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">Mohammed21</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 2000000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">mi_daniel</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/101.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 150000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">katherine</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/103.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 25000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">gbenga_89</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                                <tr class="entry">
+                                    <td>
+                                        <img src="./assets/img/100.png" alt="">
+                                    </td>
+                                    <td>
+                                        <span class="amount">&#8358; 10000.00</span>
+                                    </td>
+                                    <td>
+                                        <span class="created">Jul-16-2018 10:06:40 AM</span>
+                                    </td>
+                                    <td>
+                                        <span class="user">david</span> &nbsp;
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="profit-top-right">
+                        <div class="profit-top-right1">
+                            <div class="calc">
+                                <img src="assets/img/calc.png">
+                            </div>
+                            <div class="profit-top-right1_1">
+                                <p>Profit Calculator</p>
+                            </div>
+                            <div class="profit-top-right1_2">
+                                <div class="profit-top-right1_2_1">
+                                    <select id="calc_plan">
+                                        <option value="1">2.4% Daily For 52 Days</option>
+                                        <option value="2">3.5% Daily For 35 Days</option>
+                                        <option value="3">4.0% Daily For 35 Days</option>
+                                    </select>
+                                </div>
+                                <div class="profit-top-right1_2_1">
+                                    <input id="inv_amount" type="text" placeholder="Enter amount">
+                                </div>
+                                <div class="profit-top-right1_2_3">
+                                    <div class="profit-top-right1_2_3_1">
+                                        <div class="profit-top-right1_2_3_1l">
+                                            <p>Profit</p>
+                                        </div>
+                                        <div class="profit-top-right1_2_3_1r">
+                                            <input id="net_profit" type="text" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profit-top-right1_2_3_2">
+                                    <div class="profit-top-right1_2_3_2l">
+                                        <p>Percent</p>
+                                    </div>
+                                    <div class="profit-top-right1_2_3_2r">
+                                        <input id="assign_per" type="text" disabled value="130%">
+                                    </div>
+                                </div>
+                                <div class="profit-top-right1_2_4">
+                                    <div class="profit-top-right1_2_4d">
+                                        <p>Return</p>
+                                    </div>
+                                    <div class="returns-div">
+                                    	<input type="text" id="returns">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profit-top-right2">
+                            <div class="refe">
+                                <p>4 Level Referral Commission</p>
+                            </div>
+                            <div class="refe2">
+                                <div class="refe2_1">
+                                    <p>3%</p>
+                                </div>
+                                <div class="refe2_2">
+                                    <p>4%</p>
+                                </div>
+                                <div class="refe2_3">
+                                    <p>5%</p>
+                                </div>
+                                <div class="refe2_4">
+                                    <p>7%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of cal -->
+		
+		<!-- what-we-do -->
+        <section id="posts">
+        	<div class="control-div">
+                <h3>We believe in investment. <br>Check out what we are into:</h3>
+                <div class="controls">
+                    <div class="control-left control"><i class="fas fa-arrow-circle-left"></i></div>
+                    <div class="control-right control"><i class="fas fa-arrow-circle-right"></i></div>
+                </div>
+            </div>
+            <div class="post-view">
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Cryptocurrency Trading
+                        </h4>
+                        <div class="post-text">
+                            <p>Crypto currency has taken the world by storm, quickly transforming from an underground niche to a news-headlining, digital stock market on steroids with investors begging to buy in. Bitcoin is currently above $5000 per coin.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Real Estate Investment
+                        </h4>
+                        <div class="post-text">
+                            <p>Property management is the operation, control, and oversight of real estate as used in its most broad terms. Management indicates a need to be cared for, monitored and accountability given for its useful life and condition.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Agricultural Business
+                        </h4>
+                        <div class="post-text">
+                            <p>The Agricultural Business majorly teaches students the operating techniques and business skills used in the modern food and fiber industry providing them with skills needed to manage small and medium sized business in agriculture and allied industries.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Advertising/Mobile Marketing
+                        </h4>
+                        <div class="post-text">
+                            <p>Mobile marketing provides customers or potential customers using smartphones with personalized, time- and location-sensitive information so that they can get what they need exactly when they need it, even if they're on the go.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Metal and Mining
+                        </h4>
+                        <div class="post-text">
+                            <p>The metals and mining sector is the industry dedicated to the location and extraction of metal and mineral reserves around the world. Global reserves of metals and minerals are mined for profit and then used in jewelry-making, industrial applications and investments.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Online Financial Services
+                        </h4>
+                        <div class="post-text">
+                            <p>It is also our mission to provide smiles for both gift card buyers and recipients by offering personalized gift cards and custom greetings. We buy gift cards like iTunes cards, Amazon cards, Visa gift cards, PM, Payza e.t.c.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-image"></div>
+                    <div class="post-body">
+                        <h4 class="post-title">
+                            Transportation/Travels business
+                        </h4>
+                        <div class="post-text">
+                            <p>We, through our state-of-the-art equipment and technology, management team and capacity, provides exceptional convenience and modernisation to the transportation business in Nigeria.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- what-we-do ends -->
+
+        <!-- chart section starts -->
+
+		<section id="live-chart">
+			<div class="charts">
+				<div class="coinmarketcap-currency-widget" data-currencyid="1" data-base="NGN" data-secondary="USD" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+				<div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="NGN" data-secondary="USD" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+				<div class="coinmarketcap-currency-widget" data-currencyid="1831" data-base="NGN" data-secondary="USD" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+				<div class="coinmarketcap-currency-widget" data-currencyid="2" data-base="NGN" data-secondary="USD" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+				<div class="coinmarketcap-currency-widget" data-currencyid="131" data-base="NGN" data-secondary="USD" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+			</div>
+		</section>
+
+		<!-- chart section ends -->
+		
+        <!-- footer started -->
+        <section id="footer">
+            <div id="footer2">
+                <div class="foot">
+                    <img src="assets/img/logo.png">
+                    <p>© 2018 All Rights Reserved By
+                        <br> Mainetrix Nigeria Limited</p>
+                </div>
+                <div class="foot1">
+                    <h2>COMPANY ADDRESS:</h2>
+                    <h3>
+                        <i class="fas fa-map-marker-alt img"></i>LAGOS NIGERIA</h3>
+                    <p>SHOP 12 DOMINION PLAZA BESIDE DOMINION FILLING STATION ASOLO BUS-STOP AGRIC,IKORODU LAGOS.</p>
+                </div>
+                <div class="foot2">
+                    <h2>CONTACT US:</h2>
+                    <p>
+                        <i class="far fa-envelope-open"></i>Email : support@diamondhubplus.com</p>
+                    <p>
+                        <i class="fab fa-telegram"></i>Telegram : jrfprofitfund.com</p>
+                </div>
+                <div class="foot3">
+                    <h2>SOCIAL NETWORKS:</h2>
+                    <div class="foot3_1">
+                        <a target="_blank" href="#">
+                            <i class="fab fa-facebook-f"></i>Facebook
+                        </a>
+                    </div>
+                    <div class="foot3_2">
+                        <a target="_blank" href="https://t.me/joinchat/EvxIUBBG277V8UslAAh3Zw">
+                            <i class="fab fa-telegram"></i>Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
