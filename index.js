@@ -13,6 +13,10 @@ app.get('/', function(req, res) {
 	res.sendFile('index.html');
 });
 
+app.get('/dashboard', function(req, res) {
+	res.render('dashboard/index.ejs');
+})
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
 	console.log(`DHP app running at port: ${PORT}`);
