@@ -1,4 +1,3 @@
-
 var express = require("express"),
   app = express(),
   mongoose = require("mongoose"),
@@ -30,7 +29,6 @@ app.use(
   })
 );
 
-
 //configure passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,26 +51,33 @@ app.get("/register", function(req, res) {
   res.render("dashboard/register.ejs");
 });
 
-app.post('/register', function (req, res) {
-	var newUser = new User({
-		username: req.body.username
-	});
-	User.register(newUser, req.body.password, function (err, user) {
-		if (err) {
-			console.log(err);
-		} else {
-			console.log(user);
-			passport.authenticate("local")(req, res, function () {
-				res.redirect('/dashboard/profile.ejs');
-			});
-		}
-	});
+app.post("/register", function(req, res) {
+  var newUser = new User({
+    username: req.body.username
+  });
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+      console.log(err);
+    }
+    User.findOneAndUpdate(user._id, req.body.user, { new: true }, function(
+      err,
+      updateUser
+    ) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(user);
+        passport.authenticate("local")(req, res, function() {
+          res.redirect("/dashboard");
+        });
+      }
+    });
+  });
 });
 
-app.get('/login', function (req, res) {
-	res.render('dashboard/login.ejs');
+app.get("/login", function(req, res) {
+  res.render("dashboard/login.ejs");
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
