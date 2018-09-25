@@ -48,7 +48,7 @@ app.get("/dashboard", function(req, res) {
 });
 
 app.get("/register", function(req, res) {
-  res.render("dashboard/register.ejs");
+  res.render("dashboard/register");
 });
 
 app.post("/register", function(req, res) {
@@ -76,7 +76,7 @@ app.post("/register", function(req, res) {
 });
 
 app.get("/login", function(req, res) {
-  res.render("dashboard/login.ejs");
+  res.render("dashboard/login");
 });
 
 const PORT = process.env.PORT || 3000;
