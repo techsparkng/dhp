@@ -44,7 +44,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/dashboard", function(req, res) {
-  res.render("dashboard/index.ejs");
+  res.render("dashboard/index");
 });
 
 app.get("/register", function(req, res) {
@@ -59,14 +59,14 @@ app.post("/register", function(req, res) {
     if (err) {
       console.log(err);
     }
-    User.findOneAndUpdate(user._id, req.body.user, { new: true }, function(
+    User.findByIdAndUpdate(user._id, req.body.user, { new: true }, function(
       err,
-      updateUser
+      updatedUser
     ) {
       if (err) {
         console.log(err);
       } else {
-        console.log(user);
+        console.log(updatedUser);
         passport.authenticate("local")(req, res, function() {
           res.redirect("/dashboard");
         });
@@ -79,9 +79,18 @@ app.get("/login", function(req, res) {
   res.render("dashboard/login");
 });
 
-app.get('/logout', function(req, res){
-	res.logout();
-	res.redirect('/');
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successReturnToOrRedirect: "/dashboard",
+    failureRedirect: "/login"
+  }),
+  function(req, res) {}
+);
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  req.redirect("/");
 });
 
 const PORT = process.env.PORT || 3000;
