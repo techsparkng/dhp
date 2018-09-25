@@ -51,12 +51,17 @@ app.post('/register', function (req, res) {
 	User.register(newUser, req.body.password, function (err, user) {
 		if (err) {
 			console.log(err);
-		} else {
-			console.log(user);
-			passport.authenticate("local")(req, res, function () {
-				res.redirect('/dashboard');
-			});
 		}
+		User.findByIdAndUpdate(user._id, req.body.user,{new:true}, function (err, updateUser) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log(updateUser);
+				passport.authenticate("local")(req, res, function () {
+					res.redirect('/dashboard');
+				});
+			}
+		});
 	});
 });
 
