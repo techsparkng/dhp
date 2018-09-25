@@ -7,7 +7,7 @@ var express = require('express'),
 	LocalStrategy = require('passport-local'),
 	User = require('./model/user');
 
-mongoose.connect('mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp');
+mongoose.connect('mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp')
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/views')));
@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-// configure session
+//configure session
 app.use(require('express-session')({
 	secret: 'DHP is cool',
 	resave: false,
 	saveUninitialized: false
 }));
 
-// configure passport
+//configure passport
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,14 +44,16 @@ app.get('/register', function (req, res) {
 	res.render('dashboard/register.ejs');
 });
 
-app.post('/register', function(req, res) {
-	var newUser = new User({ username: req.body.username });
-	User.register(newUser, req.body.password, function(err, user) {
+app.post('/register', function (req, res) {
+	var newUser = new User({
+		username: req.body.username
+	});
+	User.register(newUser, req.body.password, function (err, user) {
 		if (err) {
-			console.log(err)
+			console.log(err);
 		} else {
 			console.log(user);
-			passport.authenticate("local")(req, res, function() {
+			passport.authenticate("local")(req, res, function () {
 				res.redirect('/dashboard');
 			});
 		}
