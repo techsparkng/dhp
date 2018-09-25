@@ -37,18 +37,18 @@ app.get('/', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	res.render('dashboard/index.ejs');
+	res.render('dashboard/index');
 });
 
 app.get('/register', function (req, res) {
-	res.render('dashboard/register.ejs');
+	res.render('dashboard/register');
 });
 
 app.post('/register', function (req, res) {
 	var newUser = new User({
 		username: req.body.username
 	});
-	User.register(newUser, req.body.password, function (err, user) {
+	User.register(newUser, req.body.password, function(err, user) {
 		if (err) {
 			console.log(err);
 		} 
@@ -61,14 +61,24 @@ app.post('/register', function (req, res) {
 					res.redirect('/dashboard');
 				});
 			}
-		})
+		});
 	});
 });
 
 app.get('/login', function (req, res) {
-	res.render('dashboard/login.ejs');
+	res.render('dashboard/login');
 });
 
+app.post('/login', passport.authenticate('local', {
+	successReturnToOrRedirect: '/dashboard',
+	failureRedirect: '/login'
+}), function(req, res) {
+});
+
+app.get('/logout', function(req, res) {
+	req.logout();
+	req.redirect('/');
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
