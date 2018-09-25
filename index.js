@@ -79,6 +79,11 @@ app.get("/login", function(req, res) {
   res.render("dashboard/login");
 });
 
+app.get('/logout', function(req, res){
+	res.logout();
+	res.redirect('/');
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
   console.log(`DHP app running at port: ${PORT}`);
