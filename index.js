@@ -37,11 +37,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-	res.render('dashboard/index.ejs');
+	res.render('dashboard/index');
 });
 
 app.get('/register', function (req, res) {
-	res.render('dashboard/register.ejs');
+	res.render('dashboard/register');
 });
 
 app.post('/register', function (req, res) {
@@ -51,8 +51,10 @@ app.post('/register', function (req, res) {
 	User.register(newUser, req.body.password, function (err, user) {
 		if (err) {
 			console.log(err);
-		} 
-		User.findByIdAndUpdate(user._id, req.body.user, {new: true}, function(err, updatedUser) {
+		}
+		User.findByIdAndUpdate(user._id, req.body.user, {
+			new: true
+		}, function (err, updatedUser) {
 			if (err) {
 				console.log(err);
 			} else {
@@ -62,15 +64,21 @@ app.post('/register', function (req, res) {
 				});
 			}
 		});
-		})
+	})
 
-	});
+});
 
 
 app.get('/login', function (req, res) {
-	res.render('dashboard/login.ejs');
+	res.render('dashboard/login');
 });
 
+app.post('/login', passport.authenticate('local', {
+	successReturnToOrRedirect: '/dashboard',
+	failureRedirect: '/login'
+}), function (req, res) {
+
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
