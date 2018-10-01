@@ -60,7 +60,7 @@ app.post('/register', function (req, res) {
 			} else {
 				console.log(updatedUser);
 				passport.authenticate("local")(req, res, function () {
-					res.redirect('/dashboard');
+					res.redirect('/profile');
 				});
 			}
 		});
