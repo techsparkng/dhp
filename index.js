@@ -58,7 +58,7 @@ app.post('/register', function (req, res) {
 			} else {
 				console.log(updatedUser);
 				passport.authenticate("local")(req, res, function () {
-					res.redirect('/dashboard');
+					res.redirect('/updateProfile');
 				});
 			}
 		});
@@ -80,6 +80,11 @@ app.get('/logout', function(req, res) {
 	req.logout();
 	req.redirect('/');
 });
+
+app.get('/updateProfile', function(req, res) {
+	res.render('dashboard/updateProfile');
+})
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
