@@ -56,23 +56,30 @@ app.post('/register', function (req, res) {
 	var newUser = new User({
 		username: req.body.username
 	});
-	User.register(newUser, req.body.password, function(err, user) {
+	User.register(newUser, req.body.password, function (err, user) {
 		if (err) {
 			console.log(err);
-		} 
-		User.findByIdAndUpdate(user._id, req.body.user, {new: true}, function(err, updatedUser) {
+		}
+		User.findByIdAndUpdate(user._id, req.body.user, {
+			new: true
+		}, function (err, updatedUser) {
 			if (err) {
 				console.log(err);
 			} else {
 				console.log(updatedUser);
 				passport.authenticate("local")(req, res, function () {
 					res.redirect('/updateProfile');
+
 				});
 			}
 		});
+	})
+
+});
+
+
 app.get('/login', function (req, res) {
 	res.render('dashboard/login');
-
 });
 
 app.post(
@@ -87,9 +94,9 @@ app.post(
 app.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
-});
 
-app.get('/updateProfile', function(req, res) {
+
+app.get('/updateProfile', function (req, res) {
 	res.render('dashboard/updateProfile');
 });
 
