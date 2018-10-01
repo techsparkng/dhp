@@ -82,7 +82,7 @@ app.post('/login', passport.authenticate('local', {
 
 app.get('/logout', function (req, res) {
 	req.logout();
-	req.redirect('/');
+	res.redirect('/');
 });
 
 app.get('/updateProfile', function (req, res) {

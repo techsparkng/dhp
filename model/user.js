@@ -2,29 +2,13 @@ var mongoose = require("mongoose"),
   passportLocalMongoose = require("passport-local-mongoose");
 
 var userSchema = new mongoose.Schema({
-<<<<<<< HEAD
   username: String,
   password: String,
-  firstname: {
-    type: String,
-    required: true
-  },
-  lastname: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  bank: {
-    type: [String],
-    required: true
-  },
-  mobile: {
-    type: String,
-    required: true
-  },
+  firstname: String,
+  lastname: String,
+  email: String,
+  bank: String,
+  mobile: String,
   package: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Package"
