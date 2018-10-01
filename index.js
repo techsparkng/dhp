@@ -51,32 +51,28 @@ app.get("/register", function(req, res) {
   res.render("dashboard/register");
 });
 
-app.post("/register", function(req, res) {
-  var newUser = new User({
-    username: req.body.username
-  });
-  User.register(newUser, req.body.password, function(err, user) {
-    if (err) {
-      console.log(err);
-    }
-    User.findByIdAndUpdate(user._id, req.body.user, { new: true }, function(
-      err,
-      updatedUser
-    ) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(updatedUser);
-        passport.authenticate("local")(req, res, function() {
-          res.redirect("/dashboard");
-        });
-      }
-    });
-  });
-});
 
-app.get("/login", function(req, res) {
-  res.render("dashboard/login");
+app.post('/register', function (req, res) {
+	var newUser = new User({
+		username: req.body.username
+	});
+	User.register(newUser, req.body.password, function(err, user) {
+		if (err) {
+			console.log(err);
+		} 
+		User.findByIdAndUpdate(user._id, req.body.user, {new: true}, function(err, updatedUser) {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log(updatedUser);
+				passport.authenticate("local")(req, res, function () {
+					res.redirect('/updateProfile');
+				});
+			}
+		});
+app.get('/login', function (req, res) {
+	res.render('dashboard/login');
+
 });
 
 app.post(
@@ -92,6 +88,11 @@ app.get("/logout", function(req, res) {
   req.logout();
   req.redirect("/");
 });
+
+app.get('/updateProfile', function(req, res) {
+	res.render('dashboard/updateProfile');
+})
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
