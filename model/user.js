@@ -2,6 +2,7 @@ var mongoose = require("mongoose"),
   passportLocalMongoose = require("passport-local-mongoose");
 
 var userSchema = new mongoose.Schema({
+<<<<<<< HEAD
   username: String,
   password: String,
   firstname: {
@@ -42,6 +43,7 @@ var userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+
 });
 
 userSchema.plugin(passportLocalMongoose);
