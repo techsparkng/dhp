@@ -3,32 +3,18 @@ var mongoose = require("mongoose"),
 var userSchema = new mongoose.Schema({
   username: String,
   password: String,
-  firstname: {
-    type: String,
-    required: true
-  },
-  lastname: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
+  firstname: String,
+  lastname: String,
+  email: String,
   avatar: String,
   gender: String,
-  bank: [
-    {
-      bankname: String,
-      accountnumber: String,
-      accountname: String
-    }
-  ],
+  bank: [{
+    bankname: String,
+    accountnumber: String,
+    accountname: String
+  }],
   address: String,
-  mobile: {
-    type: String,
-    required: true
-  },
+  mobile: String,
   package: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Package"
