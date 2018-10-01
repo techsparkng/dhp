@@ -86,12 +86,12 @@ app.post(
 
 app.get("/logout", function(req, res) {
   req.logout();
-  req.redirect("/");
+  res.redirect("/");
 });
 
 app.get('/updateProfile', function(req, res) {
 	res.render('dashboard/updateProfile');
-})
+});
 
 
 const PORT = process.env.PORT || 3000;

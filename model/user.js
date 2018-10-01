@@ -1,7 +1,6 @@
 var mongoose = require("mongoose"),
-passportLocalMongoose = require('passport-local-mongoose');
+  passportLocalMongoose = require("passport-local-mongoose");
 var userSchema = new mongoose.Schema({
-
   username: String,
   password: String,
   firstname: {
@@ -16,10 +15,16 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  bank: {
-    type: [String],
-    required: true
-  },
+  avatar: String,
+  gender: String,
+  bank: [
+    {
+      bankname: String,
+      accountnumber: String,
+      accountname: String
+    }
+  ],
+  address: String,
   mobile: {
     type: String,
     required: true
@@ -42,7 +47,6 @@ var userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-
 });
 
 userSchema.plugin(passportLocalMongoose);
