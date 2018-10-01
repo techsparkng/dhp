@@ -76,8 +76,12 @@ app.get('/login', function (req, res) {
 app.post('/login', passport.authenticate('local', {
 	successReturnToOrRedirect: '/dashboard',
 	failureRedirect: '/login'
-}), function (req, res) {
 
+}), function (req, res) {});
+
+app.get('/logout', function (req, res) {
+	req.logout();
+	req.redirect('/');
 });
 
 const PORT = process.env.PORT || 3000;
