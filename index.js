@@ -23,8 +23,6 @@ app.use(
   })
 );
 
-
-
 //Configure session
 app.use(
   require("express-session")({
@@ -78,7 +76,7 @@ app.post("/register", function(req, res) {
       } else {
         console.log(updatedUser);
         passport.authenticate("local")(req, res, function() {
-          res.redirect("/updateProfile");
+          res.redirect("/user/updateProfile");
         });
       }
     });
@@ -89,7 +87,9 @@ app.get("/login", function(req, res) {
   res.render("dashboard/login");
 });
 
-app.post("/login", passport.authenticate("local", {
+app.post(
+  "/login",
+  passport.authenticate("local", {
     successReturnToOrRedirect: "/dashboard",
     failureRedirect: "/login"
   }),

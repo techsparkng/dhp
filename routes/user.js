@@ -1,5 +1,3 @@
-import { fail } from "assert";
-
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -7,7 +5,7 @@ const mongoose = require("mongoose");
 //Load User Model
 const User = require("../model/user");
 //Load Package Model
-const User = require("../model/package");
+const Package = require("../model/package");
 // Load Deposit Model
 const Deposit = require("../model/deposit");
 
@@ -29,9 +27,9 @@ router.post("/updateProfile", (req, res) => {
     lastname: req.body.lastname,
     email: req.body.email,
     gender: req.body.gender,
-    bank: req.body.bank,
     phonenumber: req.body.phonenumber,
-    address: req.body.address
+    address: req.body.address,
+    bank: req.body.bank
   };
   User.findByIdAndUpdate(req.user._id, userData, { new: true }, function(
     err,
@@ -77,44 +75,38 @@ router.post("/invest", function(req, res) {
   //   package: req.body.package,
   //   deposit: req.body.deposit
   // };
-    req.body.package.investor = req.user._id;
-  
-    // create package and save
-    Package.create(req.body.package, function(err, createdPackage) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(createdPackage);
-        req.user.package.push(createdPackage);
-        var depositData = {
-          amount: req.body.amount,
-          package: createdPackage._id,
-          bank: req.body.bankd
+  req.body.package.investor = req.user._id;
+
+  // create package and save
+  Package.create(req.body.package, function(err, createdPackage) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(createdPackage);
+      req.user.package.push(createdPackage);
+      var depositData = {
+        amount: req.body.amount,
+        package: createdPackage._id,
+        bank: req.body.bankd
+      };
+
+      Deposit.create(depositData, function(err, createdDeposit) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(createdDeposit);
+          req.user.deposits.push(createdDeposit);
+          req.user.save();
+          console.log(req.user);
+          res.redirect("/dashboard");
         }
-
-        Deposit.create(depositData, function(err, createdDeposit) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(createdDeposit);
-            req.user.deposits.push(createdDeposit);
-            req.user.save();
-            res.redirect('/dashboard');
-          }
-        })
-      }
-    })
-
-      foundUser.lastdeposit = req.body.deposit;
-      foundUser.deposits.push(req.body.deposit);      
-      foundUser.save();
-      console.log(foundUser);
+      });
     }
   });
 });
 
-// @route   GET route/invest
-// @desc    Get user investment plan
+// @route   GET route/withdraw
+// @desc    Get user withdrawal history
 // @access  Private
 
 router.get("/withdraw", function(req, res) {
@@ -125,6 +117,6 @@ router.get("/withdraw", function(req, res) {
 // @desc    Update current user investment package plan
 // @access  Private
 
-route
+router.post("/withdraw", function(req, res) {});
 
 module.exports = router;
