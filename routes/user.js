@@ -40,4 +40,8 @@ router.post("/updateProfile", (req, res) => {
   });
 });
 
+router.get('/invest', function(req, res) {
+  res.render('dashboard/invest');
+})
+
 module.exports = router;
