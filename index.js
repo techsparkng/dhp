@@ -1,26 +1,38 @@
-var express = require('express'),
-	app = express(),
-	mongoose = require('mongoose'),
-	path = require('path'),
-	bodyParser = require('body-parser'),
-	passport = require('passport'),
-	LocalStrategy = require('passport-local'),
-	User = require('./model/user');
+var express = require("express"),
+  app = express(),
+  mongoose = require("mongoose"),
+  path = require("path"),
+  passport = require("passport"),
+  LocalStrategy = require("passport-local"),
+  bodyParser = require("body-parser"),
+  User = require("./model/user"),
+  userRoutes = require("./routes/user");
 
-mongoose.connect('mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp')
+mongoose.connect(
+  "mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp",
+  {
+    useNewUrlParser: true
+  }
+);
 
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/views')));
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
+app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "/views")));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
-//configure session
-app.use(require('express-session')({
-	secret: 'DHP is cool',
-	resave: false,
-	saveUninitialized: false
-}));
+
+
+//Configure session
+app.use(
+  require("express-session")({
+    secret: "DHP is cool",
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 //configure passport
 app.use(passport.initialize());
@@ -32,60 +44,66 @@ passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine", "ejs");
 
-app.get('/', function (req, res) {
-	res.sendFile('index.html');
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
 });
 
-app.get('/dashboard', function (req, res) {
-	res.render('dashboard/index');
+app.get("/", function(req, res) {
+  res.sendFile("index.html");
 });
 
-app.get('/profile', function(req, res) {
-	res.render('dashboard/profile');
-})
-
-app.get('/register', function (req, res) {
-	res.render('dashboard/register');
+app.get("/dashboard", function(req, res) {
+  res.render("dashboard/index");
 });
 
-app.post('/register', function (req, res) {
-	var newUser = new User({
-		username: req.body.username
-	});
-	User.register(newUser, req.body.password, function(err, user) {
-		if (err) {
-			console.log(err);
-		} 
-		User.findByIdAndUpdate(user._id, req.body.user, {new: true}, function(err, updatedUser) {
-			if (err) {
-				console.log(err);
-			} else {
-				console.log(updatedUser);
-				passport.authenticate("local")(req, res, function () {
-					res.redirect('/dashboard');
-				});
-			}
-		});
-	})
+app.get("/register", function(req, res) {
+  res.render("dashboard/register");
 });
 
-
-app.get('/login', function (req, res) {
-	res.render('dashboard/login');
+app.post("/register", function(req, res) {
+  var newUser = new User({
+    username: req.body.username
+  });
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+      console.log(err);
+    }
+    User.findByIdAndUpdate(user._id, req.body.user, { new: true }, function(
+      err,
+      updatedUser
+    ) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(updatedUser);
+        passport.authenticate("local")(req, res, function() {
+          res.redirect("/updateProfile");
+        });
+      }
+    });
+  });
 });
 
-app.post('/login', passport.authenticate('local', {
-	successReturnToOrRedirect: '/dashboard',
-	failureRedirect: '/login'
-}), function(req, res) {
+app.get("/login", function(req, res) {
+  res.render("dashboard/login");
 });
 
-app.get('/logout', function(req, res) {
-	req.logout();
-	res.redirect('/');
+app.post("/login", passport.authenticate("local", {
+    successReturnToOrRedirect: "/dashboard",
+    failureRedirect: "/login"
+  }),
+  function(req, res) {}
+);
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
 });
+
+app.use("/user", userRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-	console.log(`DHP app running at port: ${PORT}`);
+app.listen(PORT, function() {
+  console.log(`DHP app running at port: ${PORT}`);
 });
