@@ -20,14 +20,19 @@ router.get("/invest", function(req, res) {
 // @access  Private
 
 router.post("/invest", function(req, res) {
-  req.body.package.interest = Number(req.body.package.interest.substring(
-    0, req.body.package.interest.indexOf("%")
-  ));
+  req.body.package.interest = Number(
+    req.body.package.interest.substring(
+      0,
+      req.body.package.interest.indexOf("%")
+    )
+  );
 
-  req.body.package.duration = Number(req.body.package.duration.substring(
-    0,
-    req.body.package.interest.indexOf(" ")
-  ));
+  req.body.package.duration = Number(
+    req.body.package.duration.substring(
+      0,
+      req.body.package.interest.indexOf(" ")
+    )
+  );
   console.log(req.body.package.interest, req.body.package.duration);
   var investData = {
     package: req.body.package,
