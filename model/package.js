@@ -3,19 +3,10 @@ var mongoose = require('mongoose'),
 
 var packageSchema = new mongoose.Schema({
     type: String,
-    interest: Number,
-    start: {
-        type: Date,
-        default: Date.now
-    },
-    end: {
-        type: Date,
-        default: Date.now
-    },
-    duration: {
-        type: Date,
-        default: Date.now
-    }
+    interest:Number,
+    start: Date,
+    end: Date,
+    duration: Date,
 });
 
 packageSchema.plugin(passportLocalMongoose);
