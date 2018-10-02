@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-6 d-none interest">
+                    <div class="col-md-6 d-none description">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Description</label>
                             <div class="col-sm-9">
@@ -59,14 +59,45 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Select Payment Option</label>
                             <div class="col-sm-9">
-                                <select class="form-control">
-                                    <option>Bank</option>
-                                    <option class="disabled text-muted" disabled>Debit Cart (Not Available)</option>
-                                    <option class="disabled text-muted" disabled>POS (Not Available)</option>
+                                <select class="form-control" id="payment_opt">
+                                <option value="">- Choose Option -</option>
+                                <option value="bank">Bank</option>
+                                <option value="debt_card">Debt Card</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-6 d-none bank">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Select Bank</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="select_bank" name="bankd[bankName]">
+                                    <option value="">- Choose Option -</option>
+                                    <option value="skye">Skye Bank</option>
+                                    <option value="fcmb">FCMB</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none acct-name">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Account Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="accountname" name="bankd[accountname]" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none acct-no">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Account Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]" readonly>
+                        </div>
+                    </div>
+                </div>
                     <div class="col-md-6">
                         <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
@@ -83,7 +114,7 @@
             if ($plan == 'investor') {
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
-                $('#description').removeClass('d-none');
+                $('.description').removeClass('d-none');
                 $('#interest').val("4%");
                 $('#duration').val("35 days");
                 $('#description').val("4% Daily for 35 working days");
@@ -92,11 +123,42 @@
             if ($plan == 'partner') {
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
+                $('.description').removeClass('d-none');
                 $('#interest').val("0.8%");
                 $('#duration').val("210 days")
                 $('#description').val("0.8% Daily for 210 days");
             }
-        })    
+        }) 
+        
+        var $payPlan;
+        $('#payment_opt').on('change', function(e) {
+            $payPlan = $(this).find('option:selected').val();
+            if ($payPlan == 'bank') {
+                $('.bank').removeClass('d-none');
+            } 
+
+            if($payPlan == 'debt_card'){
+                $('.bank').addClass('d-none');
+                $('.acct-name').addClass('d-none');
+                $('.acct-no').addClass('d-none');
+            }
+        })
+        var $bankName;
+        $('#select_bank').on('change', function() {
+            $bankName = $(this).find('option:selected').val();
+            if ($bankName == 'skye') {
+                $('.acct-name').removeClass('d-none');
+                $('.acct-no').removeClass('d-none');
+                $('#accountname').val("Neu Diamondhub Ventures");
+                $('#accountnumber').val("4091046063");
+            }
+            if ($bankName == 'fcmb') {
+                $('.acct-name').removeClass('d-none');
+                $('.acct-no').removeClass('d-none');
+                $('#accountname').val("Neu Diamondhub Ventures");
+                $('#accountnumber').val("5529004017");
+            }
+        })
     });
     
 </script>
