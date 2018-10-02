@@ -9,7 +9,12 @@ const User = require("../model/user");
 // @desc    Update user profile
 // @access  Private
 
-route.post("/updateProfile", (req, res) => {
+router.get("/updateProfile", function(req, res) {
+  res.render("dashboard/updateProfile");
+  console.log(req.user);
+});
+
+router.post("/updateProfile", (req, res) => {
   var userData = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -31,3 +36,5 @@ route.post("/updateProfile", (req, res) => {
     }
   });
 });
+
+module.exports = router;

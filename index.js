@@ -5,7 +5,8 @@ var express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   bodyParser = require("body-parser"),
-  User = require("./model/user");
+  User = require("./model/user"),
+  userRoutes = require("./routes/user");
 
 mongoose.connect(
   "mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp",
@@ -94,11 +95,10 @@ app.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
 });
-app.get("/updateProfile", function(req, res) {
-  res.render("dashboard/updateProfile");
-});
+
+app.use("/user", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
-  console.log("DHP app running at port: ${PORT}");
+  console.log(`DHP app running at port: ${PORT}`);
 });
