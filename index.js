@@ -23,6 +23,8 @@ app.use(
   })
 );
 
+
+
 //Configure session
 app.use(
   require("express-session")({
@@ -87,9 +89,7 @@ app.get("/login", function(req, res) {
   res.render("dashboard/login");
 });
 
-app.post(
-  "/login",
-  passport.authenticate("local", {
+app.post("/login", passport.authenticate("local", {
     successReturnToOrRedirect: "/dashboard",
     failureRedirect: "/login"
   }),
