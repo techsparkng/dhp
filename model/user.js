@@ -8,24 +8,29 @@ var userSchema = new mongoose.Schema({
   email: String,
   avatar: String,
   gender: String,
-  bank: [{
-    bankname: String,
-    accountnumber: String,
-    accountname: String
-  }],
+  bank: [
+    {
+      bankname: String,
+      accountnumber: String,
+      accountname: String
+    }
+  ],
+  paidto: String,
   address: String,
   mobile: String,
-  package: {
-    type: String,
-    interest: Number,
-    start: Date,
-    end: Date,
-    duration: Number,
-  },
-  deposits: [Number],
-  lastdeposit: Number,
+  package: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Package"
+    }
+  ],
+  deposits: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Deposit"
+    }
+  ],
   withdrawal: Number,
-  depositstatus: Boolean,
   paid: Boolean,
   currentearning: Number,
   registerdate: {

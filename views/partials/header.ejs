@@ -17,10 +17,8 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/assets/images/favicon.png" />
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -148,7 +146,9 @@
           </li>
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text">Hello, <%= currentUser.firstname %> <%= currentUser.lastname %>!</span>
+              <span class="profile-text">Hello,
+                <%= currentUser.firstname %>
+                  <%= currentUser.lastname %>!</span>
               <img class="img-xs rounded-circle" src="/assets/images/faces/face1.jpg" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -196,9 +196,12 @@
                   <img src="/assets/images/faces/face1.jpg" alt="profile image">
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Richard V.Welsh</p>
+                  <p class="profile-name">
+                    <%= currentUser.firstname %>
+                      <%= currentUser.lastname %>
+                  </p>
                   <div>
-                    <small class="designation text-muted">Manager</small>
+                    <small class="designation text-muted">Investor</small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
