@@ -1,9 +1,15 @@
+import { fail } from "assert";
+
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
 //Load User Model
 const User = require("../model/user");
+//Load Package Model
+const User = require("../model/package");
+// Load Deposit Model
+const Deposit = require("../model/deposit");
 
 // @route   GET route/profile
 // @desc    Get current user profile page
@@ -63,26 +69,62 @@ router.post("/invest", function(req, res) {
   req.body.package.duration = Number(
     req.body.package.duration.substring(
       0,
-      req.body.package.interest.indexOf(" ")
+      req.body.package.duration.indexOf(" ")
     )
   );
   console.log(req.body.package.interest, req.body.package.duration);
-  var investData = {
-    package: req.body.package,
-    lastdeposit: req.body.deposit
-  };
-  User.findByIdAndUpdate(req.user._id, investData, { new: true }, function(
-    err,
-    foundUser
-  ) {
-    if (err) {
-      console.log(err);
-    } else {
-      foundUser.deposits.push(req.body.deposit);
+  // var investData = {
+  //   package: req.body.package,
+  //   deposit: req.body.deposit
+  // };
+    req.body.package.investor = req.user._id;
+  
+    // create package and save
+    Package.create(req.body.package, function(err, createdPackage) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(createdPackage);
+        req.user.package.push(createdPackage);
+        var depositData = {
+          amount: req.body.amount,
+          package: createdPackage._id,
+          bank: req.body.bankd
+        }
+
+        Deposit.create(depositData, function(err, createdDeposit) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(createdDeposit);
+            req.user.deposits.push(createdDeposit);
+            req.user.save();
+            res.redirect('/dashboard');
+          }
+        })
+      }
+    })
+
+      foundUser.lastdeposit = req.body.deposit;
+      foundUser.deposits.push(req.body.deposit);      
       foundUser.save();
       console.log(foundUser);
     }
   });
 });
+
+// @route   GET route/invest
+// @desc    Get user investment plan
+// @access  Private
+
+router.get("/withdraw", function(req, res) {
+  res.render("dashboard/withdraw");
+});
+
+// @route   POST route/invest
+// @desc    Update current user investment package plan
+// @access  Private
+
+route
 
 module.exports = router;
