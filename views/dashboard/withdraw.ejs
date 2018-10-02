@@ -2,127 +2,97 @@
   <div class="main-panel">
     <div class="content-wrapper">
     <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Checkbox Controls</h4>
-          <p class="card-description">Checkbox and radio controls</p>
-          <form class="forms-sample">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input"> Default
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" checked=""> Checked
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" disabled=""> Disabled
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" disabled="" checked=""> Disabled checked
-                    <i class="input-helper"></i></label>
-                  </div>
+    <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <form action="#" method="POST" class="forms-sample">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Select Investment Package</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="package_plan" name="package[investtype]">
+                                        <option value="">- Choose Option -</option>
+                                        <option value="investor">Investor</option>
+                                        <option value="partner">Partner</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Available Interest For withdrawal</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="package[description]" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <div class="form-radio">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="" checked=""> Option one
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-radio">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2"> Option two
-                    <i class="input-helper"></i></label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-radio disabled">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optionsRadios2" id="optionsRadios3" value="option3" disabled=""> Option three is disabled
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-radio disabled">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optionsRadio2" id="optionsRadios4" value="option4" disabled="" checked=""> Option four is selected and disabled
-                    <i class="input-helper"></i></label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
-    <div class="col-md-6 grid-margin stretch-card">
+
+    <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <form action="#" method="POST" class="forms-sample">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Select Investment Package</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="package_plan" name="package[investtype]">
+                                        <option value="">- Choose Option -</option>
+                                        <option value="investor">Investor</option>
+                                        <option value="partner">Partner</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Available Interest For withdrawal</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="package[description]" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+              </div>
+    </div>
+
+    <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Checkbox Flat Controls</h4>
-          <p class="card-description">Checkbox and radio controls with flat design</p>
-          <form class="forms-sample">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input"> Default
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" checked=""> Checked
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" disabled=""> Disabled
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" disabled="" checked=""> Disabled checked
-                    <i class="input-helper"></i></label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <div class="form-radio form-radio-flat">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="flatRadios1" id="flatRadios1" value="" checked=""> Option one
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-radio form-radio-flat">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="flatRadios2" id="flatRadios2" value="option2"> Option two
-                    <i class="input-helper"></i></label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-radio form-radio-flat disabled">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="flatRadios3" id="flatRadios3" value="option3" disabled=""> Option three is disabled
-                    <i class="input-helper"></i></label>
-                  </div>
-                  <div class="form-radio form-radio-flat disabled">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="flatRadios4" id="flatRadios4" value="option4" disabled="" checked=""> Option four is selected and disabled
-                    <i class="input-helper"></i></label>
-                  </div>
-                </div>
-              </div>
+          <h4 class="caed-title">History</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Package</th>
+                      <th>Intial Investment</th>
+                      <th>Accumulated Interest</th>
+                      <th>Amount Withdrawal</th>
+                      <th>Date</th>
+                    </tr>
+                    <thead>
+
+                    <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Investor</td>
+                          <td>2000000</td>
+                          <td>
+                            <label>₦ 100000</label>
+                          </td>
+                          <td>2000000</td>
+                          <td class="text-danger">2018-10-02</td>
+                        </tr>
+                      </tbody>
+                </table>
             </div>
-          </form>
         </div>
       </div>
     </div>
