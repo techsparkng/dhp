@@ -40,6 +40,10 @@ app.get('/dashboard', function (req, res) {
 	res.render('dashboard/index');
 });
 
+app.get('/profile', function(req, res) {
+	res.render('dashboard/profile');
+})
+
 app.get('/register', function (req, res) {
 	res.render('dashboard/register');
 });
