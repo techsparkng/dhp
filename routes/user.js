@@ -11,7 +11,6 @@ const User = require("../model/user");
 
 router.get("/updateProfile", function(req, res) {
   res.render("dashboard/updateProfile");
-  console.log(req.user);
 });
 
 router.post("/updateProfile", (req, res) => {
@@ -36,5 +35,9 @@ router.post("/updateProfile", (req, res) => {
     }
   });
 });
+
+router.get('/invest', function(req, res) {
+  res.render('dashboard/invest');
+})
 
 module.exports = router;
