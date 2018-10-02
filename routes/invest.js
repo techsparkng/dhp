@@ -38,10 +38,16 @@ router.post("/invest", function(req, res) {
     package: req.body.package,
     lastdeposit: req.body.deposit
   };
-  User.findById(req.user._id, function(err, foundUser) {
+  User.findByIdAndUpdate(req.user._id, investData, { new: true }, function(
+    err,
+    foundUser
+  ) {
     if (err) {
       console.log(err);
     } else {
+      foundUser.deposits.push(req.body.deposit);
+      foundUser.save();
+      console.log(foundUser);
     }
   });
 });
