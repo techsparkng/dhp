@@ -42,8 +42,18 @@ passport.deserializeUser(User.deserializeUser());
 
 app.set("view engine", "ejs");
 
+<<<<<<< HEAD
 app.get("/", function(req, res) {
   res.sendFile("index.html");
+=======
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
+
+app.get("/", function (req, res) {
+    res.sendFile("index.html");
+>>>>>>> 20c082b03e2c2494204785ef21dd827fb7ce3ad0
 });
 
 app.get("/dashboard", function(req, res) {
