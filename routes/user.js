@@ -40,8 +40,49 @@ router.post("/updateProfile", (req, res) => {
   });
 });
 
-router.get('/invest', function(req, res) {
-  res.render('dashboard/invest');
-})
+// @route   GET route/invest
+// @desc    Get user investment plan
+// @access  Private
+
+router.get("/invest", function(req, res) {
+  res.render("dashboard/invest");
+});
+
+// @route   POST route/invest
+// @desc    Update current user investment package plan
+// @access  Private
+
+router.post("/invest", function(req, res) {
+  req.body.package.interest = Number(
+    req.body.package.interest.substring(
+      0,
+      req.body.package.interest.indexOf("%")
+    )
+  );
+
+  req.body.package.duration = Number(
+    req.body.package.duration.substring(
+      0,
+      req.body.package.interest.indexOf(" ")
+    )
+  );
+  console.log(req.body.package.interest, req.body.package.duration);
+  var investData = {
+    package: req.body.package,
+    lastdeposit: req.body.deposit
+  };
+  User.findByIdAndUpdate(req.user._id, investData, { new: true }, function(
+    err,
+    foundUser
+  ) {
+    if (err) {
+      console.log(err);
+    } else {
+      foundUser.deposits.push(req.body.deposit);
+      foundUser.save();
+      console.log(foundUser);
+    }
+  });
+});
 
 module.exports = router;
