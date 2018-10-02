@@ -113,10 +113,12 @@ router.get("/withdraw", function(req, res) {
   res.render("dashboard/withdraw");
 });
 
-// @route   POST route/invest
-// @desc    Update current user investment package plan
+// @route   POST route/withdraw
+// @desc    Request for withdrawal
 // @access  Private
 
-router.post("/withdraw", function(req, res) {});
+router.post("/withdraw", function(req, res) {
+
+});
 
 module.exports = router;

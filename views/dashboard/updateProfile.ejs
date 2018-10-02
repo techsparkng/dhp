@@ -67,13 +67,14 @@
             <br>
             <p class="card-description">
               Bank Details
+              <%=currentUser.bank.accountname %>
             </p>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Bank Name</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[bankname]" value="<%= currentUser.bankname %>">
+                    <input type="text" class="form-control" name="bank[bankname]" value="<%=currentUser.bank.bankname %>">
                   </div>
                 </div>
               </div>
@@ -81,7 +82,7 @@
                 <div class="form-group row ">
                   <label class="col-sm-3 col-form-label ">Account Name</label>
                   <div class="col-sm-9 ">
-                    <input type="text " class="form-control " name="bank[accountname] " value="<%=currentUser.accountname %>">
+                    <input type="text " class="form-control " name="bank[accountname] " value="<%=currentUser.bank.accountname %>">
                   </div>
                 </div>
               </div>
@@ -91,11 +92,12 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Account Number</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[accountnumber]" value="<%=currentUser.accountnumber %>">
+                    <input type="text" class="form-control" name="bank[accountnumber]" value="<%=currentUser.bank.accountnumber %>">
                   </div>
                 </div>
               </div>
             </div>
+
             <button type=" submit " class="btn btn-success mr-2 ">Update</button>
         </div>
         </form>
