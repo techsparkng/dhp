@@ -20,23 +20,34 @@ router.get("/invest", function(req, res) {
 // @access  Private
 
 router.post("/invest", function(req, res) {
-  req.body.package.interest = Number(req.body.package.interest.substring(
-    0, req.body.package.interest.indexOf("%")
-  ));
+  req.body.package.interest = Number(
+    req.body.package.interest.substring(
+      0,
+      req.body.package.interest.indexOf("%")
+    )
+  );
 
-  req.body.package.duration = Number(req.body.package.duration.substring(
-    0,
-    req.body.package.interest.indexOf(" ")
-  ));
+  req.body.package.duration = Number(
+    req.body.package.duration.substring(
+      0,
+      req.body.package.interest.indexOf(" ")
+    )
+  );
   console.log(req.body.package.interest, req.body.package.duration);
   var investData = {
     package: req.body.package,
     lastdeposit: req.body.deposit
   };
-  User.findById(req.user._id, function(err, foundUser) {
+  User.findByIdAndUpdate(req.user._id, investData, { new: true }, function(
+    err,
+    foundUser
+  ) {
     if (err) {
       console.log(err);
     } else {
+      foundUser.deposits.push(req.body.deposit);
+      foundUser.save();
+      console.log(foundUser);
     }
   });
 });
