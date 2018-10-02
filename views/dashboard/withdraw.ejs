@@ -1,104 +1,99 @@
 <% include ../partials/header %>
   <div class="main-panel">
     <div class="content-wrapper">
+    <div class="row">
+    <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <form action="#" method="POST" class="forms-sample">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Select Investment Package</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="package_plan" name="package[investtype]">
+                                        <option value="">- Choose Option -</option>
+                                        <option value="investor">Investor</option>
+                                        <option value="partner">Partner</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Available Interest For withdrawal</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="package[description]" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+              </div>
+    </div>
+
+    <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                    <form action="#" method="POST" class="forms-sample">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Select Investment Package</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="package_plan" name="package[investtype]">
+                                        <option value="">- Choose Option -</option>
+                                        <option value="investor">Investor</option>
+                                        <option value="partner">Partner</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Available Interest For withdrawal</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="package[description]" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+              </div>
+    </div>
+
+    <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <form action="" method="POST" class="form-sample">
-            <p class="card-description">
-              Withdrawal 
-            </p>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Amount</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Last Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="lastname">
-                  </div>
-                </div>
-              </div>
+          <h4 class="caed-title">History</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Package</th>
+                      <th>Intial Investment</th>
+                      <th>Accumulated Interest</th>
+                      <th>Amount Withdrawal</th>
+                      <th>Date</th>
+                    </tr>
+                    <thead>
+
+                    <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Investor</td>
+                          <td>2000000</td>
+                          <td>
+                            <label>₦ 100000</label>
+                          </td>
+                          <td>2000000</td>
+                          <td class="text-danger">2018-10-02</td>
+                        </tr>
+                      </tbody>
+                </table>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Gender</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" name="gender">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">E-mail</label>
-                  <div class="col-sm-9">
-                    <input class="form-control" placeholder="a@b@gmail.com" name="email">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Address</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="address">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Phone Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="phonenumber">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br>
-            <p class="card-description">
-              Bank Details
-            </p>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Bank Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[bankname]">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Account Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[accountname]">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Account Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[accountnumber]">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-success mr-2">Update</button>
         </div>
-        </form>
       </div>
     </div>
   </div>

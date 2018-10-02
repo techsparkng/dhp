@@ -31,17 +31,21 @@ router.post("/updateProfile", (req, res) => {
     address: req.body.address,
     bank: req.body.bank
   };
-  User.findByIdAndUpdate(req.user._id, userData, { new: true }, function(
-    err,
-    updatedUser
-  ) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(updatedUser);
-      res.redirect("/dashboard");
+  User.findByIdAndUpdate(
+    req.user._id,
+    userData,
+    {
+      new: true
+    },
+    function(err, updatedUser) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(updatedUser);
+        res.redirect("/dashboard");
+      }
     }
-  });
+  );
 });
 
 // @route   GET route/invest
@@ -117,8 +121,6 @@ router.get("/withdraw", function(req, res) {
 // @desc    Request for withdrawal
 // @access  Private
 
-router.post("/withdraw", function(req, res) {
-
-});
+router.post("/withdraw", function(req, res) {});
 
 module.exports = router;
