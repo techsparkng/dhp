@@ -16,8 +16,11 @@ var userSchema = new mongoose.Schema({
   address: String,
   mobile: String,
   package: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Package"
+    type: String,
+    interest: Number,
+    start: Date,
+    end: Date,
+    duration: Number,
   },
   deposits: [Number],
   lastdeposit: Number,

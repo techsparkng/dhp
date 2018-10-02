@@ -6,12 +6,16 @@ const mongoose = require("mongoose");
 const User = require("../model/user");
 
 // @route   GET route/profile
-// @desc    Update user profile
+// @desc    Get current user profile page
 // @access  Private
 
 router.get("/updateProfile", function(req, res) {
   res.render("dashboard/updateProfile");
 });
+
+// @route   POST route/profile
+// @desc    Update user profile
+// @access  Private
 
 router.post("/updateProfile", (req, res) => {
   var userData = {
