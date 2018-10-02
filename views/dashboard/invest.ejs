@@ -2,50 +2,99 @@
 <div class="main-panel">
         <div class="content-wrapper">
         <div class="card">
-                    <div class="card-body">
-                      <p class="card-description">
-                        Select Investment Packages
-                      </p>
-                      <form class="forms-sample">
-                      <div class="col-md-6">
+            <div class="card-body">
+                <p class="card-description">
+                    Select Investment Packages
+                </p>
+                <form action="/user/invest" method="POST" class="forms-sample">
+                    <div class="col-md-6">
                         <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Select Investment Package</label>
-                                    <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option>Investor</option>
-                                        <option>Partmer</option>
-                                        <option>Russia</option>
-                                    </select>
-                                    </div>
+                            <label class="col-sm-3 col-form-label">Amount to Invest</label>
+                            <div class="col-sm-9">
+                                <input type="number" min="0" class="form-control" name="deposit">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                    <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Amount to Invest</label>
-                                <div class="col-sm-9">
-                                <select class="form-control">
-                                    <option>Investor</option>
-                                    <option>Partmer</option>
-                                    <option>Russia</option>
-                                </select>
-                                </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Select Payment Option/label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Select Investment Package</label>
                             <div class="col-sm-9">
-                            <select class="form-control">
-                                <option>Investor</option>
-                                <option>Partmer</option>
-                                <option>Russia</option>
-                            </select>
+                                <select class="form-control" id="package_plan" name="package[type]">
+                                    <option value="">- Choose Option -</option>
+                                    <option value="investor">Investor</option>
+                                    <option value="partner">Partner</option>
+                                </select>
                             </div>
-                </div>
-            </div>
-                      </form>
+                        </div>
                     </div>
-                  </div>
+                    
+                    <div class="col-md-6 d-none interest">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="description" name="package[description]" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none interest">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Interest</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="interest" name="package[interest]" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none duration">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Duration</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="duration" name="package[duration]" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Select Payment Option</label>
+                            <div class="col-sm-9">
+                                <select class="form-control">
+                                    <option>Bank</option>
+                                    <option class="disabled text-muted" disabled>Debit Cart (Not Available)</option>
+                                    <option class="disabled text-muted" disabled>POS (Not Available)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
 </div>
+<script>
+    $(document).ready(function() {
+        var $plan;
+        $('#package_plan').on('change', function(e) {
+            $plan = $(this).find('option:selected').val();
+            if ($plan == 'investor') {
+                $('.interest').removeClass('d-none');
+                $('.duration').removeClass('d-none');
+                $('#description').removeClass('d-none');
+                $('#interest').val("4%");
+                $('#duration').val("35 days");
+                $('#description').val("4% Daily for 35 working days");
+            }
+
+            if ($plan == 'partner') {
+                $('.interest').removeClass('d-none');
+                $('.duration').removeClass('d-none');
+                $('#interest').val("0.8%");
+                $('#duration').val("210 days")
+                $('#description').val("0.8% Daily for 210 days");
+            }
+        })    
+    });
+    
+</script>
 <% include ../partials/footer %>
