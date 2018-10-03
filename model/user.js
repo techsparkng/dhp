@@ -8,13 +8,11 @@ var userSchema = new mongoose.Schema({
   email: String,
   avatar: String,
   gender: String,
-  bank: [
-    {
+  bank: {
       bankname: String,
       accountnumber: String,
       accountname: String
-    }
-  ],
+    },
   paidto: String,
   address: String,
   mobile: String,
