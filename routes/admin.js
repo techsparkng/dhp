@@ -15,7 +15,6 @@ const Deposit = require("../model/deposit");
 
 router.get("/index", function(req, res) {
   console.log(req.user);
-  console.log(req);
   res.render("admin/index");
 });
 

@@ -38,9 +38,30 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.use('user', new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
+passport.use('admin', new LocalStrategy(Admin.authenticate()));
+
+passport.serializeUser(function(user, done){
+     done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+   Admin.findById(id, function(err, user){
+     if(err) done(err);
+       if(user){
+         done(null, user);
+       } else {
+          User.findById(id, function(err, user){
+            if(err) done(err);
+            done(null, user);
+          })
+        }
+
+       })
+   });
 
 app.set("view engine", "ejs");
 
@@ -78,7 +99,7 @@ app.post("/register", function(req, res) {
         console.log(err);
       } else {
         console.log(updatedUser);
-        passport.authenticate("local")(req, res, function() {
+        passport.authenticate("user")(req, res, function() {
           res.redirect("/user/updateProfile");
         });
       }
@@ -100,7 +121,7 @@ app.get("/login", function(req, res) {
 
 app.post(
   "/login",
-  passport.authenticate("local", {
+  passport.authenticate("user", {
     successReturnToOrRedirect: "/dashboard",
     failureRedirect: "/login"
   }),
@@ -120,7 +141,7 @@ app.get("/admin/login", function(req, res) {
 // @access  Private
 app.post(
   "/admin/login",
-  passport.authenticate("local", {
+  passport.authenticate("admin", {
     successReturnToOrRedirect: "/admin/index",
     failureRedirect: "/admin/login"
   }),
@@ -160,7 +181,7 @@ app.post("/admin/register", function(req, res) {
         console.log(err);
       } else {
         console.log(updatedAdmin);
-        passport.authenticate("local")(req, res, function() {
+        passport.authenticate("admin")(req, res, function() {
           res.redirect("/admin/index");
         });
       }
