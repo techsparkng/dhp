@@ -9,12 +9,72 @@ const User = require("../model/user");
 //Load Deposit Model
 const Deposit = require("../model/deposit");
 
+router.get("/updateProfile", function(req, res) {
+  res.render("admin/updateProfile");
+});
+
+// @route   POST route/profile
+// @desc    Update Admin profile
+// @access  Private
+
+router.post("/updateProfile", (req, res) => {
+  var userData = {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    gender: req.body.gender,
+    phonenum1: req.body.phonenum1,
+    phonenum2: req.body.phonenum2,
+    address: req.body.address,
+    
+  };
+  Admin.findByIdAndUpdate(
+    req.user._id,
+    userData,
+    {
+      new: true
+    },
+    function(err, updatedAdminUser) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(updatedAdminUser);
+        res.redirect("/admin/dashboard");
+      }
+    }
+  );
+});
+
+
 // @route   GET admin/index
 // @desc    Admin Dashboard
 // @access  Private
 
 router.get("/index", function(req, res) {
   console.log(req.user);
+  var data = {};
+console.log(req.originalUrl);
+
+  User.find({}, function(err, foundUsers){
+    if(err){
+      console.log(err);
+    }else{
+      data.totalUsers = foundUsers.length;
+      Deposit.find({}, function(err, foundDeposits){
+        if(err){
+          console.log(err);
+        }else{
+          data.totalDepositsCount = foundDeposits.length;
+          data.totalDepositsAmount = foundDeposits.reduce(function(acc, cur){
+              return acc + cur.amount;
+          }, 0);
+          console.log(data.totalDepositsAmount)
+          console.log(data.totalDepositsCount);
+        }
+      });
+    }
+  });
+
   res.render("admin/index");
 });
 
@@ -31,6 +91,8 @@ router.get("/deposit", function(req, res) {
         res.render("admin/deposit", {deposits: foundDeposits});
     }
   });
+
+  
   
 });
 

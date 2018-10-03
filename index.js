@@ -39,8 +39,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use('user', new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 passport.use('admin', new LocalStrategy(Admin.authenticate()));
 
@@ -182,7 +180,7 @@ app.post("/admin/register", function(req, res) {
       } else {
         console.log(updatedAdmin);
         passport.authenticate("admin")(req, res, function() {
-          res.redirect("/admin/index");
+          res.redirect("/admin/updateProfile");
         });
       }
     });
