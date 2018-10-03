@@ -10,8 +10,8 @@ var userSchema = new mongoose.Schema({
   gender: String,
   bank: {
     bankname: String,
-    accountnumber: String,
-    accountname: String
+    accountname: String,
+    accountnumber: String
   },
   paidto: String,
   address: String,
