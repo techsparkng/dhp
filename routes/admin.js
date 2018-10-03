@@ -14,7 +14,8 @@ const Deposit = require("../model/deposit");
 // @access  Private
 
 router.get("/index", function(req, res) {
-  console.log(req.originalUrl);
+  console.log(req.user);
+  console.log(req);
   res.render("admin/index");
 });
 
