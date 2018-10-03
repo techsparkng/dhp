@@ -1,4 +1,6 @@
-var mongoose = require("mongoose");
+
+var mongoose = require("mongoose"),
+passportLocalMongoose = require("passport-local-mongoose");
 
 var adminSchema = new mongoose.Schema({
   username: String,
@@ -6,11 +8,11 @@ var adminSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
   email: String,
-  mobile: Number,
-  createdDate: {
+  registerdate: {
     type: Date,
-    defualt: Date.now
+    default: Date.now
   }
 });
 
+adminSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("Admin", adminSchema);

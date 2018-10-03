@@ -91,6 +91,7 @@ router.post("/invest", function(req, res) {
       var depositData = {
         amount: req.body.amount,
         package: createdPackage._id,
+        depositor: req.user._id,
         bank: req.body.bankd
       };
 
