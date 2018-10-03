@@ -1,70 +1,70 @@
 <% include ../partials/header %>
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-description">
-                        Select Investment Packages
-                    </p>
-                    <form action="/user/invest" method="POST" class="forms-sample">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Amount to Invest</label>
-                                <div class="col-sm-9">
-                                    <input type="number" min="0" class="form-control" name="amount">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Select Investment Package</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="package_plan" name="package[investtype]">
-                                        <option value="">- Choose Option -</option>
-                                        <option value="investor">Investor</option>
-                                        <option value="partner">Partner</option>
-                                    </select>
-                                </div>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description">
+                    Select Investment Packages
+                </p>
+                <form action="/user/invest" method="POST" class="forms-sample">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Amount to Invest</label>
+                            <div class="col-sm-9">
+                                <input type="number" min="0" class="form-control" name="amount">
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Select Investment Package</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="package_plan" name="package[investtype]">
+                                    <option value="">- Choose Option -</option>
+                                    <option value="investor">Investor</option>
+                                    <option value="partner">Partner</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+            
+
                     <div class="col-md-6 d-none description">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Description</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="description" name="package[description]" readonly>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 d-none interest">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Interest</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="interest" name="package[interest]" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 d-none duration">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Duration</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="duration" name="package[duration]" readonly>
-                                </div>
                             </div>
                         </div>
                     </div>
+
                     
+                    <div class="col-md-6 d-none interest">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Interest</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="interest" name="package[interest]" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none duration">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Duration</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="duration" name="package[duration]" readonly>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Select Payment Option</label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="payment_opt">
-                                <option value="">- Choose Option -</option>
-                                <option value="bank">Bank</option>
-                                <option value="debt_card">Debt Card</option>
+                                    <option value="">- Choose Option -</option>
+                                    <option value="bank">Bank</option>
+                                    <option value="debt_card">Debt Card</option>
                                 </select>
                             </div>
                         </div>
@@ -93,13 +93,13 @@
                     </div>
 
                     <div class="col-md-6 d-none acct-no">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Account Number</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]" readonly>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Account Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]" readonly>
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div class="col-md-6">
                         <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
@@ -109,9 +109,9 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         var $plan;
-        $('#package_plan').on('change', function(e) {
+        $('#package_plan').on('change', function (e) {
             $plan = $(this).find('option:selected').val();
             if ($plan == 'investor') {
                 $('.interest').removeClass('d-none');
@@ -130,23 +130,23 @@
                 $('#duration').val("210 days")
                 $('#description').val("0.8% Daily for 210 days");
             }
-        }) 
-        
+        })
+
         var $payPlan;
-        $('#payment_opt').on('change', function(e) {
+        $('#payment_opt').on('change', function (e) {
             $payPlan = $(this).find('option:selected').val();
             if ($payPlan == 'bank') {
                 $('.bank').removeClass('d-none');
-            } 
+            }
 
-            if($payPlan == 'debt_card'){
+            if ($payPlan == 'debt_card') {
                 $('.bank').addClass('d-none');
                 $('.acct-name').addClass('d-none');
                 $('.acct-no').addClass('d-none');
             }
         })
         var $bankName;
-        $('#select_bank').on('change', function() {
+        $('#select_bank').on('change', function () {
             $bankName = $(this).find('option:selected').val();
             if ($bankName == 'skye') {
                 $('.acct-name').removeClass('d-none');
@@ -162,6 +162,5 @@
             }
         })
     });
-    
 </script>
 <% include ../partials/footer %>

@@ -6,12 +6,19 @@ var depositSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Package"
   },
+  depositor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }, 
   bank: {
     accountname: String,
     accountno: String,
     bankname: String
   },
-  approved: {type: Boolean, default: false},
+  approved: {
+    type: Boolean, 
+    default: false
+  },
   created: Date
 });
 

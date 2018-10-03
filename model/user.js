@@ -9,13 +9,13 @@ var userSchema = new mongoose.Schema({
   avatar: String,
   gender: String,
   bank: {
-      bankname: String,
-      accountnumber: String,
-      accountname: String
-    },
+    bankname: String,
+    accountname: String,
+    accountnumber: String
+  },
   paidto: String,
   address: String,
-  mobile: String,
+  phonenumber: String,
   package: [
     {
       type: mongoose.Schema.Types.ObjectId,
