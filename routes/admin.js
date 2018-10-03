@@ -70,6 +70,7 @@ console.log(req.originalUrl);
           }, 0);
           console.log(data.totalDepositsAmount)
           console.log(data.totalDepositsCount);
+          console.log(data.totalUsers);
         }
       });
     }
