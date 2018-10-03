@@ -161,7 +161,7 @@ app.post("/admin/register", function(req, res) {
       } else {
         console.log(updatedAdmin);
         passport.authenticate("local")(req, res, function() {
-          res.redirect("/admin/index");
+          res.redirect("/admin/updateProfile");
         });
       }
     });
