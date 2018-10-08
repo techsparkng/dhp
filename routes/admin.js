@@ -68,15 +68,14 @@ console.log(req.originalUrl);
           data.totalDepositsAmount = foundDeposits.reduce(function(acc, cur){
               return acc + cur.amount;
           }, 0);
-          console.log(data.totalDepositsAmount)
-          console.log(data.totalDepositsCount);
-          console.log(data.totalUsers);
+          // console.log(data.totalDepositsAmount)
+          // console.log(data.totalDepositsCount);
+          // console.log(data.totalUsers);
+          res.render("admin/index", {data: data});
         }
       });
     }
   });
-
-  res.render("admin/index");
 });
 
 // @route   GET admin/deposit
