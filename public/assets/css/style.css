@@ -22504,3 +22504,9 @@ ul li {
 .investlink {
   color: #fff;
 }
+
+.act_pack {
+  background-image: -webkit-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
+  margin-bottom: -17px;
+  color: #fff;
+}
