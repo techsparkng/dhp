@@ -19,6 +19,10 @@ var depositSchema = new mongoose.Schema({
     type: Boolean, 
     default: false
   },
+  declined: {
+    type: Boolean,
+    default: false
+  },
   created: Date
 });
 

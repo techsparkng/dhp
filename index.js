@@ -148,7 +148,7 @@ app.post(
 
 // @route   GET route/admin
 // @desc    Get Admin Dashboard
-// @access  Private
+// @access  Private`
 app.get("/admin", function(req, res) {
   res.render("admin/login");
 });

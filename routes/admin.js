@@ -84,11 +84,26 @@ console.log(req.originalUrl);
 
 router.get("/deposit", function(req, res) {
   
-  Deposit.find({}).populate("investor").exec(function(err, foundDeposits){
+  Deposit.find({approved: false}).populate("depositor").populate("package").exec(function(err, pendingDeposits){
     if(err){
         console.log(err);
     }else{
-        res.render("admin/deposit", {deposits: foundDeposits});
+        var pendingDeposits = pendingDeposits;
+        Deposit.find({approved: true}).populate("depositor").populate("package").exec(function (err, approvedDeposits) {
+          if (err) {
+            console.log(err);
+          } else {
+            var approvedDeposits = approvedDeposits;
+            Deposit.find({declined: true}).populate("depositor").populate("package").exec(function(err, declinedDeposits) {
+              if (err) {
+                console.log(err);
+              } else {
+                var declinedDeposits = declinedDeposits;
+                res.render("admin/deposit", {approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits});
+              }
+            })
+          }
+        })
     }
   });
 
