@@ -7,6 +7,7 @@ var express = require("express"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   User = require("./model/user"),
+  ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
   Admin = require("./model/admin"),
   userRoutes = require("./routes/user"),
   adminRoutes = require("./routes/admin");
@@ -74,7 +75,7 @@ app.get("/", function (req, res) {
   res.sendFile("index.html");
 });
 
-app.get("/dashboard", function(req, res) {
+app.get("/dashboard", ensureLoggedIn('/login'), function(req, res) {
   User.findById(req.user._id)
     .populate("deposits")
     .exec(function(err, foundUser) {
@@ -86,10 +87,6 @@ app.get("/dashboard", function(req, res) {
         res.render("dashboard/index", { deposits: deposits });
       }
     });
-=======
-app.get("/dashboard", function (req, res) {
-  res.render("dashboard/index");
->>>>>>> eb019cf2156c11f2d7f01c41b6a3a0590007a2ee
 });
 
 app.get("/register", function (req, res) {
