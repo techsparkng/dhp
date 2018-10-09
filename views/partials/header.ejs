@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.addons.css">
-   <!-- plugin css for this page -->
-   <link rel="stylesheet" href="/assets/vendors/iconfonts/font-awesome/css/font-awesome.css">
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="/assets/vendors/iconfonts/font-awesome/css/font-awesome.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -37,7 +37,8 @@
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown"
+              aria-expanded="false">
               <i class="mdi mdi-file-document-box"></i>
               <span class="count">7</span>
             </a>
@@ -150,7 +151,7 @@
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello,
                 <%= currentUser.firstname %>
-                  <%= currentUser.lastname %>!</span>
+                <%= currentUser.lastname %>!</span>
               <img class="img-xs rounded-circle" src="/assets/images/faces/face1.jpg" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -188,105 +189,105 @@
       </div>
     </nav>
     <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-        <% if (path.substring(0,6) !== '/admin') { %>
-          <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav">
-              <li class="nav-item nav-profile">
-                <div class="nav-link">
-                  <div class="user-wrapper">
-                    <div class="profile-image">
-                      <img src="/assets/images/faces/face1.jpg" alt="profile image">
-                    </div>
-                    <div class="text-wrapper">
-                      <p class="profile-name">
-                        <%= currentUser.firstname %>
-                          <%= currentUser.lastname %>
-                      </p>
-                      <div>
-                        <small class="designation text-muted">Investor</small>
-                        <span class="status-indicator online"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="btn btn-success btn-block">
-                    <a class="investlink" href="/user/invest">Invest</a>
-                    <i class="mdi mdi-plus"></i>
-                  </button>
+      <!-- partial:partials/_sidebar.html -->
+      <% if (path.substring(0,6) !== '/admin') { %>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="/assets/images/faces/face1.jpg" alt="profile image">
                 </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
-                  <i class="menu-icon mdi mdi-television"></i>
-                  <span class="menu-title">Dashboard</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/user/updateProfile">
-                  <i class="menu-icon mdi mdi-content-copy"></i>
-                  <span class="menu-title">Profile</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/user/withdraw">
-                  <i class="menu-icon mdi mdi-backup-restore"></i>
-                  <span class="menu-title">Withdrawal</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <% } else { %>
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-              <ul class="nav">
-                <li class="nav-item nav-profile">
-                  <div class="nav-link">
-                    <div class="user-wrapper">
-                      <div class="profile-image">
-                        <img src="/assets/images/faces/face1.jpg" alt="profile image">
-                      </div>
-                      <div class="text-wrapper">
-                        <p class="profile-name">
-                          <%= currentUser.firstname %>
-                            <%= currentUser.lastname %>
-                        </p>
-                        <div>
-                          <small class="designation text-muted">Admin</small>
-                          <span class="status-indicator online"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <button class="btn btn-success btn-block">
-                      <a class="investlink" href="/user/invest">Invest</a>
-                      <i class="mdi mdi-plus"></i>
-                    </button>
+                <div class="text-wrapper">
+                  <p class="profile-name">
+                    <%= currentUser.firstname %>
+                    <%= currentUser.lastname %>
+                  </p>
+                  <div>
+                    <small class="designation text-muted">Investor</small>
+                    <span class="status-indicator online"></span>
                   </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin/index">
-                    <i class="menu-icon mdi mdi-television"></i>
-                    <span class="menu-title">Dashboard</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin/updateProfile">
-                    <i class="menu-icon mdi mdi-content-copy"></i>
-                    <span class="menu-title">Profile</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin/deposit">
-                    <i class="menu-icon mdi mdi-content-copy"></i>
-                    <span class="menu-title">Deposits</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin/withdraw">
-                    <i class="menu-icon mdi mdi-content-copy"></i>
-                    <span class="menu-title">Withdrawals</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <% } %>
+                </div>
+              </div>
+              <button class="btn btn-success btn-block">
+                <a class="investlink" href="/user/invest">Invest</a>
+                <i class="mdi mdi-plus"></i>
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/updateProfile">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/withdraw">
+              <i class="menu-icon mdi mdi-backup-restore"></i>
+              <span class="menu-title">Withdrawal</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <% } else { %>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="/assets/images/faces/face1.jpg" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">
+                    <%= currentUser.firstname %>
+                    <%= currentUser.lastname %>
+                  </p>
+                  <div>
+                    <small class="designation text-muted">Admin</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-success btn-block">
+                <a class="investlink" href="/register">Invest</a>
+                <i class="mdi mdi-plus"></i>
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/index">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/updateProfile">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/deposit">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Deposits</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/withdraw">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Withdrawals</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <% } %>
 
-              <!-- partial -->
+      <!-- partial -->
