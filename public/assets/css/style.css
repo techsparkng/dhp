@@ -22510,3 +22510,13 @@ ul li {
   margin-bottom: -17px;
   color: #fff;
 }
+
+form button.btn {
+  display: inline;
+    background-color: transparent; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 3px 4px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+}
