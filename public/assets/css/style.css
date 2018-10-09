@@ -22511,7 +22511,7 @@ ul li {
   color: #fff;
 }
 
-form button.btn {
+table form button.btn {
   display: inline;
     background-color: transparent; /* Blue background */
     border: none; /* Remove borders */
