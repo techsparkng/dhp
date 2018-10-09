@@ -86,7 +86,6 @@ router.post("/invest", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(createdPackage);
       req.user.package.push(createdPackage);
       var depositData = {
         amount: req.body.amount,
@@ -94,15 +93,12 @@ router.post("/invest", function(req, res) {
         depositor: req.user._id,
         bank: req.body.bankd
       };
-
       Deposit.create(depositData, function(err, createdDeposit) {
         if (err) {
           console.log(err);
         } else {
-          console.log(createdDeposit);
           req.user.deposits.push(createdDeposit);
           req.user.save();
-          console.log(req.user);
           res.redirect("/dashboard");
         }
       });

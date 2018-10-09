@@ -53,7 +53,6 @@ router.post("/updateProfile", (req, res) => {
 router.get("/index", function(req, res) {
   console.log(req.user);
   var data = {};
-console.log(req.originalUrl);
 
   User.find({}, function(err, foundUsers){
     if(err){
@@ -99,17 +98,25 @@ router.get("/deposit", function(req, res) {
                 console.log(err);
               } else {
                 var declinedDeposits = declinedDeposits;
-                res.render("admin/deposit", {approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits});
+                // res.render("admin/deposit", {approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits});
+                res.send({approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits})
               }
             })
           }
         })
     }
   });
-
-  
-  
 });
+
+router.put(':id/approveDeposit', function(req, res) {
+  Deposit.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}, function(err, updatedDeposit) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(updatedDeposit);
+    }
+  })
+})
 
 // @route   GET admin/withdraw
 // @desc    Get all requested Withdrawal
