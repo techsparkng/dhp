@@ -11,27 +11,35 @@
                                     <tr>
                                         <th>S/N</th>
                                         <th>Package</th>
+                                        <th>Name</th>
                                         <th>Amount Deposited</th>
-                                        <th>Investors Bank</th>
+                                        <th>Investors Bank Name</th>
                                         <th>DHP Bank</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
                                     <thead>
-
+                                        
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Investor</td>
-                                                <td>2000000</td>
-                                                <td>
-                                                    <label>₦ 100000</label>
-                                                </td>
-                                                <td>2000000</td>
-                                                <td class="text-danger">2018-10-02</td>
-                                                <td><i class="mr-4 fa fa-check text-success"></i><i class="fa fa-times text-danger"></i></td>
-                                                
-                                            </tr>
+                                        <% var counter = 1; %>
+                                        <% pendingDeposits.forEach(function(deposit){ %>
+                                        <tr>
+                                            <td><%= counter %></td>
+                                            <td><%= deposit.package.investtype %></td>
+                                            <td><%= deposit.depositor.firstname %> <%= deposit.depositor.lastname %></td>
+                                            <td>
+                                                <label><%= deposit.amount %></label>
+                                            </td>
+                                            <td>
+                                               <%= deposit.depositor.bank.bankname %>
+                                            </td>
+                                            <td><%= deposit.bank.bankname %></td>
+                                            <td class="text-danger"><%= deposit.created.toDateString() %></td>
+                                            
+                                            <td><form action="/<%= deposit._id %>/approveDeposit?_method=PUT" method="POST"><i class="mr-4 fa fa-check text-success"></i></form> <form action="/<%= deposit._id %>/declineDeposit?_method=PUT" method="POST"><i class="fa fa-times text-danger"></i></from></td>
+                                            <% counter++ %>
+                                        </tr>
+                                        <% }) %> 
                                         </tbody>
                             </table>
                         </div>
@@ -49,6 +57,7 @@
                                     <tr>
                                         <th>S/N</th>
                                         <th>Package</th>
+                                        <th>Name</th>
                                         <th>Amount Deposited</th>
                                         <th>Investors Bank</th>
                                         <th>DHP Bank</th>
@@ -58,8 +67,10 @@
 
                                         <tbody>
                                             <tr>
+                                               
                                                 <td>1</td>
                                                 <td>Investor</td>
+                                                
                                                 <td>2000000</td>
                                                 <td>
                                                     <label>₦ 100000</label>
