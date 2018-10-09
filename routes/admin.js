@@ -2,6 +2,7 @@ const express = require("express"),
   router = express.Router(),
   mongoose = require("mongoose"),
   passport = require("passport"),
+  ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
   LocalStrategy = require("passport-local");
 
 //Load User Model
@@ -9,7 +10,7 @@ const User = require("../model/user");
 //Load Deposit Model
 const Deposit = require("../model/deposit");
 
-router.get("/updateProfile", function(req, res) {
+router.get("/updateProfile", ensureLoggedIn('/admin'),function(req, res) {
   res.render("admin/updateProfile");
 });
 
@@ -17,7 +18,7 @@ router.get("/updateProfile", function(req, res) {
 // @desc    Update Admin profile
 // @access  Private
 
-router.post("/updateProfile", (req, res) => {
+router.post("/updateProfile", ensureLoggedIn('/admin'), (req, res) => {
   var userData = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -50,7 +51,7 @@ router.post("/updateProfile", (req, res) => {
 // @desc    Admin Dashboard
 // @access  Private
 
-router.get("/index", function(req, res) {
+router.get("/index", ensureLoggedIn('/admin'), function(req, res) {
   console.log(req.user);
   var data = {};
 
@@ -81,14 +82,14 @@ router.get("/index", function(req, res) {
 // @desc    Get all investment Depositss
 // @access  Private
 
-router.get("/deposit", function(req, res) {
+router.get("/deposit", ensureLoggedIn('/admin'), function(req, res) {
   
-  Deposit.find({approved: false}).populate("depositor").populate("package").exec(function(err, pendingDeposits){
+  Deposit.find({approved: false, declined: false}).populate("depositor").populate("package").exec(function(err, pendingDeposits){
     if(err){
         console.log(err);
     }else{
         var pendingDeposits = pendingDeposits;
-        Deposit.find({approved: true}).populate("depositor").populate("package").exec(function (err, approvedDeposits) {
+        Deposit.find({approved: true, declined:false}).populate("depositor").populate("package").exec(function (err, approvedDeposits) {
           if (err) {
             console.log(err);
           } else {
@@ -98,8 +99,7 @@ router.get("/deposit", function(req, res) {
                 console.log(err);
               } else {
                 var declinedDeposits = declinedDeposits;
-                // res.render("admin/deposit", {approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits});
-                res.send({approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits})
+                res.render("admin/deposit", {approvedDeposits: approvedDeposits, pendingDeposits: pendingDeposits, declinedDeposits: declinedDeposits});
               }
             })
           }
@@ -108,12 +108,24 @@ router.get("/deposit", function(req, res) {
   });
 });
 
-router.put(':id/approveDeposit', function(req, res) {
+// approve deposit route
+router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
   Deposit.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}, function(err, updatedDeposit) {
     if (err) {
       console.log(err)
     } else {
-      res.send(updatedDeposit);
+      res.redirect('back');
+    }
+  })
+})
+
+// decline deposit route
+router.delete('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Deposit.findByIdAndUpdate(req.params.id, {declined: true}, {new: true}, function(err, updatedDeposit) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('back');
     }
   })
 })
@@ -122,7 +134,7 @@ router.put(':id/approveDeposit', function(req, res) {
 // @desc    Get all requested Withdrawal
 // @access  Private
 
-router.get("/withdraw", function(req, res) {
+router.get("/withdraw", ensureLoggedIn('/admin'), function(req, res) {
   res.render("admin/withdraw");
 });
 

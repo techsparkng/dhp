@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 //Load User Model
 const User = require("../model/user");
 //Load Package Model
@@ -13,7 +14,7 @@ const Deposit = require("../model/deposit");
 // @desc    Get current user profile page
 // @access  Private
 
-router.get("/updateProfile", function(req, res) {
+router.get("/updateProfile", ensureLoggedIn('/login'), function(req, res) {
   res.render("dashboard/updateProfile");
 });
 
@@ -21,7 +22,7 @@ router.get("/updateProfile", function(req, res) {
 // @desc    Update user profile
 // @access  Private
 
-router.post("/updateProfile", (req, res) => {
+router.post("/updateProfile", ensureLoggedIn('/login'), (req, res) => {
   var userData = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -52,7 +53,7 @@ router.post("/updateProfile", (req, res) => {
 // @desc    Get user investment plan
 // @access  Private
 
-router.get("/invest", function(req, res) {
+router.get("/invest", ensureLoggedIn('/login'), function(req, res) {
   res.render("dashboard/invest");
 });
 
@@ -60,7 +61,7 @@ router.get("/invest", function(req, res) {
 // @desc    Update current user investment package plan
 // @access  Private
 
-router.post("/invest", function(req, res) {
+router.post("/invest", ensureLoggedIn('/login'), function(req, res) {
   req.body.package.interest = Number(
     req.body.package.interest.substring(
       0,
@@ -110,7 +111,7 @@ router.post("/invest", function(req, res) {
 // @desc    Get user withdrawal history
 // @access  Private
 
-router.get("/withdraw", function(req, res) {
+router.get("/withdraw", ensureLoggedIn('/login'), function(req, res) {
   res.render("dashboard/withdraw");
 });
 
@@ -118,6 +119,6 @@ router.get("/withdraw", function(req, res) {
 // @desc    Request for withdrawal
 // @access  Private
 
-router.post("/withdraw", function(req, res) {});
+router.post("/withdraw", ensureLoggedIn('/login'), function(req, res) {});
 
 module.exports = router;
