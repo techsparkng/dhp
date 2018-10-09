@@ -130,6 +130,28 @@ router.delete('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
   })
 })
 
+//undo approve deposit route
+router.put('/undodeposit/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Deposit.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}, function(err, updatedDeposit) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('back');
+    }
+  })
+})
+
+//undo decline deposit route
+router.delete('/undodeposit/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Deposit.findByIdAndUpdate(req.params.id, {declined: false}, {new: true}, function(err, updatedDeposit) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('back');
+    }
+  })
+})
+
 // @route   GET admin/withdraw
 // @desc    Get all requested Withdrawal
 // @access  Private
