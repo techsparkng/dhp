@@ -23,7 +23,9 @@ var depositSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  created: Date
+  created: {
+    type: Date, default: Date.now
+  }
 });
 
 module.exports = mongoose.model("Deposit", depositSchema);
