@@ -8,22 +8,25 @@ var depositSchema = new mongoose.Schema({
   },
   depositor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }, 
+    ref: "User"
+  },
   bank: {
     accountname: String,
     accountno: String,
     bankname: String
   },
   approved: {
-    type: Boolean, 
+    type: Boolean,
     default: false
   },
   declined: {
     type: Boolean,
     default: false
   },
-  created: Date
+  created: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model("Deposit", depositSchema);

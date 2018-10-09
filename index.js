@@ -38,28 +38,27 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use('user', new LocalStrategy(User.authenticate()));
+passport.use("user", new LocalStrategy(User.authenticate()));
 
-passport.use('admin', new LocalStrategy(Admin.authenticate()));
+passport.use("admin", new LocalStrategy(Admin.authenticate()));
 
-passport.serializeUser(function(user, done){
-     done(null, user.id);
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done){
-   Admin.findById(id, function(err, user){
-     if(err) done(err);
-       if(user){
-         done(null, user);
-       } else {
-          User.findById(id, function(err, user){
-            if(err) done(err);
-            done(null, user);
-          })
-        }
-
-       })
-   });
+passport.deserializeUser(function(id, done) {
+  Admin.findById(id, function(err, user) {
+    if (err) done(err);
+    if (user) {
+      done(null, user);
+    } else {
+      User.findById(id, function(err, user) {
+        if (err) done(err);
+        done(null, user);
+      });
+    }
+  });
+});
 
 app.set("view engine", "ejs");
 
@@ -74,7 +73,17 @@ app.get("/", function(req, res) {
 });
 
 app.get("/dashboard", function(req, res) {
-  res.render("dashboard/index");
+  User.findById(req.user._id)
+    .populate("deposits")
+    .exec(function(err, foundUser) {
+      if (err) {
+        console.log(err);
+      } else {
+        var deposits = foundUser.deposits;
+        // res.send(deposits);
+        res.render("dashboard/index", { deposits: deposits });
+      }
+    });
 });
 
 app.get("/register", function(req, res) {
