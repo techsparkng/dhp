@@ -77,7 +77,10 @@ app.get("/", function(req, res) {
 
 app.get("/dashboard", function(req, res) {
   User.findById(req.user._id)
-    .populate("deposits")
+    .populate({
+      path: "deposits",
+      populate: { path: "package" }
+    })
     .exec(function(err, foundUser) {
       if (err) {
         console.log(err);
