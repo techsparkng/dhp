@@ -9,14 +9,14 @@ var depositSchema = new mongoose.Schema({
   depositor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }, 
+  },
   bank: {
     accountname: String,
     accountno: String,
     bankname: String
   },
   approved: {
-    type: Boolean, 
+    type: Boolean,
     default: false
   },
   declined: {
@@ -24,7 +24,8 @@ var depositSchema = new mongoose.Schema({
     default: false
   },
   created: {
-    type: Date, default: Date.now
+    type: Date,
+    default: Date.now
   }
 });
 
