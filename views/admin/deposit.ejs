@@ -36,7 +36,7 @@
                                             <td><%= deposit.bank.bankname %></td>
                                             <td class="text-danger"><%= deposit.created.toDateString() %></td>
                                             
-                                            <td><form action="/<%= deposit._id %>/approveDeposit?_method=PUT" method="POST"><i class="mr-4 fa fa-check text-success"></i></form> <form action="/<%= deposit._id %>/declineDeposit?_method=PUT" method="POST"><i class="fa fa-times text-danger"></i></from></td>
+                                            <td><form action="/<%= deposit._id %>/approveDeposit?_method=PUT" method="POST" class="form-inline"><i class="mr-4 fa fa-check text-success"></i></form> <form action="/<%= deposit._id %>/declineDeposit?_method=PUT" method="POST"><i class="fa fa-times text-danger"></i></from></td>
                                             <% counter++ %>
                                         </tr>
                                         <% }) %> 
