@@ -4,10 +4,17 @@ $(document).ready(function() {
     var username = $(".usern").val();
     var password = $(".passw").val();
     console.log(username, password);
+    $(".usern, .passw").on("focus", function() {
+      $(".usern, .passw, .input-group-text").removeClass("has-error");
+    });
+
     if ($.trim(username).length == "" || $.trim(password).length == "") {
+      $(".usern, .passw, .input-group-text").addClass("has-error");
+
       $(".ALert").html(
-        '<div class="alert alert-purple" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Error!</strong> Username/Password field cannot be empty!</div>'
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Username/Password field cannot be empty!</div>'
       );
+
       return false;
       //e.preventDefault();
     }
