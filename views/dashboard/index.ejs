@@ -108,7 +108,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="caed-title">Deposit History</h4>
-            <div class="table-responsive">
+            <div class="table-striped">
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -142,11 +142,11 @@
                       </td>
                       <% if(pending.approved) { %>
                       <td>
-                        Approved
+                        <p class="text-success">Approved</p>
                       </td>
                       <% } else{ %>
                       <td>
-                        Pending
+                        <p class="text-danger">Pending</p>
                       </td>
                       <% } %>
                       <% counter++ %>
@@ -271,205 +271,174 @@
                 </div>
               </div>
 
-              <br>
-              <div class="alert alert-success" role="alert" id="div1">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Minimum Investment: N20,000
-                  <i class="input-helper"> </i>
-                </label>
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Maximum Investment: N1,000,000
-                  <i class="input-helper"> </i>
-                </label>
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Profit: 4% Daily and Minimum
-                  ROI of 140% Monthly
-                  <i class="input-helper"> </i>
-                </label>
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Minimum Withdrawal: N5,000
-                  <i class="input-helper"> </i>
-                </label>
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Duration: 35 Working Days
-                  <i class="input-helper"> </i>
-                </label>
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Withdrawal Fee: N200
-                  <i class="input-helper"> </i>
-                </label>
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" disabled="" checked="">Enjoy 4% Referral Bonus
-                  <i class="input-helper"> </i>
-                </label>
-                <hr>
-                <p class="mb-0">Withdrawal on 15th and 30th Every Month<br> NO RETURNS OF CAPITAL.</p>
+              <div class="card-body" id="div1">
+                <h4 class="card-title">Investor Package</h4>
+                <ul class="list-ticked">
+                  <li>Minimum Investment: N20,000</li>
+                  <li>Maximum Investment: N1,000,000</li>
+                  <li>Profit: 4% Daily and Minimum ROI of 140% Monthly</li>
+                  <li>Minimum Withdrawal: N5,000</li>
+                  <li>Duration: 35 Working Days</li>
+                  <li>Withdrawal Fee: N200</li>
+                  <li>Enjoy 4% Referal Bonus</li>
+                  <hr>
+                  <p class="mb-0">Withdrawal date : Every 30th of each month)<br>RETURN OF YOUR CAPITAL AFTER 210 DAYS.</p>
+                </ul>
               </div>
-                                
-                    <div class="alert alert-success d-none" role="alert" id="div2">
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" disabled="" checked="">Minimum Investment: N10,000  
-                                      <i class="input-helper">  </i>
-                                    </label>
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" disabled="" checked="">Maximum Investment: N5,000,000   
-                                      <i class="input-helper">  </i>
-                                    </label>
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" disabled="" checked=""> Minimum Withdrawal: N5,000     
-                                      <i class="input-helper">  </i>
-                                    </label>
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" disabled="" checked="">Withdrawal Fee: N200    
-                                      <i class="input-helper">  </i>
-                                    </label>
-                                    <label class="form-check-label">
-                                      <input type="checkbox" class="form-check-input" disabled="" checked="">Enjoy 4% Referal Bonus    
-                                      <i class="input-helper">  </i>
-                                    </label>
-                                    <hr>
-                                    <p class="mb-0">Withdrawal date : Every 30th of each month)<br>RETURN OF YOUR CAPITAL AFTER 210 DAYS.</p>
-                            </div>
-                    </div>
-                </div>
 
+              <div class="card-body d-none" id="div2">
+                <h4 class="card-title">Partner Package</h4>
+                <ul class="list-ticked">
+                  <li>Minimum Investment: N10,000</li>
+                  <li>Maximum Investment: N5,000,000</li>
+                  <li>Minimum Withdrawal: N5,000</li>
+                  <li>Withdrawal Fee: N200</li>
+                  <li>Duration: 35 Working Days</li>
+                  <li>Enjoy 4% Referal Bonus</li>
+                  <hr>
+                  <p class="mb-0">Withdrawal date : Every 30th of each month)<br>RETURN OF YOUR CAPITAL AFTER 210 DAYS.</p>
+                </ul>
+              </div>
+
+
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12 grid-margin">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title mb-4">Manage Tickets</h5>
-                <div class="fluid-container">
-                  <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                    <div class="col-md-1">
-                      <img class="img-sm rounded-circle mb-4 mb-md-0" src="/assets/images/faces/face1.jpg" alt="profile image">
-                    </div>
-                    <div class="ticket-details col-md-9">
-                      <div class="d-flex">
-                        <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">James :</p>
-                        <p class="text-primary mr-1 mb-0">[#23047]</p>
-                        <p class="mb-0 ellipsis">Donec rutrum congue leo eget malesuada.</p>
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-4">Manage Tickets</h5>
+                  <div class="fluid-container">
+                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
+                      <div class="col-md-1">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="/assets/images/faces/face1.jpg" alt="profile image">
                       </div>
-                      <p class="text-gray ellipsis mb-2">Donec rutrum congue leo eget malesuada. Quisque velit nisi,
-                        pretium ut lacinia in, elementum id enim
-                        vivamus.
-                      </p>
-                      <div class="row text-gray d-md-flex d-none">
-                        <div class="col-4 d-flex">
-                          <small class="mb-0 mr-2 text-muted text-muted">Last responded :</small>
-                          <small class="Last-responded mr-2 mb-0 text-muted text-muted">3 hours ago</small>
+                      <div class="ticket-details col-md-9">
+                        <div class="d-flex">
+                          <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">James :</p>
+                          <p class="text-primary mr-1 mb-0">[#23047]</p>
+                          <p class="mb-0 ellipsis">Donec rutrum congue leo eget malesuada.</p>
                         </div>
-                        <div class="col-4 d-flex">
-                          <small class="mb-0 mr-2 text-muted text-muted">Due in :</small>
-                          <small class="Last-responded mr-2 mb-0 text-muted text-muted">2 Days</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ticket-actions col-md-2">
-                      <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          Manage
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-history fa-fw"></i>Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                        <p class="text-gray ellipsis mb-2">Donec rutrum congue leo eget malesuada. Quisque velit nisi,
+                          pretium ut lacinia in, elementum id enim
+                          vivamus.
+                        </p>
+                        <div class="row text-gray d-md-flex d-none">
+                          <div class="col-4 d-flex">
+                            <small class="mb-0 mr-2 text-muted text-muted">Last responded :</small>
+                            <small class="Last-responded mr-2 mb-0 text-muted text-muted">3 hours ago</small>
+                          </div>
+                          <div class="col-4 d-flex">
+                            <small class="mb-0 mr-2 text-muted text-muted">Due in :</small>
+                            <small class="Last-responded mr-2 mb-0 text-muted text-muted">2 Days</small>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                    <div class="col-md-1">
-                      <img class="img-sm rounded-circle mb-4 mb-md-0" src="/assets/images/faces/face2.jpg" alt="profile image">
-                    </div>
-                    <div class="ticket-details col-md-9">
-                      <div class="d-flex">
-                        <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Stella :</p>
-                        <p class="text-primary mr-1 mb-0">[#23135]</p>
-                        <p class="mb-0 ellipsis">Curabitur aliquet quam id dui posuere blandit.</p>
-                      </div>
-                      <p class="text-gray ellipsis mb-2">Pellentesque in ipsum id orci porta dapibus. Sed porttitor
-                        lectus nibh. Curabitur non nulla sit amet
-                        nisl.
-                      </p>
-                      <div class="row text-gray d-md-flex d-none">
-                        <div class="col-4 d-flex">
-                          <small class="mb-0 mr-2 text-muted">Last responded :</small>
-                          <small class="Last-responded mr-2 mb-0 text-muted">3 hours ago</small>
-                        </div>
-                        <div class="col-4 d-flex">
-                          <small class="mb-0 mr-2 text-muted">Due in :</small>
-                          <small class="Last-responded mr-2 mb-0 text-muted">2 Days</small>
+                      <div class="ticket-actions col-md-2">
+                        <div class="btn-group dropdown">
+                          <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Manage
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-reply fa-fw"></i>Quick reply</a>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-history fa-fw"></i>Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="ticket-actions col-md-2">
-                      <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          Manage
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-history fa-fw"></i>Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
+                      <div class="col-md-1">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="/assets/images/faces/face2.jpg" alt="profile image">
+                      </div>
+                      <div class="ticket-details col-md-9">
+                        <div class="d-flex">
+                          <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Stella :</p>
+                          <p class="text-primary mr-1 mb-0">[#23135]</p>
+                          <p class="mb-0 ellipsis">Curabitur aliquet quam id dui posuere blandit.</p>
+                        </div>
+                        <p class="text-gray ellipsis mb-2">Pellentesque in ipsum id orci porta dapibus. Sed porttitor
+                          lectus nibh. Curabitur non nulla sit amet
+                          nisl.
+                        </p>
+                        <div class="row text-gray d-md-flex d-none">
+                          <div class="col-4 d-flex">
+                            <small class="mb-0 mr-2 text-muted">Last responded :</small>
+                            <small class="Last-responded mr-2 mb-0 text-muted">3 hours ago</small>
+                          </div>
+                          <div class="col-4 d-flex">
+                            <small class="mb-0 mr-2 text-muted">Due in :</small>
+                            <small class="Last-responded mr-2 mb-0 text-muted">2 Days</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ticket-actions col-md-2">
+                        <div class="btn-group dropdown">
+                          <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Manage
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-reply fa-fw"></i>Quick reply</a>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-history fa-fw"></i>Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row ticket-card mt-3">
-                    <div class="col-md-1">
-                      <img class="img-sm rounded-circle mb-4 mb-md-0" src="/assets/images/faces/face3.jpg" alt="profile image">
-                    </div>
-                    <div class="ticket-details col-md-9">
-                      <div class="d-flex">
-                        <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">John Doe :</p>
-                        <p class="text-primary mr-1 mb-0">[#23246]</p>
-                        <p class="mb-0 ellipsis">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar.</p>
+                    <div class="row ticket-card mt-3">
+                      <div class="col-md-1">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="/assets/images/faces/face3.jpg" alt="profile image">
                       </div>
-                      <p class="text-gray ellipsis mb-2">Nulla quis lorem ut libero malesuada feugiat. Proin eget
-                        tortor risus. Lorem ipsum dolor sit amet.</p>
-                      <div class="row text-gray d-md-flex d-none">
-                        <div class="col-4 d-flex">
-                          <small class="mb-0 mr-2 text-muted">Last responded :</small>
-                          <small class="Last-responded mr-2 mb-0 text-muted">3 hours ago</small>
+                      <div class="ticket-details col-md-9">
+                        <div class="d-flex">
+                          <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">John Doe :</p>
+                          <p class="text-primary mr-1 mb-0">[#23246]</p>
+                          <p class="mb-0 ellipsis">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar.</p>
                         </div>
-                        <div class="col-4 d-flex">
-                          <small class="mb-0 mr-2 text-muted">Due in :</small>
-                          <small class="Last-responded mr-2 mb-0 text-muted">2 Days</small>
+                        <p class="text-gray ellipsis mb-2">Nulla quis lorem ut libero malesuada feugiat. Proin eget
+                          tortor risus. Lorem ipsum dolor sit amet.</p>
+                        <div class="row text-gray d-md-flex d-none">
+                          <div class="col-4 d-flex">
+                            <small class="mb-0 mr-2 text-muted">Last responded :</small>
+                            <small class="Last-responded mr-2 mb-0 text-muted">3 hours ago</small>
+                          </div>
+                          <div class="col-4 d-flex">
+                            <small class="mb-0 mr-2 text-muted">Due in :</small>
+                            <small class="Last-responded mr-2 mb-0 text-muted">2 Days</small>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="ticket-actions col-md-2">
-                      <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          Manage
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-history fa-fw"></i>Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                          <a class="dropdown-item" href="#">
-                            <i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                      <div class="ticket-actions col-md-2">
+                        <div class="btn-group dropdown">
+                          <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Manage
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-reply fa-fw"></i>Quick reply</a>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-history fa-fw"></i>Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
+                            <a class="dropdown-item" href="#">
+                              <i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -479,37 +448,36 @@
             </div>
           </div>
         </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+              <a href="#" target="_blank">Diamonhubplus</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Diamonhubplus
+              <i class="mdi mdi-heart text-danger"></i>
+            </span>
+          </div>
+        </footer>
+        <!-- partial -->
       </div>
-      <!-- content-wrapper ends -->
-      <!-- partial:partials/_footer.html -->
-      <footer class="footer">
-        <div class="container-fluid clearfix">
-          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-            <a href="#" target="_blank">Diamonhubplus</a>. All rights reserved.</span>
-          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Diamonhubplus
-            <i class="mdi mdi-heart text-danger"></i>
-          </span>
-        </div>
-      </footer>
-      <!-- partial -->
+      <!-- main-panel ends -->
     </div>
-    <!-- main-panel ends -->
-  </div>
 
-  <script>
-    $(document).ready(function () {
-      $("#checkbox1, #checkbox2").change(function () {
-        if ($("#checkbox1").is(":checked")) {
-          $('#div1').removeClass('d-none');
-          $('#div2').addClass('d-none');
-          console.log(1);
-        }
-        else {
-          $('#div2').removeClass('d-none');
-          $('#div1').addClass('d-none');
-          console.log(2);
-        }
+    <script>
+      $(document).ready(function () {
+        $("#checkbox1, #checkbox2").change(function () {
+          if ($("#checkbox1").is(":checked")) {
+            $('#div1').removeClass('d-none');
+            $('#div2').addClass('d-none');
+            //console.log(1);
+          }
+          else {
+            $('#div2').removeClass('d-none');
+            $('#div1').addClass('d-none');
+            //console.log(2);
+          }
+        });
       });
-    });
-  </script>
-  <% include ../partials/footer %>
+    </script>
+    <% include ../partials/footer %>
