@@ -123,8 +123,6 @@ router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
         if (err) {
           console.log(err);
         } else {
-          console.log(moment(updatedPackage.start).format('YYYY Do MM'));
-          console.log(moment(updatedPackage.end).format('YYYY Do MM'));
           res.redirect('back');
         }
       });
