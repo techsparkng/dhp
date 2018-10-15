@@ -2,66 +2,51 @@
   <div class="main-panel">
     <div class="content-wrapper">
     <div class="row">
-    <div class="col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                    <form action="#" method="POST" class="forms-sample">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-6 col-form-label">Select Investment Package</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="package_plan" name="package[investtype]">
-                                        <option value="">- Choose Option -</option>
-                                        <option value="investor">Investor</option>
-                                        <option value="partner">Partner</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-6 col-form-label">Available Interest For withdrawal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="description" name="package[description]" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-success mr-2">Withdraw</button>
-                    </form>
-                </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="col-md-12">
+              <div class="form-group row">
+                  <label class="col-sm-6 col-form-label">Select Package Type</label>
+                  <div class="col-sm-9">
+                      <select class="form-control" id="package_plan" name="package[investtype]">
+                          <option value="">- Choose Option -</option>
+                          <option value="investor">Investor</option>
+                          <option value="partner">Partner</option>
+                          <option value="international">International</option>
+                      </select>
+                  </div>
               </div>
-    </div>
+          </div>
 
-    <div class="col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                    <form action="#" method="POST" class="forms-sample">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-6 col-form-label">Select Investment Package</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="package_plan" name="package[investtype]">
-                                        <option value="">- Choose Option -</option>
-                                        <option value="investor">Investor</option>
-                                        <option value="partner">Partner</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-6 col-form-label">Available Interest For withdrawal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="description" name="package[description]" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+          <div class="col-md-12 d-none" id="packages">
+              <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                          <div class="table-responsive">
+                              <table class="table table-hover table-sm">
+                                  <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Package</th>
+                                        <th>Deposit</th>
+                                        <th>Started</th>
+                                        <th>Due</th>
+                                        <th>Interest</th>
+                                        <th>Current Earning</th>
+                                        <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                      
+                                  <tbody>
+                                  
+                                  </tbody>
+                              </table>
+                          </div>
+                  </div>
               </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="col-lg-12 grid-margin stretch-card">
