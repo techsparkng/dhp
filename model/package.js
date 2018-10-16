@@ -5,11 +5,14 @@ var packageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
+  amountDeposited: Number,
   investtype: String,
   interest: Number,
   start: Date,
   end: Date,
-  duration: Number
+  duration: Number,
+  approved: {type: Boolean, default: false},
+  currentEarning: Number
 });
 
 module.exports = mongoose.model("Package", packageSchema);

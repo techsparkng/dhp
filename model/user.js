@@ -28,9 +28,16 @@ var userSchema = new mongoose.Schema({
       ref: "Deposit"
     }
   ],
-  withdrawal: Number,
-  paid: Boolean,
+  withdrawals: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Withdraw"
+    }
+  ],
   currentearning: Number,
+  lastinvestorpackagedate: {type: Date, default: Date.now},
+  lastpartnerpackagedate: {type: Date, default: Date.now},
+  lastinternationalpackagedate: {type: Date, default: Date.now},
   registerdate: {
     type: Date,
     default: Date.now
