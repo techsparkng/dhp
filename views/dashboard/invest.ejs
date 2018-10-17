@@ -3,6 +3,7 @@
     <div class="content-wrapper">
         <div class="card">
             <div class="card-body">
+                <span class="ALert"></span>
                 <p class="card-description">
                     Select Investment Packages
                 </p>
@@ -11,7 +12,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Amount to Invest</label>
                             <div class="col-sm-9">
-                                <input type="number" min="0" class="form-control" name="amount">
+                                <input type="text" maxlength="7" class="form-control amountInvested" name="amount">
                             </div>
                         </div>
                     </div>
@@ -19,24 +20,25 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Select Investment Package</label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="package_plan" name="package[investtype]">
+                                <select class="form-control" id="package_plan" name="package[investtype]" disabled>
                                     <option value="">- Choose Option -</option>
-                                    <option value="investor">Investor</option>
-                                    <option value="partner">Partner</option>
+                                    <option value="Investor">Investor</option>
+                                    <option value="Partner">Partner</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="col-md-6 d-none description">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Description</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="description" name="package[description]" readonly>
+                                <input type="text" class="form-control" id="description" name="package[description]"
+                                    readonly>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-6 d-none interest">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Interest</label>
@@ -59,7 +61,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Select Payment Option</label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="payment_opt">
+                                <select class="form-control" id="payment_opt" disabled>
                                     <option value="">- Choose Option -</option>
                                     <option value="bank">Bank</option>
                                     <option value="debt_card">Debt Card</option>
@@ -85,7 +87,8 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Account Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="accountname" name="bankd[accountname]" readonly>
+                                <input type="text" class="form-control" id="accountname" name="bankd[accountname]"
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -94,12 +97,13 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Account Number</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]" readonly>
+                                <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]"
+                                    readonly>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary" value="Submit">
+                        <input type="submit" class="btn btn-primary invest-btn" value="Submit" disabled>
                     </div>
                 </form>
             </div>
@@ -108,10 +112,11 @@
 </div>
 <script>
     $(document).ready(function () {
+
         var $plan;
         $('#package_plan').on('change', function (e) {
             $plan = $(this).find('option:selected').val();
-            if ($plan == 'investor') {
+            if ($plan == 'Investor') {
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
                 $('.description').removeClass('d-none');
@@ -120,7 +125,7 @@
                 $('#description').val("4% Daily for 35 working days");
             }
 
-            if ($plan == 'partner') {
+            if ($plan == 'Partner') {
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
                 $('.description').removeClass('d-none');
@@ -128,6 +133,10 @@
                 $('#duration').val("210 days")
                 $('#description').val("0.8% Daily for 210 days");
             }
+            if ($(this).find("option:first-child").val()) {
+                $(".invest-btn").attr("disabled", "disabled");
+            }
+
         })
 
         var $payPlan;
@@ -146,19 +155,27 @@
         var $bankName;
         $('#select_bank').on('change', function () {
             $bankName = $(this).find('option:selected').val();
-            if ($bankName == 'skye') {
+            if ($bankName == 'Skye') {
                 $('.acct-name').removeClass('d-none');
                 $('.acct-no').removeClass('d-none');
                 $('#accountname').val("Neu Diamondhub Ventures");
                 $('#accountnumber').val("4091046063");
+
             }
-            if ($bankName == 'fcmb') {
+            if ($bankName == 'FCMB') {
                 $('.acct-name').removeClass('d-none');
                 $('.acct-no').removeClass('d-none');
                 $('#accountname').val("Neu Diamondhub Ventures");
                 $('#accountnumber').val("5529004017");
+
             }
+            if ($bankName === $(this).find("option:first-child").val()) {
+                $(".invest-btn").attr("disabled", "disabled");
+            }
+            $(".invest-btn").removeAttr("disabled");
         })
     });
+
+
 </script>
 <% include ../partials/footer %>

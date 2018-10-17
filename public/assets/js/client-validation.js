@@ -1,25 +1,270 @@
 $(document).ready(function() {
+  login();
+  register();
+  InvestDropdown();
+  investBtn();
+  alertFocus();
+  amountValid();
+  $(".amountInvested").keydown(function(e) {
+    // Allow: backspace, delete, tab, escape, enter and .
+    if (
+      $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+      // Allow: Ctrl+A, Command+A
+      (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+      // Allow: home, end, left, right, down, up
+      (e.keyCode >= 35 && e.keyCode <= 40)
+    ) {
+      // let it happen, don't do anything
+      return;
+    }
+    // Ensure that it is a number and stop the keypress
+    if (
+      (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
+      (e.keyCode < 96 || e.keyCode > 105)
+    ) {
+      e.preventDefault();
+    }
+  });
+});
+
+function login() {
   //Validation for Login
-  $(".submit-btn").click(function(e) {
+  $(document).on("click", ".submit-btn", function(e) {
     var username = $(".usern").val();
     var password = $(".passw").val();
-    console.log(username, password);
+
     $(".usern, .passw").on("focus", function() {
       $(".usern, .passw, .input-group-text").removeClass("has-error");
+      closeAlert();
     });
 
-    if ($.trim(username).length == "" || $.trim(password).length == "") {
+    if ($.trim(username).length == "" && $.trim(password).length == "") {
       $(".usern, .passw, .input-group-text").addClass("has-error");
+      $(".input-group-text").css("fa-times-circle-o");
 
       $(".ALert").html(
-        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Username/Password field cannot be empty!</div>'
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Username and Password field cannot be empty!</div>'
       );
 
       return false;
       //e.preventDefault();
     }
+
+    if ($.trim(username).length == "") {
+      $(".usern, .input-group-text").addClass("has-error");
+
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Username field cannot be empty!</div>'
+      );
+      return false;
+    }
+
+    if ($.trim(password).length == "") {
+      $(".passw, .input-group-text").addClass("has-error");
+      $(".usern, .input-group-text").removeClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Password field cannot be empty!</div>'
+      );
+      return false;
+    }
+  });
+}
+
+function register() {
+  //Validaion for Registration
+
+  $(".submit-btn-reg").click(function() {
+    var first = $(".first").val();
+    var last = $(".last").val();
+    var email = $(".email").val();
+    var username = $(".usern").val();
+    var password = $(".pw1").val();
+    var password2 = $(".pw2").val();
+
+    $(".first, .last, .email, .usern, .pw1, .pw2").on("focus", function() {
+      $(
+        ".first, .last, .email, .usern, .pw1, .pw2, .input-group-text"
+      ).removeClass("has-error");
+      closeAlert();
+    });
+
+    if (
+      $.trim(first).length > 0 &&
+      $.trim(last).length > 0 &&
+      $.trim(email).length > 0 &&
+      $.trim(username).length > 0 &&
+      $.trim(password).length > 0 &&
+      $.trim(password2).length > 0
+    ) {
+      var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+      if (regex.test(email)) {
+        if (password2 != password) {
+          $(".pw2, .input-group-text").addClass("has-error");
+          $(".ALert").html(
+            '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Passwords do not match!</div>'
+          );
+          return false;
+        }
+      } else {
+        $(".email, .input-group-text").addClass("has-error");
+        $(".ALert").html(
+          '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> E-mail format is invalid!</div>'
+        );
+        return false;
+      }
+    } else {
+      $(
+        ".first, .last, .email, .usern, .pw1, .pw2, .input-group-text"
+      ).addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
+      );
+      return false;
+    }
+  });
+}
+
+//investment Packages dropdown
+function InvestDropdown() {
+  $("#package_plan").on("change", function(e) {
+    var $plan;
+    var amountInvested = $(".amountInvested").val();
+    $plan = $(this)
+      .find("option:selected")
+      .val();
+    if (
+      ($plan == "Investor" && amountInvested == "") ||
+      ($plan == "Partner" && amountInvested == "")
+    ) {
+      $(".amountInvested").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Enter an amount for investment!</div>'
+      );
+      return false;
+    }
+
+    if (
+      ($plan == "Investor" && parseFloat(amountInvested) < 20000) ||
+      ($plan == "Investor" && parseFloat(amountInvested) > 1000000)
+    ) {
+      $(".amountInvested").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Investment amount cannot be less than ₦20,000 or greater than ₦1,000,000 for <strong>Investor package</strong>!</div>'
+      );
+      $(".invest-btn").attr("disabled", "disabled");
+      $('select option:contains("- Choose Option -")').prop("selected", true);
+      return false;
+    } else {
+      $("#payment_opt").removeAttr("disabled");
+    }
+
+    if (
+      ($plan == "Partner" && parseFloat(amountInvested) < 10000) ||
+      ($plan == "Partner" && parseFloat(amountInvested) > 5000000)
+    ) {
+      $(".amountInvested").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Investment amount cannot be less than ₦10,000 or greater than ₦5,000,000 for this package!</div>'
+      );
+      $(".invest-btn").attr("disabled", "disabled");
+      $('select option:contains("- Choose Option -")').prop("selected", true);
+      return false;
+    }
+    if (
+      ($plan == "Partner" && parseFloat(amountInvested) >= 10000) ||
+      ($plan == "Partner" && parseFloat(amountInvested) <= 5000000)
+    ) {
+      $("#payment_opt").removeAttr("disabled");
+    }
+
+    //closeAlert();
+  });
+}
+function amountValid() {
+  //var amount = $(".amountInvested").val();
+  $(".amountInvested").on("input", function() {
+    var amount = this.value;
+    if (amount >= 10000) {
+      if (amount > 5000000) {
+        $(".amountInvested").addClass("has-error");
+        $("#package_plan").attr("disabled", "disabled");
+        $('select option:contains("- Choose Option -")').prop("selected", true);
+        $(".ALert").html(
+          '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Amount exceeds our investment packages!</div>'
+        );
+        return false;
+      }
+      if (amount < 10000) {
+        $("#package_plan").attr("disabled", "disabled");
+        $(".amountInvested").addClass("has-error");
+        $(".ALert").html(
+          '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Amount too small for our investment packages!</div>'
+        );
+        return false;
+      }
+      if (amount >= 10000 && amount <= 500000) {
+        $(".amountInvested").removeClass("has-error");
+        $("#package_plan").removeAttr("disabled");
+      }
+    }
   });
 
+  closeAlert();
+}
+//When invest submit button is clicked
+function investBtn() {
+  $(".invest-btn").click(function() {
+    var amountInvested = $(".amountInvested").val();
+    /* var plan = $("#package_plan").val();
+    plan = $('select option:contains("- Choose Option -")').prop(
+      "selected",
+      true
+    );
+    $("#package_plan").on("change", function() {
+      var plan2 = $(this)
+        .find("option:selected")
+        .val();
+      alert(plan2);
+    });
+    var plan3 = $("#package_plan")
+      .find("option:first-child")
+      .val();
+    alert(plan);
+
+    alert(plan3); */
+
+    if (amountInvested == "") {
+      $(".amountInvested").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Enter an amount for investment!</div>'
+      );
+      return false;
+    }
+    /* if (
+
+    ) {
+      $("#package_plan").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Select a valid investment package!</div>'
+      );
+      return false;
+    }
+    if (
+      $("#select_bank").on("change", function() {}) ==
+      $("#select_bank")
+        .find("option:first-child")
+        .val()
+    ) {
+      $("#select_bank").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Select a bank!</div>'
+      );
+      return false;
+    } */
+  });
+}
+
+function closeAlert() {
   window.setTimeout(function() {
     $(".alert")
       .fadeTo(500, 0)
@@ -27,6 +272,16 @@ $(document).ready(function() {
         $(this).remove();
       });
   }, 4000);
+}
 
-  //Validaion for Registration
-});
+function alertFocus() {
+  $(".amountInvested").on("focus", function() {
+    $(".amountInvested").removeClass("has-error");
+    //closeAlert();
+  });
+
+  $("#package_plan").on("focus", function() {
+    $("#package_plan").removeClass("has-error");
+    closeAlert();
+  });
+}
