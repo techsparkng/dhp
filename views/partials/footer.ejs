@@ -22,9 +22,9 @@
       $.getJSON('/user/activePackages')
         .done(packages => {
           packages.forEach(package => {
-            if (package.investtype === "investor") {
+            if (package.investtype === "Investor") {
               investorPackages.push(package);
-            } else if (package.investtype === "partner") {
+            } else if (package.investtype === "Partner") {
               partnerPackages.push(package);
             } else {
               internationalPackages.push(package);
