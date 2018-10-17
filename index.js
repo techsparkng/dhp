@@ -27,6 +27,7 @@ app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.static(path.join(__dirname, "/views")));
+app.use(express.static(path.join(__dirname, "/node_modules")));
 app.use(
   bodyParser.urlencoded({
     extended: true

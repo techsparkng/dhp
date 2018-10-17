@@ -13,7 +13,100 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="/assets/js/dashboard.js"></script>
+  <script src="/moment-business-days/index.js"></script>
   <!-- End custom js for this page-->
+  <% if (path === '/user/withdraw') { %>
+    <script>
+      var investorPackages = [], partnerPackages = [], internationalPackages = [];
+
+      $.getJSON('/user/activePackages')
+        .done(packages => {
+          packages.forEach(package => {
+            if (package.investtype === "investor") {
+              investorPackages.push(package);
+            } else if (package.investtype === "partner") {
+              partnerPackages.push(package);
+            } else {
+              internationalPackages.push(package);
+            }
+          })
+        })
+        .fail(err => console.log(err));
+
+      $('#package_plan').on("change", function() {
+        var package = $(this).find('option:selected').val();
+        $("#packages").removeClass('d-none');
+        if (package === "investor") {
+          $("#packages tbody").html('');
+          var counter = 1;
+          investorPackages.forEach(package => {
+            currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            $("#packages tbody").append(
+              `
+                <tr>
+                  <td>${counter}</td>
+                  <td>${package.investtype}</td>
+                  <td>${package.amountDeposited}</td>
+                  <td>${moment(package.start).format('MM-DD-YYYY')}</td>
+                  <td>${moment(package.end).format('MM-DD-YYYY')}</td>
+                  <td>${package.interest}% Daily</td>
+                  <td>${currentEarning}</td>
+                  <td><button class="btn btn-success btn-xs">Withdraw</button></td>
+                </tr>
+              `
+            )
+            counter++;
+          })
+        }
+
+        if (package === "partner") {
+          $("#packages tbody").html('');
+          var counter = 1;
+          partnerPackages.forEach(package => {
+            currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            $("#packages tbody").append(
+              `
+                <tr>
+                  <td>${counter}</td>
+                  <td>${package.investtype}</td>
+                  <td>${package.amountDeposited}</td>
+                  <td>${moment(package.start).format('MM-DD-YYYY')}</td>
+                  <td>${moment(package.end).format('MM-DD-YYYY')}</td>
+                  <td>${package.interest}</td>
+                  <td>${currentEarning}</td>
+                  <td><button class="btn btn-success btn-xs">Withdraw</button></td>
+                </tr>
+              `
+            )
+            counter++;
+          })
+        }
+
+        if (package === "international") {
+          $("#packages tbody").html('');
+          var counter = 1;
+          internationalPackages.forEach(package => {
+            currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            $("#packages tbody").append(
+              `
+                <tr>
+                  <td>${counter}</td>
+                  <td>${package.investtype}</td>
+                  <td>${package.amountDeposited}</td>
+                  <td>${moment(package.start).format('MM-DD-YYYY')}</td>
+                  <td>${moment(package.end).format('MM-DD-YYYY')}</td>
+                  <td>${package.interest}</td>
+                  <td>${currentEarning}</td>
+                  <td><button class="btn btn-success btn-xs">Withdraw</button></td>
+                </tr>
+              `
+            )
+            counter++;
+          })
+        }
+      })
+    </script>
+  <% } %>
 </body>
 
 </html>

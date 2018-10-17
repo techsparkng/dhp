@@ -3,12 +3,15 @@ const express = require("express"),
   mongoose = require("mongoose"),
   passport = require("passport"),
   ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
+  moment = require('moment-business-days'),
   LocalStrategy = require("passport-local");
 
 //Load User Model
 const User = require("../model/user");
 //Load Deposit Model
 const Deposit = require("../model/deposit");
+// Load Deposit Model
+const Package = require("../model/package");
 
 router.get("/updateProfile", ensureLoggedIn('/admin'),function(req, res) {
   res.render("admin/updateProfile");
@@ -110,11 +113,19 @@ router.get("/deposit", ensureLoggedIn('/admin'), function(req, res) {
 
 // approve deposit route
 router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Deposit.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}, function(err, updatedDeposit) {
+  Deposit.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}).populate("package").exec(function(err, updatedDeposit) {
     if (err) {
       console.log(err)
     } else {
-      res.redirect('back');
+      var startDate = moment()._d;
+      var endDate = moment().businessAdd(updatedDeposit.package.duration)._d;
+      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('back');
+        }
+      });
     }
   })
 })
@@ -125,7 +136,13 @@ router.delete('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
     if (err) {
       console.log(err)
     } else {
-      res.redirect('back');
+      Package.findByIdAndUpdate(updatedDeposit.package, {approved: false}, function(err, updatedPackage) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('back');
+        }
+      })
     }
   })
 })
@@ -136,7 +153,13 @@ router.put('/undodeposit/:id', ensureLoggedIn('/admin'), function(req, res) {
     if (err) {
       console.log(err)
     } else {
-      res.redirect('back');
+      Package.findByIdAndUpdate(updatedDeposit.package, {approved: false}, function(err, updatedPackage) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('back');
+        }
+      })
     }
   })
 })

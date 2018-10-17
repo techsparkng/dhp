@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+var moment = require('moment-business-days');
 
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 //Load User Model
@@ -91,7 +92,7 @@ router.post("/invest", ensureLoggedIn('/login'), function(req, res) {
       var depositData = {
         amount: req.body.amount,
         package: createdPackage._id,
-        depositor: req.user._id,
+        depositor: req.user._id, 
         bank: req.body.bankd
       };
       Deposit.create(depositData, function(err, createdDeposit) {
@@ -107,6 +108,7 @@ router.post("/invest", ensureLoggedIn('/login'), function(req, res) {
   });
 });
 
+
 // @route   GET route/withdraw
 // @desc    Get user withdrawal history
 // @access  Private
@@ -115,10 +117,20 @@ router.get("/withdraw", ensureLoggedIn('/login'), function(req, res) {
   res.render("dashboard/withdraw");
 });
 
+router.get("/activePackages", ensureLoggedIn('/login'), function(req, res) {
+  Package.find({investor: req.user._id, approved: true, end: {"$gte": new Date()}}, function(err, foundPackages) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(foundPackages);
+    }
+  })
+});
+
 // @route   POST route/withdraw
 // @desc    Request for withdrawal
 // @access  Private
 
-router.post("/withdraw", ensureLoggedIn('/login'), function(req, res) {});
+// router.post("/withdraw", ensureLoggedIn('/login'), function(req, res) {});
 
 module.exports = router;

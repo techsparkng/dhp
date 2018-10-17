@@ -123,7 +123,7 @@
 
                   <tbody>
                     <% var counter = 1 %>
-                    <% deposits.forEach(function(pending){ %>
+                    <% deposits.reverse().forEach(function(pending){ %>
                     <tr>
                       <td>
                         <%= counter %>
@@ -270,6 +270,35 @@
                   </label>
                 </div>
               </div>
+              <br>
+              <div class="alert alert-success" role="alert" id="div1">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" disabled="" checked="">Minimum Investment: N20,000
+                  <i class="input-helper"> </i>
+                </label>
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" disabled="" checked="">Maximum Investment: N1,000,000
+                  <i class="input-helper"> </i>
+                </label>
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" disabled="" checked="">Profit: 4% Daily and Minimum
+                   ROI of 140% Monthly
+                  <i class="input-helper"> </i>
+                </label>
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" disabled="" checked="">Minimum Withdrawal: N5,000
+                  <i class="input-helper"> </i>
+                </label>
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" disabled="" checked="">Duration: 35 Working Days
+                  <i class="input-helper"> </i>
+                </label>
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" disabled="" checked="">Withdrawal Fee: N200
+                  <i class="input-helper"> </i>
+                </label>
+                <hr>
+                <p class="mb-0">Withdrawal on 15th and 30th Every Month<br> NO RETURNS OF CAPITAL.</p>
 
               <div class="card-body" id="div1">
                 <h4 class="card-title">Investor Package</h4>
