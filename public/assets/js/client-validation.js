@@ -283,7 +283,7 @@ function updateProfile() {
   $(".mr-2").click(function() {
     var first = $(".firstname").val();
     var last = $(".lastname").val();
-    var email = $(".email").val();
+    var email = $(".emailp").val();
     var gender = $(".gender").val();
     var address = $(".address").val();
     var phone = $(".phonenumber").val();
@@ -291,9 +291,21 @@ function updateProfile() {
     var acctname = $(".acctnanme").val();
     var acctno = $(".accNo").val();
 
+    alert(
+      first,
+      last,
+      email,
+      gender,
+      address,
+      phonenumber,
+      bankname,
+      acctname,
+      accNo
+    );
 
-
-    $(".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo").on("focus", function() {
+    $(
+      ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
+    ).on("focus", function() {
       $(
         ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
       ).removeClass("has-error");
@@ -310,7 +322,6 @@ function updateProfile() {
       $.trim(acctname).length > 0 &&
       $.trim(acctno).length > 0
     ) {
-      
     } else {
       $(
         ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"

@@ -12,17 +12,17 @@ var express = require("express"),
   userRoutes = require("./routes/user"),
   adminRoutes = require("./routes/admin");
 
-mongoose.connect(
-  "mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp",
-  {
-    useNewUrlParser: true
-  }
-);
-
 // mongoose.connect(
-//   "mongodb://localhost/dhp",
-//   { useNewUrlParser: true }
+//   "mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp",
+//   {
+//     useNewUrlParser: true
+//   }
 // );
+
+mongoose.connect(
+  "mongodb://localhost/dhp",
+  { useNewUrlParser: true }
+);
 app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "/public")));
