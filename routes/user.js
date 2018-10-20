@@ -10,8 +10,6 @@ const User = require("../model/user");
 const Package = require("../model/package");
 // Load Deposit Model
 const Deposit = require("../model/deposit");
-// Load Withdrawal Model
-const Withdrawal = require("../model/withdrawal");
 
 // @route   GET route/profile
 // @desc    Get current user profile page
@@ -78,6 +76,11 @@ router.post("/invest", ensureLoggedIn('/login'), function(req, res) {
       req.body.package.duration.indexOf(" ")
     )
   );
+  console.log(req.body.package.interest, req.body.package.duration);
+  // var investData = {
+  //   package: req.body.package,
+  //   deposit: req.body.deposit
+  // };
   req.body.package.investor = req.user._id;
 
   // create package and save
@@ -113,22 +116,6 @@ router.post("/invest", ensureLoggedIn('/login'), function(req, res) {
 router.get("/withdraw", ensureLoggedIn('/login'), function(req, res) {
   res.render("dashboard/withdraw");
 });
-
-router.post("/withdraw", ensureLoggedIn('/login'), function(req, res) {
-  var withdrawal = {
-    amount: req.body.amount,
-    package: req.body.package,
-    withdrawer: req.user._id
-  }
-
-  Withdrawal.create(withdrawal, function(err, createdWithdrawal) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(createdWithdrawal);
-    }
-  })
-})
 
 router.get("/activePackages", ensureLoggedIn('/login'), function(req, res) {
   Package.find({investor: req.user._id, approved: true, end: {"$gte": new Date()}}, function(err, foundPackages) {

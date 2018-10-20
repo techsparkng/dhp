@@ -40,18 +40,18 @@
           $("#packages tbody").html('');
           var counter = 1;
           investorPackages.forEach(package => {
-            var currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
             $("#packages tbody").append(
               `
                 <tr>
                   <td>${counter}</td>
-                  <td class="package">${package.investtype}</td>
+                  <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
                   <td>${package.interest}% Daily</td>
-                  <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
+                  <td>${currentEarning}</td>
+                  <td><button class="btn btn-success btn-xs">Withdraw</button></td>
                 </tr>
               `
             )
@@ -63,18 +63,18 @@
           $("#packages tbody").html('');
           var counter = 1;
           partnerPackages.forEach(package => {
-            var currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
             $("#packages tbody").append(
               `
                 <tr>
                   <td>${counter}</td>
-                  <td class="package">${package.investtype}</td>
+                  <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
                   <td>${package.interest}</td>
-                  <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
+                  <td>${currentEarning}</td>
+                  <td><button class="btn btn-success btn-xs">Withdraw</button></td>
                 </tr>
               `
             )
@@ -86,18 +86,18 @@
           $("#packages tbody").html('');
           var counter = 1;
           internationalPackages.forEach(package => {
-            var currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
             $("#packages tbody").append(
               `
                 <tr>
                   <td>${counter}</td>
-                  <td class="package">${package.investtype}</td>
+                  <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
                   <td>${package.interest}</td>
-                  <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
+                  <td>${currentEarning}</td>
+                  <td><button class="btn btn-success btn-xs">Withdraw</button></td>
                 </tr>
               `
             )
@@ -105,20 +105,6 @@
           })
         }
       })
-
-      $('#packages').on("click", ".withdrawTrigger", function() {
-        $('#curEarning').val($('.currEarning').text());
-        $('#package').val($('.package').text());
-        $('#withdrawalModal').modal();
-      })
-
-      $('#withdrawAmount').on('keydown keyup', function(e){
-        var max = Number($('#curEarning').val());
-          if ($(this).val() > max && e.keyCode !== 46 && e.keyCode !== 8) {
-             e.preventDefault();
-             $(this).val(max);
-          }
-      });
     </script>
   <% } %>
 </body>

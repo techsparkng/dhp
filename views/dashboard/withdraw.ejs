@@ -49,32 +49,40 @@
       </div>
     </div>
 
-    <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Withdraw</button>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Make Withdrawal</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Current Earning</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-            <form action="/user/withdraw" method="POST">
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label for="curEarning" class="col-form-label">Current Earning</label>
-                      <input type="number" class="form-control" id="curEarning" placeholder="&#8358;" readonly>
-                  </div>
-                  <div class="form-group">
-                      <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
-                      <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
-                  </div>
-                  <input type="hidden" name="package" id="package">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Withdraw</button>
-              </div>
+          <div class="modal-body">
+            <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="" name="" placeholder="&#8358;"readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Please Enter Amount to Withdraw:</label>
+                        <input type="text" class="form-control" id="recipient-name" placeholder="&#8358;">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Select Bank:</label>
+                        <select class="form-control" id="select_bank" name="bankd[bankname]">
+                        <option value="">- Choose Option -</option>
+                        <option value="skye">Skye Bank</option>
+                        <option value="fcmb">FCMB</option>
+                    </select>
+                    </div>
             </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Withdraw</button>
+          </div>
         </div>
       </div>
     </div>
