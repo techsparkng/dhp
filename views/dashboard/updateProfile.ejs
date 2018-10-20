@@ -3,16 +3,17 @@
   <div class="content-wrapper">
     <div class="card">
       <div class="card-body">
+          <span class="ALert"></span>
         <form action="/user/updateProfile" method="POST" class="form-sample">
           <p class="card-description">
-            Personal info
+            <h4>Personal info</h4>
           </p>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">First Name</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="firstname" value="<%= currentUser.firstname %>">
+                  <input type="text" class="form-control firstname" name="firstname" value="<%= currentUser.firstname %>">
                 </div>
               </div>
             </div>
@@ -20,7 +21,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Last Name</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="lastname" value="<%= currentUser.lastname %>">
+                  <input type="text" class="form-control lastname" name="lastname" value="<%= currentUser.lastname %>">
                 </div>
               </div>
             </div>
@@ -30,7 +31,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Gender</label>
                 <div class="col-sm-9">
-                  <select class="form-control" name="gender">
+                  <select class="form-control gender" name="gender">
                     <option>Male</option>
                     <option>Female</option>
                   </select>
@@ -41,7 +42,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">E-mail</label>
                 <div class="col-sm-9">
-                  <input class="form-control" value="<%= currentUser.email %>" name="email">
+                  <input class="form-control email" value="<%= currentUser.email %>" name="email">
                 </div>
               </div>
             </div>
@@ -51,7 +52,7 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Address</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="address" value="<%= currentUser.address %>">
+                  <input type="text" class="form-control address" name="address" value="<%= currentUser.address %>">
                 </div>
               </div>
             </div>
@@ -66,14 +67,14 @@
           </div>
           <br>
           <p class="card-description">
-            Bank Details for <strong><%=currentUser.bank.accountname %></strong>
+            <h4>Bank Details for <strong><%=currentUser.bank.accountname %></strong></h4>
           </p>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Bank Name</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="bank[bankname]" value="<%=currentUser.bank.bankname %>">
+                  <input type="text" class="form-control bankname" name="bank[bankname]" value="<%=currentUser.bank.bankname %>">
                 </div>
               </div>
             </div>
@@ -81,7 +82,7 @@
               <div class="form-group row ">
                 <label class="col-sm-3 col-form-label ">Account Name</label>
                 <div class="col-sm-9 ">
-                  <input type="text " class="form-control " name="bank[accountname] " value="<%=currentUser.bank.accountname %>">
+                  <input type="text " class="form-control acctname" name="bank[accountname] " value="<%=currentUser.bank.accountname %>">
                 </div>
               </div>
             </div>

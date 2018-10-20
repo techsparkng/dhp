@@ -280,7 +280,48 @@ function alertFocus() {
 // <!-- START OF PROFILE UPDATE PAGE VALIDATIONS -->
 
 function updateProfile() {
-  
+  $(".mr-2").click(function() {
+    var first = $(".firstname").val();
+    var last = $(".lastname").val();
+    var email = $(".email").val();
+    var gender = $(".gender").val();
+    var address = $(".address").val();
+    var phone = $(".phonenumber").val();
+    var bankname = $(".bankname").val();
+    var acctname = $(".acctnanme").val();
+    var acctno = $(".accNo").val();
+
+
+
+    $(".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo").on("focus", function() {
+      $(
+        ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
+      ).removeClass("has-error");
+      closeAlert();
+    });
+    if (
+      $.trim(first).length > 0 &&
+      $.trim(last).length > 0 &&
+      $.trim(email).length > 0 &&
+      $.trim(gender).length > 0 &&
+      $.trim(address).length > 0 &&
+      $.trim(phone).length > 0 &&
+      $.trim(bankname).length > 0 &&
+      $.trim(acctname).length > 0 &&
+      $.trim(acctno).length > 0
+    ) {
+      
+    } else {
+      $(
+        ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
+      ).addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
+      );
+      return false;
+    }
+    //return false;
+  });
 }
 
 // <!-- END OF INVEST PAGE VALIDATIONS -->
