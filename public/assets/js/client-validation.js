@@ -293,3 +293,4 @@ function closeAlert() {
       });
   }, 4000);
 }
+
