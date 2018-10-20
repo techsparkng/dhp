@@ -33,7 +33,7 @@
                                         <th>Due</th>
                                         <th>Interest</th>
                                         <th>Current Earning</th>
-                                        <th>Action</th>
+                                        <th>Actions</th>
                                     </tr>
                                   </thead>
                                       
@@ -77,11 +77,26 @@
                         <option value="fcmb">FCMB</option>
                     </select>
                     </div>
+            <form action="/user/withdraw" method="POST">
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label for="curEarning" class="col-form-label">Current Earning</label>
+                      <input type="number" class="form-control" id="curEarning" placeholder="&#8358;" readonly>
+                  </div>
+                  <div class="form-group">
+                        <div class="fees">
+                        <span>Transaction fee is 2%</span>
+                        </div>  
+                      <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
+                      <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
+                  </div>
+                  <input type="hidden" name="package" id="package">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Withdraw</button>
+              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Withdraw</button>
           </div>
         </div>
       </div>

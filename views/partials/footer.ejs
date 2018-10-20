@@ -105,6 +105,23 @@
           })
         }
       })
+<<<<<<< HEAD
+=======
+
+      $('#packages').on("click", ".withdrawTrigger", function() {
+        $('#curEarning').val($(this).parent().siblings("td.currEarning").text());
+        $('#package').val($(this).parent().siblings("td.package").text());
+        $('#withdrawalModal').modal();
+      })
+
+      $('#withdrawAmount').on('keydown keyup', function(e){
+        var max = Number($('#curEarning').val());
+          if ($(this).val() > max && e.keyCode !== 46 && e.keyCode !== 8) {
+             e.preventDefault();
+             $(this).val(max);
+          }
+      });
+>>>>>>> 1fb6dba028252197f3c61a1425dc9ed6b5b2bcb3
     </script>
   <% } %>
 </body>
