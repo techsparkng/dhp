@@ -49,17 +49,16 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Withdraw</button>
-    
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Current Earning</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Make Withdrawal</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+<<<<<<< HEAD
           <div class="modal-body">
             <form>
                     <div class="form-group">
@@ -77,6 +76,8 @@
                         <option value="fcmb">FCMB</option>
                     </select>
                     </div>
+=======
+>>>>>>> parent of 5822238... ...
             <form action="/user/withdraw" method="POST">
               <div class="modal-body">
                   <div class="form-group">
@@ -84,9 +85,12 @@
                       <input type="number" class="form-control" id="curEarning" placeholder="&#8358;" readonly>
                   </div>
                   <div class="form-group">
+<<<<<<< HEAD
                         <div class="fees">
                         <span>Transaction fee is 2%</span>
                         </div>  
+=======
+>>>>>>> parent of 5822238... ...
                       <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
                       <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
                   </div>
@@ -97,7 +101,10 @@
                 <button type="submit" class="btn btn-primary">Withdraw</button>
               </div>
             </form>
+<<<<<<< HEAD
           </div>
+=======
+>>>>>>> parent of 5822238... ...
         </div>
       </div>
     </div>
