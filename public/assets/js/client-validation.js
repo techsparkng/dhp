@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   login();
   register();
   InvestDropdown();
@@ -6,7 +6,7 @@ $(document).ready(function() {
   alertFocus();
   amountValid();
   updateProfile();
-  $(".amountInvested, .accNo, .phonenumber").keydown(function(e) {
+  $(".amountInvested, .accNo, .phonenumber").keydown(function (e) {
     // Allow: backspace, delete, tab, escape, enter and .
     if (
       $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
@@ -31,11 +31,11 @@ $(document).ready(function() {
 // <!-- START OF LOGIN/REGISTRATION PAGE VALIDATIONS -->
 function login() {
   //Validation for Login
-  $(document).on("click", ".submit-btn", function(e) {
+  $(document).on("click", ".submit-btn", function (e) {
     var username = $(".usern").val();
     var password = $(".passw").val();
 
-    $(".usern, .passw").on("focus", function() {
+    $(".usern, .passw").on("focus", function () {
       $(".usern, .passw, .input-group-text").removeClass("has-error");
       closeAlert();
     });
@@ -81,7 +81,7 @@ function login() {
 function register() {
   //Validaion for Registration
 
-  $(".submit-btn-reg").click(function() {
+  $(".submit-btn-reg").click(function () {
     var first = $(".first").val();
     var last = $(".last").val();
     var email = $(".email").val();
@@ -89,7 +89,7 @@ function register() {
     var password = $(".pw1").val();
     var password2 = $(".pw2").val();
 
-    $(".first, .last, .email, .usern, .pw1, .pw2").on("focus", function() {
+    $(".first, .last, .email, .usern, .pw1, .pw2").on("focus", function () {
       $(
         ".first, .last, .email, .usern, .pw1, .pw2, .input-group-text"
       ).removeClass("has-error");
@@ -144,7 +144,7 @@ function register() {
 // <!-- START OF INVEST PAGE VALIDATIONS -->
 //investment Packages dropdown
 function InvestDropdown() {
-  $("#package_plan").on("change", function(e) {
+  $("#package_plan").on("change", function (e) {
     var $plan;
     var amountInvested = $(".amountInvested").val();
     $plan = $(this)
@@ -198,9 +198,10 @@ function InvestDropdown() {
     //closeAlert();
   });
 }
+
 function amountValid() {
   //var amount = $(".amountInvested").val();
-  $(".amountInvested").on("input", function() {
+  $(".amountInvested").on("input", function () {
     var amount = this.value;
     if (amount >= 10000) {
       if (amount > 5000000) {
@@ -231,15 +232,14 @@ function amountValid() {
 }
 //When invest submit button is clicked
 function investBtn() {
-  $(".invest-btn").click(function() {
+  $(".invest-btn").click(function () {
     var amountInvested = $(".amountInvested").val();
     var plan = $("#package_plan")
-      .find("option:first-child")
+      .find("option:selected")
       .val();
     var bankname = $("#select_bank")
-      .find("option:first-child")
+      .find("option:selected")
       .val();
-    alert("Proof that bank selected option is blank" + bankname);
 
     if (amountInvested == "") {
       $(".amountInvested").addClass("has-error");
@@ -264,13 +264,14 @@ function investBtn() {
     }
   });
 }
+
 function alertFocus() {
-  $(".amountInvested").on("focus", function() {
+  $(".amountInvested").on("focus", function () {
     $(".amountInvested").removeClass("has-error");
     //closeAlert();
   });
 
-  $("#package_plan").on("focus", function() {
+  $("#package_plan").on("focus", function () {
     $("#package_plan").removeClass("has-error");
     closeAlert();
   });
@@ -280,7 +281,7 @@ function alertFocus() {
 // <!-- START OF PROFILE UPDATE PAGE VALIDATIONS -->
 
 function updateProfile() {
-  $(".mr-2").click(function() {
+  $(".mr-2").click(function () {
     var first = $(".firstname").val();
     var last = $(".lastname").val();
     var email = $(".email").val();
@@ -293,7 +294,7 @@ function updateProfile() {
 
 
 
-    $(".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo").on("focus", function() {
+    $(".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo").on("focus", function () {
       $(
         ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
       ).removeClass("has-error");
@@ -310,7 +311,7 @@ function updateProfile() {
       $.trim(acctname).length > 0 &&
       $.trim(acctno).length > 0
     ) {
-      
+
     } else {
       $(
         ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
@@ -326,10 +327,10 @@ function updateProfile() {
 
 // <!-- END OF INVEST PAGE VALIDATIONS -->
 function closeAlert() {
-  window.setTimeout(function() {
+  window.setTimeout(function () {
     $(".alert")
       .fadeTo(500, 0)
-      .slideUp(500, function() {
+      .slideUp(500, function () {
         $(this).remove();
       });
   }, 4000);
