@@ -2,7 +2,10 @@ var mongoose = require("mongoose");
 
 var withdrawalSchema = new mongoose.Schema({
   amount: Number,
-  package: String,
+  package: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Package"
+  },
   withdrawer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
