@@ -40,12 +40,13 @@
           $("#packages tbody").html('');
           var counter = 1;
           investorPackages.forEach(package => {
-            var currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited;
             $("#packages tbody").append(
               `
                 <tr>
                   <td>${counter}</td>
-                  <td class="package">${package.investtype}</td>
+                  <td class="d-none package">${package._id}</td>
+                  <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
@@ -63,12 +64,13 @@
           $("#packages tbody").html('');
           var counter = 1;
           partnerPackages.forEach(package => {
-            var currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            var currentEarning = Math.round(package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited);
             $("#packages tbody").append(
               `
                 <tr>
                   <td>${counter}</td>
-                  <td class="package">${package.investtype}</td>
+                  <td class="d-none package">${package._id}</td>
+                  <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
@@ -86,12 +88,13 @@
           $("#packages tbody").html('');
           var counter = 1;
           internationalPackages.forEach(package => {
-            var currentEarning = moment().diff(moment(package.start), 'days') * package.interest/100 * package.amountDeposited;
+            var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited;
             $("#packages tbody").append(
               `
                 <tr>
                   <td>${counter}</td>
-                  <td class="package">${package.investtype}</td>
+                  <td class="d-none package">${package._id}</td>
+                  <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>

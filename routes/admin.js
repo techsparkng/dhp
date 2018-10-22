@@ -10,8 +10,10 @@ const express = require("express"),
 const User = require("../model/user");
 //Load Deposit Model
 const Deposit = require("../model/deposit");
-// Load Deposit Model
+// Load Package Model
 const Package = require("../model/package");
+// Load Withdrawal Model
+const Withdrawal = require("../model/withdrawal");
 
 router.get("/updateProfile", ensureLoggedIn('/admin'),function(req, res) {
   res.render("admin/updateProfile");
@@ -119,7 +121,7 @@ router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
     } else {
       var startDate = moment()._d;
       var endDate = moment().businessAdd(updatedDeposit.package.duration)._d;
-      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
+      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, lastWithdraw: startDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
         if (err) {
           console.log(err);
         } else {
@@ -182,5 +184,49 @@ router.delete('/undodeposit/:id', ensureLoggedIn('/admin'), function(req, res) {
 router.get("/withdraw", ensureLoggedIn('/admin'), function(req, res) {
   res.render("admin/withdraw");
 });
+
+// approve deposit route
+router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}).populate("package").exec(function(err, updatedWithdrawal) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('back');
+    }
+  })
+})
+
+// decline deposit route
+router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {declined: true}, {new: true}, function(err, updatedWithdrawal) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect("back");
+    }
+  })
+})
+
+//undo approve deposit route
+router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}, function(err, updatedWithdrawal) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect("back");
+    }
+  });
+})
+
+//undo decline deposit route
+router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {declined: false}, {new: true}, function(err, updatedWithdrawal) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('back');
+    }
+  })
+})
 
 module.exports = router;

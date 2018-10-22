@@ -115,19 +115,27 @@ router.get("/withdraw", ensureLoggedIn('/login'), function(req, res) {
 });
 
 router.post("/withdraw", ensureLoggedIn('/login'), function(req, res) {
-  var withdrawal = {
-    amount: req.body.amount,
-    package: req.body.package,
-    withdrawer: req.user._id
-  }
+  var remainder = req.body.currentEarning - req.body.amount;
 
-  Withdrawal.create(withdrawal, function(err, createdWithdrawal) {
+  Package.findByIdAndUpdate(req.body.package, {remainder: remainder, lastWithdraw: new Date()}, {new: true}, function(err, foundPackage) {
     if (err) {
       console.log(err);
     } else {
-      res.send(createdWithdrawal);
+      var withdrawal = {
+        amount: req.body.amount,
+        withdrawer: req.user._id,
+        package: foundPackage._id
+      }
+      Withdrawal.create(withdrawal, function(err, createdWithdrawal) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(foundPackage);
+          res.redirect("back");
+        }
+      });
     }
-  })
+  });
 })
 
 router.get("/activePackages", ensureLoggedIn('/login'), function(req, res) {

@@ -9,10 +9,11 @@ var packageSchema = new mongoose.Schema({
   investtype: String,
   interest: Number,
   start: Date,
+  lastWithdraw: Date,
   end: Date,
   duration: Number,
   approved: {type: Boolean, default: false},
-  currentEarning: Number
+  remainder: {type: Number, default: 0}
 });
 
 module.exports = mongoose.model("Package", packageSchema);
