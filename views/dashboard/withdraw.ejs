@@ -7,7 +7,7 @@
         <div class="card-body">
           <div class="col-md-12">
               <div class="form-group row">
-                  <label class="col-sm-6 col-form-label">Select Package Type</label>
+                  <label class="col-sm-6 col-form-label"><h4>Select Package Type</h4></label>
                   <div class="col-sm-9">
                       <select class="form-control" id="package_plan" name="package[investtype]">
                           <option value="">- Choose Option -</option>
@@ -33,7 +33,7 @@
                                         <th>Due</th>
                                         <th>Interest</th>
                                         <th>Current Earning</th>
-                                        <th>Action</th>
+                                        <th>Actions</th>
                                     </tr>
                                   </thead>
                                       
@@ -65,6 +65,9 @@
                       <input type="number" class="form-control" id="curEarning" name="currentEarning" placeholder="&#8358;" readonly>
                   </div>
                   <div class="form-group">
+                        <div class="fees">
+                        <span>Transaction fee is 2%</span>
+                        </div>  
                       <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
                       <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
                   </div>

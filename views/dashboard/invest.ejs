@@ -5,7 +5,9 @@
             <div class="card-body">
                 <span class="ALert"></span>
                 <p class="card-description">
-                    Select Investment Packages
+
+                    <h4>Select Investment Packages</h4>
+
                 </p>
                 <form action="/user/invest" method="POST" class="forms-sample">
                     <div class="col-md-6">
@@ -24,6 +26,7 @@
                                     <option value="">- Choose Option -</option>
                                     <option value="Investor">Investor</option>
                                     <option value="Partner">Partner</option>
+                                    <option value="international">International</option>
                                 </select>
                             </div>
                         </div>
@@ -65,6 +68,7 @@
                                     <option value="">- Choose Option -</option>
                                     <option value="bank">Bank</option>
                                     <option value="debt_card">Debt Card</option>
+                                    <option value="crypt">Cryptocurrency</option>
                                 </select>
                             </div>
                         </div>
@@ -76,7 +80,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control" id="select_bank" name="bankd[bankname]">
                                     <option value="">- Choose Option -</option>
-                                    <option value="skye">Skye Bank</option>
+                                    <option value="skye">Polaris Bank</option>
                                     <option value="fcmb">FCMB</option>
                                 </select>
                             </div>
@@ -112,7 +116,6 @@
 </div>
 <script>
     $(document).ready(function () {
-
         var $plan;
         $('#package_plan').on('change', function (e) {
             $plan = $(this).find('option:selected').val();
@@ -122,17 +125,25 @@
                 $('.description').removeClass('d-none');
                 $('#interest').val("4%");
                 $('#duration').val("35 days");
-                $('#description').val("4% Daily for 35 working days");
+                $('#description').val("4% Daily for 35 working days(ROI is 140%)");
             }
-
             if ($plan == 'Partner') {
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
                 $('.description').removeClass('d-none');
                 $('#interest').val("0.8%");
                 $('#duration').val("210 days")
-                $('#description').val("0.8% Daily for 210 days");
+                $('#description').val("0.8% Daily for 210 days(ROI is 160%)");
             }
+            if ($plan == 'international') {
+                $('.interest').removeClass('d-none');
+                $('.duration').removeClass('d-none');
+                $('.description').removeClass('d-none');
+                $('#interest').val("4%");
+                $('#duration').val("35 days")
+                $('#description').val("4% Daily for 35 days(ROI is 140%)");
+            }
+
             if ($(this).find("option:first-child").val()) {
                 $(".invest-btn").attr("disabled", "disabled");
             }
@@ -175,7 +186,5 @@
             $(".invest-btn").removeAttr("disabled");
         })
     });
-
-
 </script>
 <% include ../partials/footer %>

@@ -1,108 +1,109 @@
 <% include ../partials/header %>
-  <div class="main-panel">
-    <div class="content-wrapper">
-      <div class="card">
-        <div class="card-body">
-          <form action="/user/updateProfile" method="POST" class="form-sample">
-            <p class="card-description">
-              Personal info
-            </p>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">First Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="firstname" value="<%= currentUser.firstname %>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Last Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="lastname" value="<%= currentUser.lastname %>">
-                  </div>
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="card">
+      <div class="card-body">
+          <span class="ALert"></span>
+        <form action="/user/updateProfile" method="POST" class="form-sample">
+          <p class="card-description">
+            <h4>Personal info</h4>
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control firstname" name="firstname" value="<%= currentUser.firstname %>">
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Gender</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" name="gender">
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">E-mail</label>
-                  <div class="col-sm-9">
-                    <input class="form-control" value="<%= currentUser.email %>" name="email">
-                  </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control lastname" name="lastname" value="<%= currentUser.lastname %>">
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Address</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="address" value="<%= currentUser.address %>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Phone Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="phonenumber" value="<%= currentUser.phonenumber %>">
-                  </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-9">
+                  <select class="form-control gender" name="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
                 </div>
               </div>
             </div>
-            <br>
-            <p class="card-description">
-              Bank Details
-              <%=currentUser.bank.accountname %>
-            </p>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Bank Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[bankname]" value="<%=currentUser.bank.bankname %>">
-                  </div>
-                </div>
-              </div>
-              <div class=" col-md-6 ">
-                <div class="form-group row ">
-                  <label class="col-sm-3 col-form-label ">Account Name</label>
-                  <div class="col-sm-9 ">
-                    <input type="text " class="form-control " name="bank[accountname] " value="<%=currentUser.bank.accountname %>">
-                  </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">E-mail</label>
+                <div class="col-sm-9">
+                  <input class="form-control email" value="<%= currentUser.email %>" name="email">
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-label">Account Number</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="bank[accountnumber]" value="<%=currentUser.bank.accountnumber %>">
-                  </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control address" name="address" value="<%= currentUser.address %>">
                 </div>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Phone Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control phonenumber" maxlength="11" name="phonenumber" value="<%= currentUser.phonenumber %>">
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <p class="card-description">
+            <h4>Bank Details for <strong><%=currentUser.bank.accountname %></strong></h4>
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Bank Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control bankname" name="bank[bankname]" value="<%=currentUser.bank.bankname %>">
+                </div>
+              </div>
+            </div>
+            <div class=" col-md-6 ">
+              <div class="form-group row ">
+                <label class="col-sm-3 col-form-label ">Account Name</label>
+                <div class="col-sm-9 ">
+                  <input type="text " class="form-control acctname" name="bank[accountname] " value="<%=currentUser.bank.accountname %>">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Account Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control accNo" name="bank[accountnumber]" value="<%=currentUser.bank.accountnumber %>"
+                    maxlength="10">
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <button type=" submit " class="btn btn-success mr-2 ">Update</button>
-        </div>
-        </form>
+          <button type=" submit " class="btn btn-success mr-2 ">Update</button>
       </div>
+      </form>
     </div>
   </div>
-  </div>
-  <% include ../partials/footer %>
+</div>
+</div>
+<% include ../partials/footer %>
