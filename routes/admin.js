@@ -73,10 +73,14 @@ router.get("/index", ensureLoggedIn('/admin'), function(req, res) {
           data.totalDepositsAmount = foundDeposits.reduce(function(acc, cur){
               return acc + cur.amount;
           }, 0);
-          // console.log(data.totalDepositsAmount)
-          // console.log(data.totalDepositsCount);
-          // console.log(data.totalUsers);
-          res.render("admin/index", {data: data});
+          Withdrawal.find({}, function(err, foundWithdrawals) {
+            if (err) {
+              console.log(err);
+            } else {
+              data.totalWithdrawalsCount = foundWithdrawals.length;
+              res.render("admin/index", {data: data});
+            }
+          })
         }
       });
     }
@@ -121,7 +125,8 @@ router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
     } else {
       var startDate = moment()._d;
       var endDate = moment().businessAdd(updatedDeposit.package.duration)._d;
-      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, lastWithdraw: startDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
+      var nextWithdrawDate = moment().businessAdd(7)._d;
+      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, lastWithdraw: startDate, nextWithdraw: nextWithdrawDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
         if (err) {
           console.log(err);
         } else {
@@ -229,7 +234,7 @@ router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
 })
 
 //undo approve deposit route
-router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
+router.put('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   Withdrawal.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}, function(err, updatedWithdrawal) {
     if (err) {
       console.log(err)
@@ -240,7 +245,7 @@ router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
 })
 
 //undo decline deposit route
-router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
+router.delete('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   Withdrawal.findByIdAndUpdate(req.params.id, {declined: false}, {new: true}, function(err, updatedWithdrawal) {
     if (err) {
       console.log(err)
