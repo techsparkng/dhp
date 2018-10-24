@@ -87,32 +87,53 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="caed-title">History</h4>
+          <h4 class="caed-title">Withdrawal History</h4>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                     <tr>
                       <th>S/N</th>
                       <th>Package</th>
-                      <th>Intial Investment</th>
-                      <th>Accumulated Interest</th>
-                      <th>Amount Withdrawal</th>
+                      <th>Amount</th>
                       <th>Date</th>
+                      <th>Status</th>
                     </tr>
                     <thead>
 
                     <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Investor</td>
-                          <td>2000000</td>
-                          <td>
-                            <label>₦100000</label>
-                          </td>
-                          <td>2000000</td>
-                          <td class="text-danger">2018-10-02</td>
-                        </tr>
-                      </tbody>
+                    <% var counter = 1 %>
+                    <% withdrawals.reverse().forEach(function(pending){ %>
+                    <tr>
+                      <td>
+                        <%= counter %>
+                      </td>
+                      <td>
+                        <%= pending.package.investtype %>
+                      </td>
+                      <td>₦
+                        <%= pending.amount %>
+                      </td>
+                      <td class="text-danger">
+                        <%= pending.created.toDateString() %>
+                      </td>
+                      <% if(pending.approved) { %>
+                      <td>
+                        <p class="text-success">Approved</p>
+                      </td>
+                      <% } else{ %>
+                      <td>
+                        <p class="text-danger">Pending</p>
+                        <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel investment package"
+                          data-id="<%= pending._id %>"></i>
+
+                      </td>
+                      <% } %>
+                      <% counter++ %>
+
+                    </tr>
+                    <% }) %>
+
+                  </tbody>
                 </table>
             </div>
         </div>

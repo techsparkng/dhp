@@ -110,7 +110,19 @@ router.post("/invest", ensureLoggedIn("/login"), function(req, res) {
 // @access  Private
 
 router.get("/withdraw", ensureLoggedIn("/login"), function(req, res) {
-  res.render("dashboard/withdraw");
+  User.findById(req.user._id)
+    .populate({
+      path: "withdrawals",
+      populate: { path: "package" }
+    })
+    .exec(function(err, foundUser) {
+      if (err) {
+        console.log(err);
+      } else {
+        var withdrawals = foundUser.withdrawals;
+        res.render("dashboard/withdraw", { withdrawals: withdrawals });
+      }
+    });
 });
 
 router.post("/withdraw", ensureLoggedIn("/login"), function(req, res) {
@@ -133,7 +145,8 @@ router.post("/withdraw", ensureLoggedIn("/login"), function(req, res) {
           if (err) {
             console.log(err);
           } else {
-            console.log(foundPackage);
+            req.user.withdrawals.push(createdWithdrawal);
+            req.user.save();
             res.redirect("back");
           }
         });
