@@ -49,13 +49,18 @@
                   <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
+                  <td>${moment(package.nextWithdraw).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
                   <td>${package.interest}% Daily</td>
                   <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
+                  <td><button class="btn btn-success btn-xs withdrawTrigger" disabled>Withdraw</button></td>
                 </tr>
               `
         )
+
+        if (moment().format("MMM Do YY") === moment(package.nextWithdraw).format("MMM Do YY")) {
+          $('.withdrawTrigger').removeAttr("disabled");
+        }
         counter++;
       })
     }
@@ -73,13 +78,18 @@
                   <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
+                  <td>${moment(package.nextWithdraw).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
                   <td>${package.interest}</td>
                   <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
+                  <td><button class="btn btn-success btn-xs withdrawTrigger" disabled>Withdraw</button></td>
                 </tr>
               `
         )
+        if (moment() === moment(package.nextWithdraw)) {
+          $('.withdrawTrigger').removeAttr("disabled");
+        }
+
         counter++;
       })
     }
@@ -97,13 +107,18 @@
                   <td>${package.investtype}</td>
                   <td>${package.amountDeposited}</td>
                   <td>${moment(package.start).format('MM-DD-YYYY')}</td>
+                  <td>${moment(package.nextWithdraw).format('MM-DD-YYYY')}</td>
                   <td>${moment(package.end).format('MM-DD-YYYY')}</td>
                   <td>${package.interest}</td>
                   <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
+                  <td><button class="btn btn-success btn-xs withdrawTrigger" disabled>Withdraw</button></td>
                 </tr>
               `
+
         )
+        if (moment() === moment(package.nextWithdraw)) {
+          $('.withdrawTrigger').removeAttr("disabled");
+        }
         counter++;
       })
     }

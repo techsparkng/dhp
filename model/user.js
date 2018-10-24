@@ -31,7 +31,7 @@ var userSchema = new mongoose.Schema({
   withdrawals: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Withdraw"
+      ref: "Withdrawal"
     }
   ],
   currentearning: Number,
