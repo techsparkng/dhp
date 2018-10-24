@@ -13,7 +13,7 @@ var express = require("express"),
   adminRoutes = require("./routes/admin");
 
 mongoose.connect(
-  "mongodb://diamond:buildthefuture123@ds113443.mlab.com:13443/dhp",
+  "mongodb://dhp:dhpdatabase123@dhp-shard-00-00-fgyex.mongodb.net:27017,dhp-shard-00-01-fgyex.mongodb.net:27017,dhp-shard-00-02-fgyex.mongodb.net:27017/test?ssl=true&replicaSet=dhp-shard-0&authSource=admin&retryWrites=true",
   {
     useNewUrlParser: true
   }
