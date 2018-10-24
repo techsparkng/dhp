@@ -20,18 +20,23 @@
                                     <thead>
 
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Investor</td>
-                                                <td>2000000</td>
-                                                <td>
-                                                    <label>₦ 100000</label>
-                                                </td>
-                                                <td>2000000</td>
-                                                <td class="text-danger">2018-10-02</td>
-                                                <td><i class="mr-4 fa fa-check text-success"></i><i class="fa fa-times text-danger"></i></td>
-                                                
-                                            </tr>
+                                        <% var counter = 1; %>
+                                        <% pendingWithdrawals.forEach(function(withdrawal){ %>
+                                        <tr>
+                                            <td><%= counter %></td>
+                                            <td><%= withdrawal.package.investtype %></td>
+                                            <td><%= withdrawal.withdrawer.firstname %> <%= withdrawal.withdrawer.lastname %></td>
+                                            <td>
+                                                <label><%= withdrawal.amount %></label>
+                                            </td>
+                                            <td>
+                                               <%= withdrawal.withdrawer.bank.bankname %>
+                                            </td>
+                                            <td class="text-danger"><%= withdrawal.created.toDateString() %></td>
+                                            <td><form class="form-inline d-flex mr-4" action="deposit/<%= deposit._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class=" fa fa-check text-success"></i></button></form> <form class="form-inline d-flex" action="deposit/<%= deposit._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-times text-danger"></i></button></form></td>
+                                            <% counter++ %>
+                                        </tr>
+                                        <% }) %> 
                                         </tbody>
                             </table>
                         </div>
