@@ -6,11 +6,6 @@
         <div class="card">
           <div class="card-body">
             <div class="col-md-12">
-              <div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert"
-                  aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Note!</strong>
-                2% of each withdrawal will be deducted!</div>
-
-
               <div class="form-group row">
                 <label class="col-sm-6 col-form-label">
                   <h4>Select Package Type</h4>
@@ -25,7 +20,7 @@
                 </div>
               </div>
             </div>
-            <br>
+
             <div class="col-md-12 d-none" id="packages">
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -56,61 +51,51 @@
           </div>
         </div>
       </div>
-    <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Make Withdrawal</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="/user/withdraw" method="POST">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="curEarning" class="col-form-label">Current Earning</label>
-                <input type="number" class="form-control" id="curEarning" name="currentEarning" placeholder="&#8358;"
-                  readonly>
-              </div>
-              <div class="form-group">
-                <div class="fees">
-                  <span>Transaction fee is 2%</span>
+
+      <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Make Withdrawal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/user/withdraw" method="POST">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="curEarning" class="col-form-label">Current Earning</label>
+                  <input type="number" class="form-control" id="curEarning" name="currentEarning" placeholder="&#8358;"
+                    readonly>
                 </div>
-                <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
-                <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
+                <div class="form-group">
+                  <div class="fees">
+                    <span>Transaction fee is 2%</span>
+                  </div>
+                  <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
+                  <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
+                </div>
+                <input type="hidden" name="package" id="package">
               </div>
-              <input type="hidden" name="package" id="package">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Withdraw</button>
-            </div>
-          </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Withdraw</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
 
 
-
-    <div class="col-lg-12 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="caed-title">Withdrawal History</h4>
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Package</th>
-                  <th>Amount Withdrawn</th>
-                  <th>Date</th>
-                  <th>Status</th>
-
-                </tr>
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="caed-title">Withdrawal History</h4>
+            <div class="table-responsive">
+              <table class="table table-hover">
                 <thead>
-
-                <tbody>
                   <tr>
                     <th>S/N</th>
                     <th>Package</th>
@@ -120,59 +105,57 @@
                   </tr>
                   <thead>
 
-                <tbody>
-                  <% var counter = 1 %>
-                  <% withdrawals.reverse().forEach(function(pending){ %>
-                  <tr>
-                    <td>
-                      <%= counter %>
-                    </td>
-                    <td>
-                      <%= pending.package.investtype %>
-                    </td>
-                    <td>₦
-                      <%= pending.amount %>
-                    </td>
-                    <td class="text-danger">
-                      <%= pending.created.toDateString() %>
-                    </td>
-                    <% if(pending.approved) { %>
-                    <td>
-                      <p class="text-success">Approved</p>
-                    </td>
-                    <% } else{ %>
-                    <td>
-                      <p class="text-danger">Pending</p>
-                      <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel investment package"
-                        data-id="<%= pending._id %>"></i>
+                  <tbody>
+                    <% var counter = 1 %>
+                    <% withdrawals.reverse().forEach(function(pending){ %>
+                    <tr>
+                      <td>
+                        <%= counter %>
+                      </td>
+                      <td>
+                        <%= pending.package.investtype %>
+                      </td>
+                      <td>₦
+                        <%= pending.amount %>
+                      </td>
+                      <td class="text-danger">
+                        <%= pending.created.toDateString() %>
+                      </td>
+                      <% if(pending.approved) { %>
+                      <td>
+                        <p class="text-success">Approved</p>
+                      </td>
+                      <% } else{ %>
+                      <td>
+                        <p class="text-danger">Pending</p>
+                        <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel investment package"
+                          data-id="<%= pending._id %>"></i>
 
-                    </td>
-                    <% } %>
-                    <% counter++ %>
+                      </td>
+                      <% } %>
+                      <% counter++ %>
 
-                  </tr>
-                  <% }) %>
+                    </tr>
+                    <% }) %>
 
-                </tbody>
-            </table>
->>>>>>> master
+                  </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<script>
+  <script>
 
-  $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var recipient = button.data('whatever') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('.modal-title').text('New message to ' + recipient)
-    modal.find('.modal-body input').val(recipient)
-  })
-</script>
-<% include ../partials/footer %>
->>>>>>> master
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
+  </script>
+  <% include ../partials/footer %>
