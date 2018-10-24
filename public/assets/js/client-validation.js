@@ -8,6 +8,8 @@ $(document).ready(function() {
   updateProfile();
   $('[data-toggle="tooltip"]').tooltip();
 
+
+  
   $("#signupform").submit(function(e) {
     var errors = 0;
     $("#signupform input:text").map(function() {

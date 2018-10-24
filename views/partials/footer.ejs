@@ -1,48 +1,48 @@
-  </div>
-  <!-- container-scroller -->
+</div>
+<!-- container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
-  <script src="/assets/vendors/js/vendor.bundle.addons.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="/assets/js/off-canvas.js"></script>
-  <script src="/assets/js/misc.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="/assets/js/dashboard.js"></script>
-  <script src="/moment-business-days/index.js"></script>
-  <!-- End custom js for this page-->
-  <% if (path === '/user/withdraw') { %>
-    <script>
-      var investorPackages = [], partnerPackages = [], internationalPackages = [];
+<!-- plugins:js -->
+<script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+<script src="/assets/vendors/js/vendor.bundle.addons.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="/assets/js/off-canvas.js"></script>
+<script src="/assets/js/misc.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="/assets/js/dashboard.js"></script>
+<script src="/moment-business-days/index.js"></script>
+<!-- End custom js for this page-->
+<% if (path === '/user/withdraw') { %>
+<script>
+  var investorPackages = [], partnerPackages = [], internationalPackages = [];
 
-      $.getJSON('/user/activePackages')
-        .done(packages => {
-          packages.forEach(package => {
-            if (package.investtype === "Investor") {
-              investorPackages.push(package);
-            } else if (package.investtype === "Partner") {
-              partnerPackages.push(package);
-            } else {
-              internationalPackages.push(package);
-            }
-          })
-        })
-        .fail(err => console.log(err));
+  $.getJSON('/user/activePackages')
+    .done(packages => {
+      packages.forEach(package => {
+        if (package.investtype === "Investor") {
+          investorPackages.push(package);
+        } else if (package.investtype === "Partner") {
+          partnerPackages.push(package);
+        } else {
+          internationalPackages.push(package);
+        }
+      })
+    })
+    .fail(err => console.log(err));
 
-      $('#package_plan').on("change", function() {
-        var package = $(this).find('option:selected').val();
-        $("#packages").removeClass('d-none');
-        if (package === "investor") {
-          $("#packages tbody").html('');
-          var counter = 1;
-          investorPackages.forEach(package => {
-            var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited;
-            $("#packages tbody").append(
-              `
+  $('#package_plan').on("change", function () {
+    var package = $(this).find('option:selected').val();
+    $("#packages").removeClass('d-none');
+    if (package === "investor") {
+      $("#packages tbody").html('');
+      var counter = 1;
+      investorPackages.forEach(package => {
+        var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest / 100 * package.amountDeposited;
+        $("#packages tbody").append(
+          `
                 <tr>
                   <td>${counter}</td>
                   <td class="d-none package">${package._id}</td>
@@ -55,18 +55,18 @@
                   <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
                 </tr>
               `
-            )
-            counter++;
-          })
-        }
+        )
+        counter++;
+      })
+    }
 
-        if (package === "partner") {
-          $("#packages tbody").html('');
-          var counter = 1;
-          partnerPackages.forEach(package => {
-            var currentEarning = Math.round(package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited);
-            $("#packages tbody").append(
-              `
+    if (package === "partner") {
+      $("#packages tbody").html('');
+      var counter = 1;
+      partnerPackages.forEach(package => {
+        var currentEarning = Math.round(package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest / 100 * package.amountDeposited);
+        $("#packages tbody").append(
+          `
                 <tr>
                   <td>${counter}</td>
                   <td class="d-none package">${package._id}</td>
@@ -79,18 +79,18 @@
                   <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
                 </tr>
               `
-            )
-            counter++;
-          })
-        }
+        )
+        counter++;
+      })
+    }
 
-        if (package === "international") {
-          $("#packages tbody").html('');
-          var counter = 1;
-          internationalPackages.forEach(package => {
-            var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited;
-            $("#packages tbody").append(
-              `
+    if (package === "international") {
+      $("#packages tbody").html('');
+      var counter = 1;
+      internationalPackages.forEach(package => {
+        var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest / 100 * package.amountDeposited;
+        $("#packages tbody").append(
+          `
                 <tr>
                   <td>${counter}</td>
                   <td class="d-none package">${package._id}</td>
@@ -103,27 +103,27 @@
                   <td><button class="btn btn-success btn-xs withdrawTrigger">Withdraw</button></td>
                 </tr>
               `
-            )
-            counter++;
-          })
-        }
+        )
+        counter++;
       })
+    }
+  })
 
-      $('#packages').on("click", ".withdrawTrigger", function() {
-        $('#curEarning').val($(this).parent().siblings("td.currEarning").text());
-        $('#package').val($(this).parent().siblings("td.package").text());
-        $('#withdrawalModal').modal();
-      })
+  $('#packages').on("click", ".withdrawTrigger", function () {
+    $('#curEarning').val($(this).parent().siblings("td.currEarning").text());
+    $('#package').val($(this).parent().siblings("td.package").text());
+    $('#withdrawalModal').modal();
+  })
 
-      $('#withdrawAmount').on('keydown keyup', function(e){
-        var max = Number($('#curEarning').val());
-          if ($(this).val() > max && e.keyCode !== 46 && e.keyCode !== 8) {
-             e.preventDefault();
-             $(this).val(max);
-          }
-      });
-    </script>
-  <% } %>
+  $('#withdrawAmount').on('keydown keyup', function (e) {
+    var max = Number($('#curEarning').val());
+    if ($(this).val() > max && e.keyCode !== 46 && e.keyCode !== 8) {
+      e.preventDefault();
+      $(this).val(max);
+    }
+  });
+</script>
+<% } %>
 </body>
 
 </html>
