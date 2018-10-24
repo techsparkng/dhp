@@ -33,7 +33,7 @@
                                                <%= withdrawal.withdrawer.bank.bankname %>
                                             </td>
                                             <td class="text-danger"><%= withdrawal.created.toDateString() %></td>
-                                            <td><form class="form-inline d-flex mr-4" action="deposit/<%= deposit._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class=" fa fa-check text-success"></i></button></form> <form class="form-inline d-flex" action="deposit/<%= deposit._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-times text-danger"></i></button></form></td>
+                                            <td><form class="form-inline d-flex mr-4" action="withdrawal/<%= withdrawal._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class=" fa fa-check text-success"></i></button></form> <form class="form-inline d-flex" action="withdrawal/<%= withdrawal._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-times text-danger"></i></button></form></td>
                                             <% counter++ %>
                                         </tr>
                                         <% }) %> 
