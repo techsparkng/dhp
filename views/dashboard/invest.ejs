@@ -112,8 +112,76 @@
                 </form>
             </div>
         </div>
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-primary mb-5">Available Investment Package</h2>
+                <div class="wrapper d-flex justify-between">
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="check1">
+                            <input type="radio" class="form-check-input" id="checkbox1" name="pack" value="something"
+                                checked>Investor
+                            Package
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="check2">
+                            <input type="radio" class="form-check-input" id="checkbox2" name="pack" value="something">Partner
+                            Package
+                        </label>
+                    </div>
+                </div>
+                <br>
+
+                <div class="card">
+                    <div class="card-body" id="div1">
+                        <h4 class="card-title">investor Package</h4>
+                        <ul class="list-star">
+                            <li>Minimum Investment: N20,000</li>
+                            <li>Maximum Investment: N1,000,000</li>
+                            <li>Profit: 4% Daily and Minimum
+                                ROI of 140% Monthly</li>
+                            <li>Minimum Withdrawal: N5,000</li>
+                            <li>Duration: 35 Working Days</li>
+                            <li>Withdrawal Fee: N200</li>
+                            <li>Enjoy 4% Referal Bonus</li>
+                            <hr>
+                            <p class="mb-0"><strong>Withdrawal date :</strong> Every 30th of each month<br><strong>RETURN
+                                    OF
+                                    YOUR
+                                    CAPITAL AFTER
+                                    210 DAYS.</strong></p>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body d-none" id="div2">
+                        <h4 class="card-title">Partner Package</h4>
+                        <ul class="list-star">
+                            <li>Minimum Investment: N10,000</li>
+                            <li>Maximum Investment: N5,000,000</li>
+                            <li>Minimum Withdrawal: N5,000</li>
+                            <li>Withdrawal Fee: N200</li>
+                            <li>Duration: 35 Working Days</li>
+                            <li>Enjoy 4% Referal Bonus</li>
+                            <hr>
+                            <p class="mb-0"><strong>Withdrawal date :</strong> Every 30th of each month<br><strong>RETURN
+                                    OF
+                                    YOUR
+                                    CAPITAL AFTER
+                                    210 DAYS.</strong></p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+</div>
+
+
+
 <script>
     $(document).ready(function () {
         var $plan;
@@ -185,6 +253,19 @@
             }
             $(".invest-btn").removeAttr("disabled");
         })
+
+        $("#checkbox1, #checkbox2").change(function () {
+            if ($("#checkbox1").is(":checked")) {
+                $('#div1').removeClass('d-none');
+                $('#div2').addClass('d-none');
+                //console.log(1);
+            }
+            else {
+                $('#div2').removeClass('d-none');
+                $('#div1').addClass('d-none');
+                //console.log(2);
+            }
+        });
     });
 </script>
 <% include ../partials/footer %>

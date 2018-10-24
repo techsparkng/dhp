@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   login();
   register();
   InvestDropdown();
@@ -6,7 +6,8 @@ $(document).ready(function () {
   alertFocus();
   amountValid();
   updateProfile();
-  $(".amountInvested, .accNo, .phonenumber").keydown(function (e) {
+  $('[data-toggle="tooltip"]').tooltip(); 
+  $(".amountInvested, .accNo, .phonenumber").keydown(function(e) {
     // Allow: backspace, delete, tab, escape, enter and .
     if (
       $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
@@ -26,16 +27,44 @@ $(document).ready(function () {
       e.preventDefault();
     }
   });
+
+  $(".phonenumber").keyup(function() {
+    var charCount = $(this).val().length;
+    if (charCount < 11) {
+      $(".phonenumber").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Phone number is incomplete!</div>'
+      );
+      return false;
+    } else {
+      $(".phonenumber").removeClass("has-error");
+      closeAlert();
+    }
+  });
+
+  $(".accNo").keyup(function() {
+    var charCount = $(this).val().length;
+    if (charCount < 10) {
+      $(".accNo").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Bank Account number cannot be less than 10 digits!</div>'
+      );
+      return false;
+    } else {
+      $(".accNo").removeClass("has-error");
+      closeAlert();
+    }
+  });
 });
 
 // <!-- START OF LOGIN/REGISTRATION PAGE VALIDATIONS -->
 function login() {
   //Validation for Login
-  $(document).on("click", ".submit-btn", function (e) {
+  $(document).on("click", ".submit-btn", function(e) {
     var username = $(".usern").val();
     var password = $(".passw").val();
 
-    $(".usern, .passw").on("focus", function () {
+    $(".usern, .passw").on("focus", function() {
       $(".usern, .passw, .input-group-text").removeClass("has-error");
       closeAlert();
     });
@@ -81,7 +110,7 @@ function login() {
 function register() {
   //Validaion for Registration
 
-  $(".submit-btn-reg").click(function () {
+  $(".submit-btn-reg").click(function() {
     var first = $(".first").val();
     var last = $(".last").val();
     var email = $(".email").val();
@@ -89,7 +118,7 @@ function register() {
     var password = $(".pw1").val();
     var password2 = $(".pw2").val();
 
-    $(".first, .last, .email, .usern, .pw1, .pw2").on("focus", function () {
+    $(".first, .last, .email, .usern, .pw1, .pw2").on("focus", function() {
       $(
         ".first, .last, .email, .usern, .pw1, .pw2, .input-group-text"
       ).removeClass("has-error");
@@ -144,7 +173,7 @@ function register() {
 // <!-- START OF INVEST PAGE VALIDATIONS -->
 //investment Packages dropdown
 function InvestDropdown() {
-  $("#package_plan").on("change", function (e) {
+  $("#package_plan").on("change", function(e) {
     var $plan;
     var amountInvested = $(".amountInvested").val();
     $plan = $(this)
@@ -201,7 +230,7 @@ function InvestDropdown() {
 
 function amountValid() {
   //var amount = $(".amountInvested").val();
-  $(".amountInvested").on("input", function () {
+  $(".amountInvested").on("input", function() {
     var amount = this.value;
     if (amount >= 10000) {
       if (amount > 5000000) {
@@ -232,7 +261,7 @@ function amountValid() {
 }
 //When invest submit button is clicked
 function investBtn() {
-  $(".invest-btn").click(function () {
+  $(".invest-btn").click(function() {
     var amountInvested = $(".amountInvested").val();
     var plan = $("#package_plan")
       .find("option:selected")
@@ -266,13 +295,18 @@ function investBtn() {
 }
 
 function alertFocus() {
-  $(".amountInvested").on("focus", function () {
+  $(".amountInvested").on("focus", function() {
     $(".amountInvested").removeClass("has-error");
     //closeAlert();
   });
 
-  $("#package_plan").on("focus", function () {
+  $("#package_plan").on("focus", function() {
     $("#package_plan").removeClass("has-error");
+    closeAlert();
+  });
+
+  $(".emailp").on("focus", function() {
+    $(".emailp").removeClass("has-error");
     closeAlert();
   });
 }
@@ -281,67 +315,37 @@ function alertFocus() {
 // <!-- START OF PROFILE UPDATE PAGE VALIDATIONS -->
 
 function updateProfile() {
-  $(".mr-2").click(function () {
-    var first = $(".firstname").val();
-    var last = $(".lastname").val();
+  $(".mr-2").click(function() {
     var email = $(".emailp").val();
-    var gender = $(".gender").val();
-    var address = $(".address").val();
-    var phone = $(".phonenumber").val();
-    var bankname = $(".bankname").val();
-    var acctname = $(".acctnanme").val();
-    var acctno = $(".accNo").val();
 
-    alert(
-      first,
-      last,
-      email,
-      gender,
-      address,
-      phonenumber,
-      bankname,
-      acctname,
-      accNo
-    );
+    var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!regex.test(email)) {
+      $(".emailp").addClass("has-error");
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> E-mail format is invalid!</div>'
+      );
+      return false;
+    }
 
-
-    $(".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo").on("focus", function () {
-      $(
-        ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
-      ).removeClass("has-error");
-      closeAlert();
-    });
-    if (
-      $.trim(first).length > 0 &&
-      $.trim(last).length > 0 &&
-      $.trim(email).length > 0 &&
-      $.trim(gender).length > 0 &&
-      $.trim(address).length > 0 &&
-      $.trim(phone).length > 0 &&
-      $.trim(bankname).length > 0 &&
-      $.trim(acctname).length > 0 &&
-      $.trim(acctno).length > 0
-    ) {
-
-    } else {
-      $(
-        ".firstname, .lastname, .email, .gender, .address, .phonenumber, .bankname, .acctname, .accNo"
-      ).addClass("has-error");
+    if ($("input:text").is(":empty")) {
+      $("input:text")
+        .find("input:empty")
+        .addClass("has-error");
       $(".ALert").html(
         '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
       );
       return false;
     }
-    //return false;
+    
   });
 }
 
 // <!-- END OF INVEST PAGE VALIDATIONS -->
 function closeAlert() {
-  window.setTimeout(function () {
+  window.setTimeout(function() {
     $(".alert")
       .fadeTo(500, 0)
-      .slideUp(500, function () {
+      .slideUp(500, function() {
         $(this).remove();
       });
   }, 4000);
