@@ -6,7 +6,27 @@ $(document).ready(function() {
   alertFocus();
   amountValid();
   updateProfile();
-  $('[data-toggle="tooltip"]').tooltip(); 
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $("#signupform").submit(function(e) {
+    var errors = 0;
+    $("#signupform input:text").map(function() {
+      if (!$(this).val()) {
+        $(this).addClass("has-error");
+        errors++;
+      } else if ($(this).val()) {
+        $(this).removeClass("has-error");
+      }
+    });
+    if (errors > 0) {
+      $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
+      );
+      e.preventDefault();
+      return false;
+    }
+  });
+
   $(".amountInvested, .accNo, .phonenumber").keydown(function(e) {
     // Allow: backspace, delete, tab, escape, enter and .
     if (
@@ -326,17 +346,6 @@ function updateProfile() {
       );
       return false;
     }
-
-    if ($("input:text").is(":empty")) {
-      $("input:text")
-        .find("input:empty")
-        .addClass("has-error");
-      $(".ALert").html(
-        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
-      );
-      return false;
-    }
-    
   });
 }
 
