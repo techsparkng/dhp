@@ -1,107 +1,112 @@
 <% include ../partials/header %>
-  <div class="main-panel">
-    <div class="content-wrapper">
+<div class="main-panel">
+  <div class="content-wrapper">
     <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="col-md-12">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-12">
+              <div class="blinking">Test subject</div>
               <div class="form-group row">
-                  <label class="col-sm-6 col-form-label"><h4>Select Package Type</h4></label>
-                  <div class="col-sm-9">
-                      <select class="form-control" id="package_plan" name="package[investtype]">
-                          <option value="">- Choose Option -</option>
-                          <option value="investor">Investor</option>
-                          <option value="partner">Partner</option>
-                          <option value="international">International</option>
-                      </select>
-                  </div>
+                <label class="col-sm-6 col-form-label">
+                  <h4>Select Package Type</h4>
+                </label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="package_plan" name="package[investtype]">
+                    <option value="">- Choose Option -</option>
+                    <option value="investor">Investor</option>
+                    <option value="partner">Partner</option>
+                    <option value="international">International</option>
+                  </select>
+                </div>
               </div>
-          </div>
+            </div>
 
-          <div class="col-md-12 d-none" id="packages">
+            <div class="col-md-12 d-none" id="packages">
               <div class="col-lg-12 grid-margin stretch-card">
-                  <div class="card">
-                          <div class="table-responsive">
-                              <table class="table table-hover table-sm">
-                                  <thead>
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Package</th>
-                                        <th>Deposit</th>
-                                        <th>Started</th>
-                                        <th>Next Withdraw</th>
-                                        <th>Due</th>
-                                        <th>Interest</th>
-                                        <th>Current Earning</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                  </thead>
-                                      
-                                  <tbody>
-                                  
-                                  </tbody>
-                              </table>
-                          </div>
+                <div class="card">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                      <thead>
+                        <tr>
+                          <th>S/N</th>
+                          <th>Package</th>
+                          <th>Deposit</th>
+                          <th>Started</th>
+                          <th>Next Withdraw</th>
+                          <th>Due</th>
+                          <th>Interest</th>
+                          <th>Current Earning</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+
+                      </tbody>
+                    </table>
                   </div>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Make Withdrawal</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+      <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Make Withdrawal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <form action="/user/withdraw" method="POST">
               <div class="modal-body">
-                  <div class="form-group">
-                      <label for="curEarning" class="col-form-label">Current Earning</label>
-                      <input type="number" class="form-control" id="curEarning" name="currentEarning" placeholder="&#8358;" readonly>
+                <div class="form-group">
+                  <label for="curEarning" class="col-form-label">Current Earning</label>
+                  <input type="number" class="form-control" id="curEarning" name="currentEarning" placeholder="&#8358;"
+                    readonly>
+                </div>
+                <div class="form-group">
+                  <div class="fees">
+                    <span>Transaction fee is 2%</span>
                   </div>
-                  <div class="form-group">
-                        <div class="fees">
-                        <span>Transaction fee is 2%</span>
-                        </div>  
-                      <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
-                      <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
-                  </div>
-                  <input type="hidden" name="package" id="package">
+                  <label for="withdrawAmount" class="col-form-label">Please Enter Amount to Withdraw:</label>
+                  <input type="number" min="0" class="form-control" name="amount" id="withdrawAmount" placeholder="&#8358;">
+                </div>
+                <input type="hidden" name="package" id="package">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Withdraw</button>
               </div>
             </form>
+          </div>
         </div>
       </div>
-    </div>
 
 
 
-    <div class="col-lg-12 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="caed-title">Withdrawal History</h4>
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="caed-title">Withdrawal History</h4>
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                      <th>S/N</th>
-                      <th>Package</th>
-                      <th>Amount</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                    </tr>
-                    <thead>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Package</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                  <thead>
 
-                    <tbody>
+                  <tbody>
                     <% var counter = 1 %>
                     <% withdrawals.reverse().forEach(function(pending){ %>
                     <tr>
@@ -135,23 +140,23 @@
                     <% }) %>
 
                   </tbody>
-                </table>
+              </table>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
   <script>
-  
-  $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
   </script>
   <% include ../partials/footer %>
