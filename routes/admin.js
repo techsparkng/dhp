@@ -182,7 +182,28 @@ router.delete('/undodeposit/:id', ensureLoggedIn('/admin'), function(req, res) {
 // @access  Private
 
 router.get("/withdraw", ensureLoggedIn('/admin'), function(req, res) {
-  res.render("admin/withdraw");
+  Withdrawal.find({approved: false, declined: false}).populate("withdrawer").populate("package").exec(function(err, pendingWithdrawals){
+    if(err){
+        console.log(err);
+    }else{
+        var pendingWithdrawals = pendingWithdrawals;
+        Withdrawal.find({approved: true, declined:false}).populate("withdrawer").populate("package").exec(function (err, approvedWithdrawals) {
+          if (err) {
+            console.log(err);
+          } else {
+            var approvedWithdrawals = approvedWithdrawals;
+            Withdrawal.find({declined: true}).populate("withdrawer").populate("package").exec(function(err, declinedWithdrawals) {
+              if (err) {
+                console.log(err);
+              } else {
+                var declinedWithdrawals = declinedWithdrawals;
+                res.render("admin/withdraw", {approvedWithdrawals: approvedWithdrawals, pendingWithdrawals: pendingWithdrawals, declinedWithdrawals: declinedWithdrawals});
+              }
+            })
+          }
+        })
+    }
+  });
 });
 
 // approve deposit route
