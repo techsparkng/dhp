@@ -125,7 +125,8 @@ router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
     } else {
       var startDate = moment()._d;
       var endDate = moment().businessAdd(updatedDeposit.package.duration)._d;
-      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, lastWithdraw: startDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
+      var nextWithdrawDate = moment().businessAdd(7)._d;
+      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, lastWithdraw: startDate, nextWithdraw: nextWithdrawDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
         if (err) {
           console.log(err);
         } else {

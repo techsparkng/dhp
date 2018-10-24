@@ -10,6 +10,7 @@ var packageSchema = new mongoose.Schema({
   interest: Number,
   start: Date,
   lastWithdraw: Date,
+  nextWithdraw: Date,
   end: Date,
   duration: Number,
   approved: {type: Boolean, default: false},
