@@ -120,7 +120,7 @@ router.get("/withdraw", ensureLoggedIn("/login"), function(req, res) {
         console.log(err);
       } else {
         var withdrawals = foundUser.withdrawals;
-        res.render("dashboard/withdraw", { withdrawals: withdrawals });
+        res.render("dashboard/withdraw", {withdrawals: withdrawals});
       }
     });
 });
