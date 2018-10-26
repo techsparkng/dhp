@@ -211,9 +211,9 @@ router.get("/withdraw", ensureLoggedIn('/admin'), function(req, res) {
   });
 });
 
-// approve deposit route
+// approve withdrawal route
 router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Withdrawal.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}).populate("package").exec(function(err, updatedWithdrawal) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {approved: true, nextWithdraw: moment().businessAdd(7)._d}, {new: true}).populate("package").exec(function(err, updatedWithdrawal) {
     if (err) {
       console.log(err)
     } else {
@@ -222,7 +222,7 @@ router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   })
 })
 
-// decline deposit route
+// decline withdrawal route
 router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   Withdrawal.findByIdAndUpdate(req.params.id, {declined: true}, {new: true}, function(err, updatedWithdrawal) {
     if (err) {
@@ -233,9 +233,9 @@ router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   })
 })
 
-//undo approve deposit route
+//undo approve withdrawal route
 router.put('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Withdrawal.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}, function(err, updatedWithdrawal) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {approved: false, nextWithdraw: moment().businessAdd(-7)._d}, {new: true}, function(err, updatedWithdrawal) {
     if (err) {
       console.log(err)
     } else {
@@ -244,7 +244,7 @@ router.put('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   });
 })
 
-//undo decline deposit route
+//undo decline withdrawal route
 router.delete('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
   Withdrawal.findByIdAndUpdate(req.params.id, {declined: false}, {new: true}, function(err, updatedWithdrawal) {
     if (err) {
