@@ -92,34 +92,6 @@
             counter++;
           })
         }
-
-        if (package === "international") {
-          $("#packages tbody").html('');
-          var counter = 1;
-          internationalPackages.forEach(package => {
-            var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest/100 * package.amountDeposited;
-            $("#packages tbody").append(
-              `
-                <tr>
-                  <td>${counter}</td>
-                  <td class="d-none package">${package._id}</td>
-                  <td>${package.investtype}</td>
-                  <td>${package.amountDeposited}</td>
-                  <td>${moment(package.start).format('MM-DD-YYYY')}</td>
-                  <td>${moment(package.nextWithdraw).format('MM-DD-YYYY')}</td>
-                  <td>${moment(package.end).format('MM-DD-YYYY')}</td>
-                  <td>${package.interest}</td>
-                  <td class="currEarning">${currentEarning}</td>
-                  <td><button class="btn btn-success btn-xs withdrawTrigger" disabled>Withdraw</button></td>
-                </tr>
-              `
-            )
-            if (moment() === moment(package.nextWithdraw)) {
-              $('.withdrawTrigger').removeAttr("disabled");            
-            }
-            counter++;
-          })
-        }
       })
 
       $('#packages').on("click", ".withdrawTrigger", function() {
