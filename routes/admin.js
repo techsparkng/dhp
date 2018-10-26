@@ -213,10 +213,11 @@ router.get("/withdraw", ensureLoggedIn('/admin'), function(req, res) {
 
 // approve withdrawal route
 router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Withdrawal.findByIdAndUpdate(req.params.id, {approved: true, nextWithdraw: moment().businessAdd(7)._d}, {new: true}).populate("package").exec(function(err, updatedWithdrawal) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {approved: true}, {new: true}).populate("package").exec(function(err, updatedWithdrawal) {
     if (err) {
       console.log(err)
     } else {
+      updatedWithdrawal.package.nextWithdraw = moment().businessAdd(7)._d;
       res.redirect('back');
     }
   })
@@ -235,10 +236,11 @@ router.delete('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
 
 //undo approve withdrawal route
 router.put('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Withdrawal.findByIdAndUpdate(req.params.id, {approved: false, nextWithdraw: moment().businessAdd(-7)._d}, {new: true}, function(err, updatedWithdrawal) {
+  Withdrawal.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}).populate("package").exec(function(err, updatedWithdrawal) {
     if (err) {
       console.log(err)
     } else {
+      updatedWithdrawal.package.nextWithdraw = moment().businessAdd(-7)._d;
       res.redirect("back");
     }
   });
