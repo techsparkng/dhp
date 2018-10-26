@@ -126,7 +126,7 @@ router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
       var startDate = moment()._d;
       var endDate = moment().businessAdd(updatedDeposit.package.duration)._d;
       var nextWithdrawDate = moment().businessAdd(7)._d;
-      Package.findByIdAndUpdate(updatedDeposit.package, {start: startDate, lastWithdraw: startDate, nextWithdraw: nextWithdrawDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
+      Package.findByIdAndUpdate(updatedDeposit.package._id, {start: startDate, lastWithdraw: startDate, nextWithdraw: nextWithdrawDate, end: endDate, amountDeposited: updatedDeposit.amount, approved: true}, {new: true}, function(err, updatedPackage) {
         if (err) {
           console.log(err);
         } else {
@@ -139,11 +139,11 @@ router.put('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
 
 // decline deposit route
 router.delete('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Deposit.findByIdAndUpdate(req.params.id, {declined: true}, {new: true}, function(err, updatedDeposit) {
+  Deposit.findByIdAndUpdate(req.params.id, {declined: true}, {new: true}).populate("package").exec(function(err, updatedDeposit) {
     if (err) {
       console.log(err)
     } else {
-      Package.findByIdAndUpdate(updatedDeposit.package, {approved: false}, function(err, updatedPackage) {
+      Package.findByIdAndUpdate(updatedDeposit.package._id, {approved: false}, function(err, updatedPackage) {
         if (err) {
           console.log(err);
         } else {
@@ -156,7 +156,7 @@ router.delete('/deposit/:id', ensureLoggedIn('/admin'), function(req, res) {
 
 //undo approve deposit route
 router.put('/undodeposit/:id', ensureLoggedIn('/admin'), function(req, res) {
-  Deposit.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}, function(err, updatedDeposit) {
+  Deposit.findByIdAndUpdate(req.params.id, {approved: false}, {new: true}).populate("package").exec(function(err, updatedDeposit) {
     if (err) {
       console.log(err)
     } else {
@@ -217,8 +217,13 @@ router.put('/withdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
     if (err) {
       console.log(err)
     } else {
-      updatedWithdrawal.package.nextWithdraw = moment().businessAdd(7)._d;
-      res.redirect('back');
+      Package.findByIdAndUpdate(updatedWithdrawal.package._id, {nextWithdraw: moment().businessAdd(7)._d}, function(err, foundPackage) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('back');
+        }
+      })
     }
   })
 })
@@ -240,8 +245,13 @@ router.put('/undowithdraw/:id', ensureLoggedIn('/admin'), function(req, res) {
     if (err) {
       console.log(err)
     } else {
-      updatedWithdrawal.package.nextWithdraw = moment().businessAdd(-7)._d;
-      res.redirect("back");
+      Package.findByIdAndUpdate(updatedWithdrawal.package._id, {nextWithdraw: moment().businessAdd(-7)._d}, function(err, foundPackage) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('back');
+        }
+      })
     }
   });
 })
