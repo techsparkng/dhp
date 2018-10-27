@@ -1,132 +1,185 @@
 <% include ../partials/header %>
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="caed-title">Pending Deposits</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Package</th>
-                                        <th>Name</th>
-                                        <th>Amount Deposited</th>
-                                        <th>Investors Bank</th>
-                                        <th>DHP Bank</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                        
-                                        <tbody>
-                                        <% var counter = 1; %>
-                                        <% pendingDeposits.forEach(function(deposit){ %>
-                                        <tr>
-                                            <td><%= counter %></td>
-                                            <td><%= deposit.package.investtype %></td>
-                                            <td><%= deposit.depositor.firstname %> <%= deposit.depositor.lastname %></td>
-                                            <td>
-                                                <label><%= deposit.amount %></label>
-                                            </td>
-                                            <td>
-                                               <%= deposit.depositor.bank.bankname %>
-                                            </td>
-                                            <td><%= deposit.bank.bankname %></td>
-                                            <td class="text-danger"><%= deposit.created.toDateString() %></td>
-                                            <td><form class="form-inline d-flex mr-4" action="deposit/<%= deposit._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class=" fa fa-check text-success"></i></button></form> <form class="form-inline d-flex" action="deposit/<%= deposit._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-times text-danger"></i></button></form></td>
-                                            <% counter++ %>
-                                        </tr>
-                                        <% }) %> 
-                                        </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="caed-title">Approved Deposits</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Package</th>
-                                        <th>Name</th>
-                                        <th>Amount Deposited</th>
-                                        <th>Investors Bank</th>
-                                        <th>DHP Bank</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-
-                                        <tbody>
-                                        <% var counter = 1; %>
-                                        <% approvedDeposits.forEach(function(approve){ %>
-                                            <tr>
-                                                <td><%= counter %></td>
-                                                <td><%= approve.package.investtype %></td>
-                                                <td><%= approve.depositor.firstname %> <%= approve.depositor.lastname %></td>
-                                                <td><%= approve.amount %></td>
-                                                <td> <%= approve.depositor.bank.bankname %></td>
-                                                <td><%= approve.bank.bankname %></td>
-                                                <td class="text-danger"><%= approve.created.toDateString() %></td>
-                                                <td><form class="form-inline d-flex mr-4" action="undodeposit/<%= approve._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class="fa fa-mail-reply text-danger"></i></button></form></td>
-                                            <% counter++ %>
-                                            </tr>
-                                            <% }) %> 
-                                        </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="caed-title">Decline Deposits</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="caed-title">Pending Deposits</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
                                     <th>S/N</th>
                                     <th>Package</th>
-                                    <th>Name</th>
-                                    <th>Amount Deposited</th>
+                                    <th>Depositor Name</th>
+                                    <th>Amount Deposited (₦)</th>
                                     <th>Investors Bank</th>
                                     <th>DHP Bank</th>
                                     <th>Date</th>
                                     <th>Action</th>
-                                    </tr>
-                                </thead>
+                                </tr>
+                            </thead>
 
-                                        <tbody>
-                                        <% var counter = 1; %>
-                                         <% declinedDeposits.forEach(function(decline){ %>
-                                            <tr>
-                                                <td><%= counter %></td>
-                                                <td><%= decline.package.investtype %></td>
-                                                <td><%= decline.depositor.firstname %> <%= decline.depositor.lastname %></td>
-                                                <td><%= decline.amount %></td>
-                                                <td><%= decline.depositor.bank.bankname %></td>
-                                                <td><%= decline.bank.bankname %></td>
-                                                <td class="text-danger"><%= decline.created.toDateString() %></td>
-                                                <td><form class="form-inline d-flex mr-4" action="undodeposit/<%= decline._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-mail-reply text-danger"></i></button></form></td>
-                                             <% counter++ %>
-                                            </tr>
-                                            <% }) %> 
-                                        </tbody>
-                            </table>
-                        </div>
+                            <tbody>
+                                <% var counter = 1; %>
+                                <% pendingDeposits.forEach(function(deposit){ %>
+                                <tr>
+                                    <td>
+                                        <%= counter %>
+                                    </td>
+                                    <td>
+                                        <%= deposit.package.investtype %>
+                                    </td>
+                                    <td>
+                                        <%= deposit.depositor.firstname %>
+                                        <%= deposit.depositor.lastname %>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <%= deposit.amount %></label>
+                                    </td>
+                                    <td>
+                                        <%= deposit.depositor.bank.bankname %>
+                                    </td>
+                                    <td>
+                                        <%= deposit.bank.bankname %>
+                                    </td>
+                                    <td class="text-info">
+                                        <%= deposit.created.toDateString() %>
+                                    </td>
+                                    <td>
+                                        <form class="form-inline d-flex mr-4" action="deposit/<%= deposit._id %>?_method=PUT"
+                                            method="POST"><button type="submit" class="btn"><i class=" fa fa-check text-success"></i></button></form>
+                                        <form class="form-inline d-flex" action="deposit/<%= deposit._id %>?_method=DELETE"
+                                            method="POST"><button type="submit" class="btn"><i class="fa fa-times text-danger"></i></button></form>
+                                    </td>
+                                    <% counter++ %>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="caed-title">Approved Deposits</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Package</th>
+                                    <th>Depositor Name</th>
+                                    <th>Amount Deposited (₦)</th>
+                                    <th>Investors Bank</th>
+                                    <th>DHP Bank</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% var counter = 1; %>
+                                <% approvedDeposits.forEach(function(approve){ %>
+                                <tr>
+                                    <td>
+                                        <%= counter %>
+                                    </td>
+                                    <td>
+                                        <%= approve.package.investtype %>
+                                    </td>
+                                    <td>
+                                        <%= approve.depositor.firstname %>
+                                        <%= approve.depositor.lastname %>
+                                    </td>
+                                    <td>
+                                        <%= approve.amount %>
+                                    </td>
+                                    <td>
+                                        <%= approve.depositor.bank.bankname %>
+                                    </td>
+                                    <td>
+                                        <%= approve.bank.bankname %>
+                                    </td>
+                                    <td class="text-info">
+                                        <%= approve.created.toDateString() %>
+                                    </td>
+                                    <td>
+                                        <form class="form-inline d-flex mr-4" action="undodeposit/<%= approve._id %>?_method=PUT"
+                                            method="POST"><button type="submit" class="btn"><i class="fa fa-mail-reply text-danger"></i></button></form>
+                                    </td>
+                                    <% counter++ %>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="caed-title">Decline Deposits</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Package</th>
+                                    <th>Depositor Name</th>
+                                    <th>Amount Deposited (₦)</th>
+                                    <th>Investors Bank</th>
+                                    <th>DHP Bank</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% var counter = 1; %>
+                                <% declinedDeposits.forEach(function(decline){ %>
+                                <tr>
+                                    <td>
+                                        <%= counter %>
+                                    </td>
+                                    <td>
+                                        <%= decline.package.investtype %>
+                                    </td>
+                                    <td>
+                                        <%= decline.depositor.firstname %>
+                                        <%= decline.depositor.lastname %>
+                                    </td>
+                                    <td>
+                                        <%= decline.amount %>
+                                    </td>
+                                    <td>
+                                        <%= decline.depositor.bank.bankname %>
+                                    </td>
+                                    <td>
+                                        <%= decline.bank.bankname %>
+                                    </td>
+                                    <td class="text-info">
+                                        <%= decline.created.toDateString() %>
+                                    </td>
+                                    <td>
+                                        <form class="form-inline d-flex mr-4" action="undodeposit/<%= decline._id %>?_method=DELETE"
+                                            method="POST"><button type="submit" class="btn"><i class="fa fa-mail-reply text-danger"></i></button></form>
+                                    </td>
+                                    <% counter++ %>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <% include ../partials/footer %>
+</div>
+<% include ../partials/footer %>

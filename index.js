@@ -12,17 +12,17 @@ var express = require("express"),
   userRoutes = require("./routes/user"),
   adminRoutes = require("./routes/admin");
 
-mongoose.connect(
-  "mongodb://dhp:dhpdatabase123@dhp-shard-00-00-fgyex.mongodb.net:27017,dhp-shard-00-01-fgyex.mongodb.net:27017,dhp-shard-00-02-fgyex.mongodb.net:27017/test?ssl=true&replicaSet=dhp-shard-0&authSource=admin&retryWrites=true",
-  {
-    useNewUrlParser: true
-  }
-);
-
 // mongoose.connect(
-//   "mongodb://localhost/dhp",
-//   { useNewUrlParser: true }
+//   "mongodb://dhp:dhpdatabase123@dhp-shard-00-00-fgyex.mongodb.net:27017,dhp-shard-00-01-fgyex.mongodb.net:27017,dhp-shard-00-02-fgyex.mongodb.net:27017/test?ssl=true&replicaSet=dhp-shard-0&authSource=admin&retryWrites=true",
+//   {
+//     useNewUrlParser: true
+//   }
 // );
+
+mongoose.connect(
+  "mongodb://localhost/dhp",
+  { useNewUrlParser: true }
+);
 app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "/public")));

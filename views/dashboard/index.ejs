@@ -138,20 +138,25 @@
                       <td>
                         <%= pending.bank.bankname %>
                       </td>
-                      <td class="text-danger">
+                      <td class="text-info">
                         <%= pending.created.toDateString() %>
                       </td>
+                      <% if(pending.declined) { %>
+                      <td>
+                        <p class="text-danger">Declined</p>
+                      </td>
+                      <% } else{ %>
                       <% if(pending.approved) { %>
                       <td>
                         <p class="text-success">Approved</p>
                       </td>
                       <% } else{ %>
                       <td>
-                        <p class="text-danger">Pending</p>
+                        <p class="text-warning">Pending</p>
                         <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel investment package"
                           data-id="<%= pending._id %>"></i>
-
                       </td>
+                      <% } %>
                       <% } %>
                       <% counter++ %>
 
@@ -171,9 +176,9 @@
         <div class="card card-weather">
           <div class="card-body">
             <div class="weather-date-location">
-              <h3>Wednesday</h3>
+              <h3>Monday</h3>
               <p class="text-gray">
-                <span class="weather-date">24 October, 2018</span>
+                <span class="weather-date">29 October, 2018</span>
                 <span class="weather-location">Lagos, Nigeria</span>
               </p>
             </div>
@@ -305,7 +310,7 @@
                   <li>Minimum Investment: N10,000</li>
                   <li>Maximum Investment: N5,000,000</li>
                   <li>Profit: 0.8% Daily and Minimum
-                      ROI of 168% Monthly</li>
+                    ROI of 168% Monthly</li>
                   <li>Withdrawal Eligibility: Ater 7 Working Days</li>
                   <li>Duration: 210 Working Days</li>
                   <li>Withdrawal Fee: N200</li>

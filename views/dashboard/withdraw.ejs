@@ -6,7 +6,9 @@
         <div class="card">
           <div class="card-body">
             <div class="col-md-12">
-              <div class="blinking">Test subject</div>
+              <div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert"
+                  aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Note!</strong>
+                Transcaction fee is 2%!</div>
               <div class="form-group row">
                 <label class="col-sm-6 col-form-label">
                   <h4>Select Package Type</h4>
@@ -119,20 +121,25 @@
                       <td>₦
                         <%= pending.amount %>
                       </td>
-                      <td class="text-danger">
+                      <td class="text-info">
                         <%= pending.created.toDateString() %>
                       </td>
+                      <% if(pending.declined) { %>
+                      <td>
+                        <p class="text-danger">Declined</p>
+                      </td>
+                      <% } else{ %>
                       <% if(pending.approved) { %>
                       <td>
                         <p class="text-success">Approved</p>
                       </td>
                       <% } else{ %>
                       <td>
-                        <p class="text-danger">Pending</p>
-                        <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel investment package"
+                        <p class="text-warning">Pending</p>
+                        <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel withdrawal request"
                           data-id="<%= pending._id %>"></i>
-
                       </td>
+                      <% } %>
                       <% } %>
                       <% counter++ %>
 
@@ -158,5 +165,26 @@
       modal.find('.modal-title').text('New message to ' + recipient)
       modal.find('.modal-body input').val(recipient)
     })
+
+    $(".cancel").on('click', function () {
+      var that = this;
+      var id = $(this).data("id");
+
+      var confirmation = confirm("Are you sure you want to cancel this withdrawal request");
+      if (confirmation) {
+        console.log(id);
+        $.ajax({
+          type: "DELETE",
+          url: "/user/cancelWithdraw/" + id
+        }).done(function (data) {
+          if (data.message == "deleted") {
+            $(that).closest("tr").remove();
+          }
+        });
+        window.location.href.replace("/");
+      } else {
+        return false;
+      }
+    });
   </script>
   <% include ../partials/footer %>

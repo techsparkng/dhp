@@ -11,8 +11,8 @@
                                     <tr>
                                         <th>S/N</th>
                                         <th>Package</th>
-                                        <th>Name</th>
-                                        <th>Amount Withdrawn</th>
+                                        <th>Payee Name</th>
+                                        <th>Amount Withdrawn (₦)</th>
                                         <th>Investors Bank</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -30,7 +30,7 @@
                                         <td>
                                            <%= withdrawal.withdrawer.bank.bankname %>
                                         </td>
-                                        <td class="text-danger"><%= withdrawal.created.toDateString() %></td>
+                                        <td class="text-info"><%= withdrawal.created.toDateString() %></td>
                                         <td><form class="form-inline d-flex mr-4" action="withdraw/<%= withdrawal._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class=" fa fa-check text-success"></i></button></form> <form class="form-inline d-flex" action="withdraw/<%= withdrawal._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-times text-danger"></i></button></form></td>
                                         <% counter++ %>
                                     </tr>
@@ -52,8 +52,8 @@
                                     <tr>
                                         <th>S/N</th>
                                         <th>Package</th>
-                                        <th>Name</th>
-                                        <th>Amount Withdrawn</th>
+                                        <th>Payee Name</th>
+                                        <th>Amount Withdrawn (₦)</th>
                                         <th>Investors Bank</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -71,7 +71,7 @@
                                         <td>
                                            <%= withdrawal.withdrawer.bank.bankname %>
                                         </td>
-                                        <td class="text-danger"><%= withdrawal.created.toDateString() %></td>
+                                        <td class="text-info"><%= withdrawal.created.toDateString() %></td>
                                         <td><form class="form-inline d-flex mr-4" action="undowithdraw/<%= withdrawal._id %>?_method=PUT" method="POST"><button type="submit" class="btn"><i class="fa fa-mail-reply text-danger"></i></button></form></td>
                                         <% counter++ %>
                                     </tr>
@@ -92,8 +92,8 @@
                                     <tr>
                                         <th>S/N</th>
                                         <th>Package</th>
-                                        <th>Name</th>
-                                        <th>Amount Withdrawn</th>
+                                        <th>Payee Name</th>
+                                        <th>Amount Withdrawn (₦)</th>
                                         <th>Investors Bank</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -111,7 +111,7 @@
                                         <td>
                                            <%= withdrawal.withdrawer.bank.bankname %>
                                         </td>
-                                        <td class="text-danger"><%= withdrawal.created.toDateString() %></td>
+                                        <td class="text-info"><%= withdrawal.created.toDateString() %></td>
                                         <td><form class="form-inline d-flex mr-4" action="undowithdraw/<%= withdrawal._id %>?_method=DELETE" method="POST"><button type="submit" class="btn"><i class="fa fa-mail-reply text-danger"></i></button></form></td>
                                         <% counter++ %>
                                     </tr>

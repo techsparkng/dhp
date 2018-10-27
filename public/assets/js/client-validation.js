@@ -8,8 +8,6 @@ $(document).ready(function() {
   updateProfile();
   $('[data-toggle="tooltip"]').tooltip();
 
-
-  
   $("#signupform").submit(function(e) {
     var errors = 0;
     $("#signupform input:text").map(function() {
@@ -29,7 +27,9 @@ $(document).ready(function() {
     }
   });
 
-  $(".amountInvested, .accNo, .phonenumber").keydown(function(e) {
+  $(".amountInvested, .accNo, .phonenumber, .phonenumber2").keydown(function(
+    e
+  ) {
     // Allow: backspace, delete, tab, escape, enter and .
     if (
       $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
@@ -330,6 +330,14 @@ function alertFocus() {
   $(".emailp").on("focus", function() {
     $(".emailp").removeClass("has-error");
     closeAlert();
+  });
+
+  $(
+    ".firstname, .lastgender, .emailp, .address, .phonenumber, .bankname, .acctname, .accNo"
+  ).on("focus", function() {
+    $(
+      ".firstname, .lastgender, .emailp, .address, .phonenumber, .bankname, .acctname, .accNo"
+    ).removeClass("has-error");
   });
 }
 // <!-- END OF INVEST PAGE VALIDATIONS -->

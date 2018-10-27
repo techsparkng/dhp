@@ -120,7 +120,7 @@ router.get("/withdraw", ensureLoggedIn("/login"), function(req, res) {
         console.log(err);
       } else {
         var withdrawals = foundUser.withdrawals;
-        res.render("dashboard/withdraw", {withdrawals: withdrawals});
+        res.render("dashboard/withdraw", { withdrawals: withdrawals });
       }
     });
 });
@@ -189,6 +189,24 @@ router.delete("/cancel/:id", ensureLoggedIn("/login"), function(req, res) {
           res.status(200).json({ message: "deleted" });
         }
       });
+    }
+  });
+});
+
+// @route   DELETE route/cancel
+// @desc    Cancel Withdrawal
+// @access  Private
+
+router.delete("/cancelWithdraw/:id", ensureLoggedIn("/login"), function(
+  req,
+  res
+) {
+  Withdrawal.findByIdAndRemove(req.params.id, function(err, deletedWitdrawal) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(deletedWitdrawal);
+      res.status(200).json({ message: "deleted" });
     }
   });
 });
