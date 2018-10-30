@@ -31,35 +31,37 @@
                             </div>
                         </div>
                     </div>
+                    <div class="dme">
+                        <div class="col-md-6 d-none description">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Description</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="package[description]"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="col-md-6 d-none description">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Description</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="description" name="package[description]"
-                                    readonly>
+                        <div class="col-md-6 d-none interest">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Interest</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="interest" name="package[interest]"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 d-none duration">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Duration</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="duration" name="package[duration]"
+                                        readonly>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6 d-none interest">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Interest</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="interest" name="package[interest]" readonly>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 d-none duration">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Duration</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="duration" name="package[duration]" readonly>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Select Payment Option</label>
@@ -73,41 +75,47 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6 d-none bank">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Select Bank</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="select_bank" name="bankd[bankname]">
-                                    <option value="">- Choose Option -</option>
-                                    <option value="skye">Polaris Bank</option>
-                                    <option value="fcmb">FCMB</option>
-                                </select>
+                    <div class="dme3">
+                        <div class="col-md-6 d-none bank">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Select Bank</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="select_bank" name="bankd[bankname]">
+                                        <option value="">- Choose Option -</option>
+                                        <option value="Skye">Polaris Bank</option>
+                                        <option value="FCMB">FCMB</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6 d-none acct-name">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Account Name</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="accountname" name="bankd[accountname]"
-                                    readonly>
+                    <div class="dme2">
+                        <div class=" col-md-6 d-none acct-name">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Account Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="accountname" name="bankd[accountname]"
+                                        readonly>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6 d-none acct-no">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Account Number</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]"
-                                    readonly>
+                        <div class="col-md-6 d-none acct-no">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Account Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="accountnumber" name="bankd[accountno]"
+                                        readonly>
+                                    <span class="text-danger">
+                                        <small>* Copy down the bank details before clicking the <strong>Invest</strong>
+                                            button</small>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary invest-btn" value="Submit" disabled>
+                        <input type="submit" class="btn btn-primary invest-btn" value="Invest" disabled>
                     </div>
                 </form>
             </div>
@@ -190,6 +198,7 @@
         $('#package_plan').on('change', function (e) {
             $plan = $(this).find('option:selected').val();
             if ($plan == 'Investor') {
+                $('.dme').show();
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
                 $('.description').removeClass('d-none');
@@ -198,6 +207,7 @@
                 $('#description').val("4% Daily for 35 working days(ROI is 140%)");
             }
             if ($plan == 'Partner') {
+                $('.dme').show();
                 $('.interest').removeClass('d-none');
                 $('.duration').removeClass('d-none');
                 $('.description').removeClass('d-none');
@@ -214,8 +224,9 @@
                 $('#description').val("4% Daily for 35 days(ROI is 140%)");
             }
 
-            if ($(this).find("option:first-child").val()) {
+            if ($plan == '') {
                 $(".invest-btn").attr("disabled", "disabled");
+                $('.dme').hide();
             }
 
         })
@@ -224,36 +235,45 @@
         $('#payment_opt').on('change', function (e) {
             $payPlan = $(this).find('option:selected').val();
             if ($payPlan == 'bank') {
+                $(".dme3").show();
                 $('.bank').removeClass('d-none');
             }
 
+            //Reviwew before finally going live
             if ($payPlan == 'debt_card') {
                 $('.bank').addClass('d-none');
                 $('.acct-name').addClass('d-none');
                 $('.acct-no').addClass('d-none');
+            }
+            if ($payPlan == '') {
+                $(".dme3, .dme2").hide();
+                $(".invest-btn").attr("disabled", "disabled");
             }
         })
         var $bankName;
         $('#select_bank').on('change', function () {
             $bankName = $(this).find('option:selected').val();
             if ($bankName == 'Skye') {
+                $('.dme2').show();
                 $('.acct-name').removeClass('d-none');
                 $('.acct-no').removeClass('d-none');
                 $('#accountname').val("Neu Diamondhub Ventures");
                 $('#accountnumber').val("4091046063");
-
+                $(".invest-btn").removeAttr("disabled");
             }
             if ($bankName == 'FCMB') {
+                $('.dme2').show();
                 $('.acct-name').removeClass('d-none');
                 $('.acct-no').removeClass('d-none');
                 $('#accountname').val("Neu Diamondhub Ventures");
                 $('#accountnumber').val("5529004017");
-
+                $(".invest-btn").removeAttr("disabled");
             }
-            if ($bankName === $(this).find("option:first-child").val()) {
+            if ($bankName == '') {
                 $(".invest-btn").attr("disabled", "disabled");
+                $('.dme2').hide();
             }
-            $(".invest-btn").removeAttr("disabled");
+
         })
 
         $("#checkbox1, #checkbox2").change(function () {

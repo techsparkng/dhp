@@ -20,6 +20,26 @@ $(document).ready(function() {
     });
     if (errors > 0) {
       $(".ALert").html(
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for profile update!</div>'
+      );
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  $("#register-form").submit(function(e) {
+    alert("Seen");
+    var errors = 0;
+    $("#register-form input:text").map(function() {
+      if (!$(this).val()) {
+        $(this).addClass("has-error");
+        errors++;
+      } else if ($(this).val()) {
+        $(this).removeClass("has-error");
+      }
+    });
+    if (errors > 0) {
+      $(".ALert").html(
         '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
       );
       e.preventDefault();
@@ -132,7 +152,7 @@ function login() {
 function register() {
   //Validaion for Registration
 
-  $(".submit-btn-reg").click(function() {
+  $(".submit-btn-regd").click(function() {
     var first = $(".first").val();
     var last = $(".last").val();
     var email = $(".email").val();
@@ -147,44 +167,53 @@ function register() {
       closeAlert();
     });
 
-    if (
-      $.trim(first).length > 0 &&
-      $.trim(last).length > 0 &&
-      $.trim(email).length > 0 &&
-      $.trim(username).length > 0 &&
-      $.trim(password).length > 0 &&
-      $.trim(password2).length > 0
-    ) {
-      var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-      if (regex.test(email)) {
-        if (password2 != password) {
-          $(".pw2").addClass("has-error");
-          $(".pw2")
-            .siblings(".input-group-append")
-            .find(".input-group-text")
-            .addClass("has-error");
-          $(".ALert").html(
-            '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Passwords do not match!</div>'
-          );
-          return false;
-        }
-      } else {
-        $(".email").addClass("has-error");
-        $(".email")
-          .siblings(".input-group-append")
-          .find(".input-group-text")
-          .addClass("has-error");
-        $(".ALert").html(
-          '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> E-mail format is invalid!</div>'
-        );
-        return false;
-      }
-    } else {
-      $(
-        ".first, .last, .email, .usern, .pw1, .pw2, .input-group-text"
-      ).addClass("has-error");
+    // if (
+    //   $.trim(first).length > 0 &&
+    //   $.trim(last).length > 0 &&
+    //   $.trim(email).length > 0 &&
+    //   $.trim(username).length > 0 &&
+    //   $.trim(password).length > 0 &&
+    //   $.trim(password2).length > 0
+    // ) {
+    //   var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    //   if (regex.test(email)) {
+    //     if (password2 != password) {
+    //       $(".pw2").addClass("has-error");
+    //       $(".pw2")
+    //         .siblings(".input-group-append")
+    //         .find(".input-group-text")
+    //         .addClass("has-error");
+    //       $(".ALert").html(
+    //         '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> Passwords do not match!</div>'
+    //       );
+    //       return false;
+    //     }
+    //   } else {
+    //     $(".email").addClass("has-error");
+    //     $(".email")
+    //       .siblings(".input-group-append")
+    //       .find(".input-group-text")
+    //       .addClass("has-error");
+    //     $(".ALert").html(
+    //       '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> E-mail format is invalid!</div>'
+    //     );
+    //     return false;
+    //   }
+    // } else {
+    //   $(
+    //     ".first, .last, .email, .usern, .pw1, .pw2, .input-group-text"
+    //   ).addClass("has-error");
+    //   $(".ALert").html(
+    //     '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
+    //   );
+    //   return false;
+    // }
+
+    var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!regex.test(email)) {
+      $(".email").addClass("has-error");
       $(".ALert").html(
-        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> All fields are required for registration!</div>'
+        '<div class="alert alert-danger-alt" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#fff" aria-hidden="true">&times;</span></button><strong>Error!</strong> E-mail format is invalid!</div>'
       );
       return false;
     }

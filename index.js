@@ -224,6 +224,10 @@ app.get("/logout", function(req, res) {
 app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
 
+app.use(function(req, res, next) {
+  res.status(404).render(path.join(__dirname,"views/partials/404page"));
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
   console.log(`DHP app running at port: ${PORT}`);
