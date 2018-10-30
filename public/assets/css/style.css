@@ -22526,7 +22526,11 @@ table form button.btn {
   cursor: pointer;
   /* Mouse pointer on hover */
 }
-
+.alert {
+  box-shadow: none;
+  border: none;
+  border-radius: 0px;
+}
 .alert-purple {
   border-color: #694D9F;
   background: #694D9F;
@@ -22541,7 +22545,8 @@ table form button.btn {
 
 .alert-danger-alt {
   /* border-color: #B63E5A; */
-  background: #E26868;
+  /* background: #E26868; */
+  background-color: #F44336 !important;
   color: #fff;
 }
 
@@ -22566,7 +22571,7 @@ table form button.btn {
 }
 
 .has-error {
-  border-color: #E26868 !important;
+  border-color: #F44336 !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }

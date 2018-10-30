@@ -143,16 +143,16 @@
                       </td>
                       <% if(pending.declined) { %>
                       <td>
-                        <p class="text-danger">Declined</p>
+                        <mark class="bg-danger text-white">Declined</mark>
                       </td>
                       <% } else{ %>
                       <% if(pending.approved) { %>
                       <td>
-                        <p class="text-success">Approved</p>
+                        <mark class="bg-success text-white">Approved</mark>
                       </td>
                       <% } else{ %>
                       <td>
-                        <p class="text-warning">Pending</p>
+                        <mark class="bg-warning text-white">Pending</mark> &nbsp;
                         <i class="fa fa-times text-danger cancel" data-toggle="tooltip" data-placement="top" title="Cancel investment package"
                           data-id="<%= pending._id %>"></i>
                       </td>
