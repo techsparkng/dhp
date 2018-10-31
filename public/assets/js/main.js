@@ -1,3 +1,21 @@
+$(".m-right i.fa-bars").click(function() {
+	$(".m-right nav").show(function() {
+		$(this).animate({
+			opacity: 1,
+			right: 0
+		}, 500);
+	});
+})
+
+$(document).click(function (e) {
+	if (!($(e.target).is('.m-right nav')) && !($(e.target).is(".m-right i.fa-bars"))) {
+		$(".m-right nav").animate({
+			opacity: 0,
+			right: -260
+		}, 500);
+	}
+});
+
 $("#tab1").on("click", function() {
 	$(".withdrawals").fadeOut(function() {
 		$(".deposits").fadeIn();
