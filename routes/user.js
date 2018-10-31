@@ -12,6 +12,8 @@ const Package = require("../model/package");
 const Deposit = require("../model/deposit");
 // Load Withdrawal Model
 const Withdrawal = require("../model/withdrawal");
+// Load Message Model
+const Messages = require("../model/messages");
 
 // @route   GET route/profile
 // @desc    Get current user profile page
@@ -50,6 +52,34 @@ router.post("/updateProfile", ensureLoggedIn("/login"), (req, res) => {
       }
     }
   );
+});
+
+// @route   GET route/messages
+// @desc    Get user Messages
+// @access  Private
+
+router.get("/messages", ensureLoggedIn("/login"), function(req, res) {
+  res.render("dashboard/messages");
+});
+
+// @route   POST route/messages
+// @desc    Post user Messages to Admin
+// @access  Private
+
+router.post("/messages", ensureLoggedIn("/login"), function(req, res) {
+  var messageData = {
+    title: req.body.title,
+    message: req.body.message,
+    recipient: req.user._id
+  };
+  Messages.create(messageData, function(err, createdMessage) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(createdMessage);
+      res.redirect("/dashboard/messages");
+    }
+  });
 });
 
 // @route   GET route/invest
