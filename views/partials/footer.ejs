@@ -15,6 +15,56 @@
 <script src="/assets/js/dashboard.js"></script>
 <script src="/moment-business-days/index.js"></script>
 <!-- End custom js for this page-->
+<% if (path === '/dashboard/') { %>
+<script>
+  var investorPackages = [], partnerPackages = [], internationalPackages = [];
+  $.getJSON('/user/activePackages')
+    .done(packages => {
+      packages.forEach(package => {
+        if (package.investtype === "Investor") {
+          investorPackages.push(package);
+        } else if (package.investtype === "Partner") {
+          partnerPackages.push(package);
+        } else {
+          internationalPackages.push(package);
+        }
+      })
+    })
+    .fail(err => console.log(err));
+
+    $('#package_plan').on("change", function () {
+      var package = $(this).find('option:selected').val();
+      $("#packages").parent().removeClass('d-none');
+
+      if (package === "investor") {
+        $("#packages").html('<option value="">- Select Active Package -</option>');
+        investorPackages.forEach(package => {
+          $("#packages").append(
+            `<option class="${package._id}">&#8358;${package.amountDeposited} - ${moment(package.start).format('MM/DD/YYYY')}</option>`
+            )
+          var currentEarning = moment().diff(moment(package.start), 'days') * package.interest / 100 * package.amountDeposited;
+          $(`option.${package._id}`).data({earnings: currentEarning, capital: package.amountDeposited});
+        })
+      }
+
+      if (package === "partner") {
+        $("#packages").html('<option value="">- Select Active Package -</option>');
+        partnerPackages.forEach(package => {
+          $("#packages").append(
+            `<option class="${package._id}">&#8358;${package.amountDeposited} - ${moment(package.start).format('MM/DD/YYYY')}</option>`
+            )
+          var currentEarning = moment().diff(moment(package.start), 'days') * package.interest / 100 * package.amountDeposited;
+          $(`option.${package._id}`).data({earnings: currentEarning, capital: package.amountDeposited});
+        })
+      }
+    });
+
+    $('#packages').on("change", function () {
+      $("#capital").html(`&#8358;${$(this).find('option:selected').data("capital")}`)
+      $("#earnings").html(`&#8358;${$(this).find('option:selected').data("earnings")}`)
+    })
+</script>
+<% } %>
 <% if (path === '/user/withdraw') { %>
 <script>
   var investorPackages = [], partnerPackages = [], internationalPackages = [];
@@ -43,7 +93,7 @@
         var currentEarning = package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest / 100 * package.amountDeposited;
         $("#packages tbody").append(
           `
-                <tr>
+                <tr id="${package._id}">
                   <td>${counter}</td>
                   <td class="d-none package">${package._id}</td>
                   <td>${package.investtype}</td>
@@ -58,9 +108,12 @@
               `
         )
 
-        if (moment().format("MMM Do YY") === moment(package.nextWithdraw).format("MMM Do YY")) {
-          $('.withdrawTrigger').removeAttr("disabled");
+        $(`tr#${package._id} td.currEarning`).data({earning: currentEarning});
+
+        if (moment().isAfter(moment(package.nextWithdraw))) {
+          $(`tr#${package._id} button.withdrawTrigger`).removeAttr("disabled");
         }
+
         counter++;
       })
     }
@@ -72,7 +125,7 @@
         var currentEarning = Math.round(package.remainder + moment().diff(moment(package.lastWithdraw), 'days') * package.interest / 100 * package.amountDeposited);
         $("#packages tbody").append(
           `
-                <tr>
+                <tr id="${package._id}">
                   <td>${counter}</td>
                   <td class="d-none package">${package._id}</td>
                   <td>${package.investtype}</td>
@@ -86,15 +139,19 @@
                 </tr>
               `
         )
-        if (moment() === moment(package.nextWithdraw)) {
-          $('.withdrawTrigger').removeAttr("disabled");
+
+        $(`tr#${package._id} td.currEarning`).data({earning: currentEarning});
+
+        if (moment().isAfter(moment(package.nextWithdraw))) {
+          $(`tr#${package._id} button.withdrawTrigger`).removeAttr("disabled");
         }
+
       })
     }
   })
 
-  $('#packages').on("click", ".withdrawTrigger", function () {
-    $('#curEarning').val($(this).parent().siblings("td.currEarning").text());
+  $('#packages').on("click", "button.withdrawTrigger:enabled", function () {
+    $('#curEarning').val($(this).parent().siblings("td.currEarning").data("earning"));
     $('#package').val($(this).parent().siblings("td.package").text());
     $('#withdrawalModal').modal();
   })

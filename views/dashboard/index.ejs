@@ -10,9 +10,14 @@
             <div class="form-group row">
               <div class="col-sm-6">
                 <select class="form-control act_pack mr-3" id="package_plan" name="package[investtype]">
-                  <option value="">- Select Active Package -</option>
+                  <option value="">- Select Package Type -</option>
                   <option value="investor">Investor</option>
                   <option value="partner">Partner</option>
+                </select>
+              </div>
+              <div class="col-sm-6 d-none">
+                <select class="form-control act_pack mr-3" id="packages" name="package[investtype]">
+                  
                 </select>
               </div>
             </div>
@@ -31,12 +36,12 @@
               <div class="float-right">
                 <p class="mb-0 text-right">CAPITAL</p>
                 <div class="fluid-container">
-                  <h3 class="font-weight-medium text-right mb-0">₦0</h3>
+                  <h3 class="font-weight-medium text-right mb-0" id="capital">₦0</h3>
                 </div>
               </div>
             </div>
             <p class="text-muted mt-3 mb-0">
-              <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Initial Deposit
+              <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Initial Deposit of Investment
             </p>
           </div>
         </div>
@@ -51,7 +56,7 @@
               <div class="float-right">
                 <p class="mb-0 text-right">EARNINGS</p>
                 <div class="fluid-container">
-                  <h3 class="font-weight-medium text-right mb-0">₦0</h3>
+                  <h3 class="font-weight-medium text-right mb-0" id="earnings">₦0</h3>
                 </div>
               </div>
             </div>
@@ -71,7 +76,9 @@
               <div class="float-right">
                 <p class="mb-0 text-right">TOTAL DEPOSIT</p>
                 <div class="fluid-container">
-                  <h3 class="font-weight-medium text-right mb-0">₦0</h3>
+                  <h3 class="font-weight-medium text-right mb-0">&#8358;<%= deposits.reduce(function(acc, cur){
+              return acc + cur.amount;
+          }, 0); %></h3>
                 </div>
               </div>
             </div>
@@ -89,14 +96,14 @@
                 <i class="mdi mdi-account-location text-info icon-lg"></i>
               </div>
               <div class="float-right">
-                <p class="mb-0 text-right">TOTAL EARNINGS</p>
+                <p class="mb-0 text-right">TOTAL NO OF DEPOSITS</p>
                 <div class="fluid-container">
-                  <h3 class="font-weight-medium text-right mb-0">₦0</h3>
+                  <h3 class="font-weight-medium text-right mb-0"><%= deposits.length %></h3>
                 </div>
               </div>
             </div>
             <p class="text-muted mt-3 mb-0">
-              <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> All Earnings with Diamonhubplus
+              <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Total number of deposits with Diamonhubplus
             </p>
           </div>
         </div>

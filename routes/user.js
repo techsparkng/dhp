@@ -197,16 +197,18 @@ router.delete("/cancel/:id", ensureLoggedIn("/login"), function(req, res) {
 // @desc    Cancel Withdrawal
 // @access  Private
 
-router.delete("/cancelWithdraw/:id", ensureLoggedIn("/login"), function(
-  req,
-  res
-) {
+router.delete("/cancelWithdraw/:id", ensureLoggedIn("/login"), function(req, res) {
+  var amount = Number(req.body.amount);
+  console.log(amount);
   Withdrawal.findByIdAndRemove(req.params.id, function(err, deletedWitdrawal) {
     if (err) {
       console.log(err);
     } else {
-      console.log(deletedWitdrawal);
-      res.status(200).json({ message: "deleted" });
+      Package.findById(deletedWitdrawal.package, function(err, foundPackage) {
+        foundPackage.remainder = foundPackage.remainder + amount;
+        foundPackage.save()
+        res.status(200).json({ message: "deleted" });
+      });
     }
   });
 });
