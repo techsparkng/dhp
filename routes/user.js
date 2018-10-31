@@ -45,7 +45,6 @@ router.post("/updateProfile", ensureLoggedIn("/login"), (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(updatedUser);
         res.redirect("/dashboard");
       }
     }
@@ -184,8 +183,6 @@ router.delete("/cancel/:id", ensureLoggedIn("/login"), function(req, res) {
         if (err) {
           console.log(err);
         } else {
-          console.log(deletedPackage);
-          console.log(deletedDeposit);
           res.status(200).json({ message: "deleted" });
         }
       });
@@ -199,7 +196,6 @@ router.delete("/cancel/:id", ensureLoggedIn("/login"), function(req, res) {
 
 router.delete("/cancelWithdraw/:id", ensureLoggedIn("/login"), function(req, res) {
   var amount = Number(req.body.amount);
-  console.log(amount);
   Withdrawal.findByIdAndRemove(req.params.id, function(err, deletedWitdrawal) {
     if (err) {
       console.log(err);

@@ -116,7 +116,6 @@ app.post("/register", function(req, res) {
         if (err) {
           console.log(err);
         } else {
-          console.log(updatedUser);
           passport.authenticate("user")(req, res, function() {
             res.redirect("/user/updateProfile");
           });
@@ -202,7 +201,6 @@ app.post("/admin/register", function(req, res) {
         if (err) {
           console.log(err);
         } else {
-          console.log(updatedAdmin);
           passport.authenticate("admin")(req, res, function() {
             res.redirect("/admin/updateProfile");
           });

@@ -44,7 +44,6 @@ router.post("/updateProfile", ensureLoggedIn('/admin'), (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(updatedAdminUser);
         res.redirect("/admin/dashboard");
       }
     }
@@ -57,7 +56,6 @@ router.post("/updateProfile", ensureLoggedIn('/admin'), (req, res) => {
 // @access  Private
 
 router.get("/index", ensureLoggedIn('/admin'), function(req, res) {
-  console.log(req.user);
   var data = {};
 
   User.find({}, function(err, foundUsers){
