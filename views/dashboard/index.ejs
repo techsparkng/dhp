@@ -176,9 +176,10 @@
         <div class="card card-weather">
           <div class="card-body">
             <div class="weather-date-location">
-              <h3>Monday</h3>
+              <% var weekdays = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'); %>
+              <h3><%= weekdays[new Date().getDay()] %></h3>
               <p class="text-gray">
-                <span class="weather-date">29 October, 2018</span>
+                <span class="weather-date"><%= new Date().toDateString() %></span>
                 <span class="weather-location">Lagos, Nigeria</span>
               </p>
             </div>
