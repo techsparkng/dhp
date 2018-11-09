@@ -65,18 +65,18 @@ $("#calc_plan").on("change", function(e) {
 	plan = $(this).find('option:selected').val();
 
 	if (plan == 1) {
-		percent = 1.3;
-		
+		percent = 1.4;
+		$("#assign_per").val("140%");
 	}
 
 	if (plan == 2) {
-		percent = 1.225;
-		$("#assign_per").val("122.5%");
+		percent = 1.6;
+		$("#assign_per").val("140%");
 	}
 
 	if (plan == 3) {
 		percent = 1.4;
-		$("#assign_per").val("140%");
+		$("#assign_per").val("160%");
 	}
 	calculate();
 });

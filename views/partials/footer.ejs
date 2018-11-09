@@ -43,7 +43,7 @@
             `<option class="${package._id}">&#8358;${package.amountDeposited} - ${moment(package.start).format('MM/DD/YYYY')}</option>`
             )
           var currentEarning = moment().diff(moment(package.start), 'days') * package.interest / 100 * package.amountDeposited;
-          $(`option.${package._id}`).data({earnings: currentEarning, capital: package.amountDeposited});
+          $(`option.${package._id}`).data({earnings: Math.round(currentEarning), capital: Math.round(package.amountDeposited)});
         })
       }
 
@@ -54,7 +54,7 @@
             `<option class="${package._id}">&#8358;${package.amountDeposited} - ${moment(package.start).format('MM/DD/YYYY')}</option>`
             )
           var currentEarning = moment().diff(moment(package.start), 'days') * package.interest / 100 * package.amountDeposited;
-          $(`option.${package._id}`).data({earnings: currentEarning, capital: package.amountDeposited});
+          $(`option.${package._id}`).data({earnings: Math.round(currentEarning), capital: Math.round(package.amountDeposited)});
         })
       }
     });

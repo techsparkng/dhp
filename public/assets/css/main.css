@@ -147,6 +147,7 @@ header {
     color: white;
     font-family: 'Roboto', sans-serif;
     border-top: 3px solid #3AC9EBFF;
+    width: 100vw;
 }
 
 .logo {
