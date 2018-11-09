@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="card">
+            <div class="card-body">
+                <span class="ALert"></span>
+                <p class="card-description">
+
+                    <h4>Message Ticket to Admin</h4>
+
+                </p>
+                <form action="/user/messages" method="POST" class="forms-sample">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Title</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Body</label>
+                            <div class="col-sm-9">
+                                <textarea type="text" maxlength="250" rows="7" class="form-control" name="message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-primary message-btn" value="Message">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<% include ../partials/footer %>
